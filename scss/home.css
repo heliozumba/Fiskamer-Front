@@ -210,21 +210,82 @@ li a:hover{
 }
 
 .additional-info{
-  border:1px solid red;
+  
   width:100%;
   padding:2%;
-  height:600px;
+  height:500px;
   background-color:#F2F1EE;
 }
 
 .additional-info .jumbotron{
-  display:inline-block;
-  width:49.8%;
+  display:inline-grid;
+  width:45%;
+  background-color:#fff;
+  height:400px;
+}
+
+.additional-info .jumbotron .btn{
+  margin-left:30%;
+  margin-top:3%;
+}
+
+.additional-info-supplies{
+  margin-right:0.5%;
+  margin-left:5%;
 }
 
 footer{
-  height:250px;
+  height:350px;
   background-color: #474645;
+  position:static;
+  padding-top:3%;
+  padding-left:10%;
+}
+
+.footer-menu{
+  border:1px solid red;
+  width:15%;
+  display:inline-block
+}
+
+.footer-menu ul{
+  list-style-type:none;
+}
+
+.footer-menu li a{
+  text-transform:none;
+  text-decoration:none;
+  font-weight:normal;
+}
+.footer-menu hr{
+  background-color:white;
+  border-width:1px;
+  width:30%;
+  margin-left:0px;
+}
+
+.footer-menu-title{
+  font-weight:bold;
+  color:white;
+  margin-bottom:9%
+}
+
+.footer-menu-options{
+  text-transform:none;
+
+}
+
+ul ul li{
+  display:inline;
+  font-size:40pt;
+}
+
+.footer-menu-options-inline{
+  padding:0;
+}
+
+.social{
+ position:absolute;
 }
 
 
