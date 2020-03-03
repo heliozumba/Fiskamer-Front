@@ -1,7 +1,15 @@
+
+
+.container-fluid{
+  scroll-snap-align: start;
+}
+
+
 nav ul {
   margin-left:-30%;
   width:50%;
   margin-bottom:0;
+  
 }
 
 li a{
@@ -47,6 +55,7 @@ li a:hover{
     background-size:cover;
     width:100%;
     height:771px;
+    
 }
 
 .home-film{
@@ -54,6 +63,7 @@ li a:hover{
     width:100%;
     height:771px;
     padding-top:5%
+    
 }
 
 .home-text{
@@ -134,9 +144,7 @@ li a:hover{
  
 }
 
-.services-main-text{
- 
-}
+
 
 .services-container{
    height:600px;
@@ -288,4 +296,8 @@ ul ul li{
  position:absolute;
 }
 
+.footer-copyrights{
+  color:white;
+  margin-top:2%;
+}
 
