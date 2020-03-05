@@ -1,18 +1,12 @@
 /* Variables */
-body {
-  -ms-scroll-snap-type: y mandatory;
-      scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-}
-
-.container-fluid {
-  scroll-snap-align: start;
-}
-
 nav ul {
   margin-left: -30%;
   width: 50%;
   margin-bottom: 0;
+}
+
+.fiskamer-logo {
+  height: 40px;
 }
 
 li a {
@@ -53,17 +47,43 @@ li a:hover {
   background-color: #fff;
 }
 
-.home-background {
-  background-image: url(../src/img/woman-4081760_1920.jpg);
-  background-size: cover;
+.background-fisk {
   width: 100%;
-  height: 771px;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  opacity: 0.1;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
+}
+
+.carousel,
+.carousel-inner {
+  z-index: -1;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+
+.carousel-item .active img {
+  height: 100vh;
+}
+
+.land-background {
+  background-image: url(../src/img/woman-4081760_1920.jpg);
+  opacity: 1;
 }
 
 .home-film {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   width: 100%;
-  height: 771px;
+  height: 100vh;
   padding-top: 5%;
 }
 
@@ -71,7 +91,12 @@ li a:hover {
   width: 50%;
   margin-left: 7%;
   margin-top: 5%;
-  margin-top: 0;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
 }
 
 .text-main {
@@ -124,7 +149,7 @@ li a:hover {
   border: 1px solid #2c3e5050;
 }
 
-.carousel-item {
+/*.carousel-item {
   height: 777px;
 }
 
@@ -133,14 +158,16 @@ li a:hover {
   height: 10px;
   border-radius: 100%;
 }
-
 .carousel-indicators {
   bottom: -50px;
+}*/
+.services {
+  height: 100vh;
+  background-color: #f2f1eeab;
 }
 
-.services {
-  height: 850px;
-  background-color: #f2f1eeab;
+.services .services-background {
+  background-image: url("/src/img/services.jpg");
 }
 
 .services .container {
@@ -181,8 +208,8 @@ li a:hover {
   height: 100%;
   width: 100%;
   opacity: 0;
-  -webkit-transition: .5s ease;
-  transition: .5s ease;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
   background-color: #ffcd03;
 }
 
@@ -255,17 +282,27 @@ li a:hover {
 
 .additional-info {
   width: 100%;
-  padding: 2%;
+  padding: 0%;
   height: 500px;
   background-color: #f2f1ee;
+  background-size: cover;
+  opacity: 1;
+}
+
+.additional-info .info-background {
+  background-image: url("/src/img/supplies.jpg");
 }
 
 .additional-info .jumbotron {
   display: -ms-inline-grid;
   display: inline-grid;
-  width: 45%;
+  width: 40%;
   background-color: #fff;
   height: 400px;
+}
+
+.additional-info .jumbotron:nth-child(1) {
+  margin-left: 12%;
 }
 
 .additional-info .jumbotron .btn {
@@ -275,7 +312,8 @@ li a:hover {
 
 .additional-info .supplies {
   margin-right: 0.5%;
-  margin-left: 5%;
+  margin-left: 10%;
+  margin-top: 2%;
 }
 
 footer {
