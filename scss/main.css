@@ -1,6 +1,6 @@
 /* Variables */
 nav ul {
-  margin-left: -30%;
+  margin-left: -20%;
   width: 50%;
   margin-bottom: 0;
 }
@@ -164,6 +164,7 @@ li a:hover {
 .services {
   height: 100vh;
   background-color: #f2f1eeab;
+  overflow-inline: scroll;
 }
 
 .services .services-background {
@@ -177,13 +178,13 @@ li a:hover {
 }
 
 .services .container .box {
-  width: 20%;
-  height: 300px;
-  margin-top: 2%;
+  width: 28%;
+  height: 450px;
+  margin-top: 10%;
   -webkit-box-shadow: 1px 2px 5px 0px gray;
           box-shadow: 1px 2px 5px 0px gray;
   display: inline-block;
-  margin-right: 1%;
+  margin-right: 2%;
 }
 
 .services .container .box .image-container {
@@ -192,11 +193,15 @@ li a:hover {
 }
 
 .services .container .box .image-container a .image {
-  height: 100%;
+  height: inherit;
+}
+
+.services .container .box .image-container img {
+  height: -webkit-fill-available;
 }
 
 .services .container .box .image-container:hover .overlay {
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .services .container .box .image-container .overlay {
@@ -205,17 +210,17 @@ li a:hover {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100%;
+  height: 150px;
   width: 100%;
   opacity: 0;
   -webkit-transition: 0.5s ease;
   transition: 0.5s ease;
-  background-color: #ffcd03;
+  background-color: transparent;
 }
 
 .services .container .box .image-container .overlay .show-details {
-  color: white;
-  font-size: 20px;
+  color: #ffcd03;
+  font-size: 60px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -254,8 +259,7 @@ li a:hover {
 
 .services .container .box .description-container {
   padding: 11%;
-  height: initial;
-  display: none;
+  height: 150px;
 }
 
 .services .container .box .description-container .text {
@@ -325,7 +329,6 @@ footer {
 }
 
 footer .menu {
-  border: 1px solid red;
   width: 15%;
   display: inline-block;
 }
@@ -372,6 +375,12 @@ footer .copyrights {
 
 ul ul li {
   display: inline;
-  font-size: 40pt;
+  font-size: 30pt;
+}
+
+#box5,
+#box6,
+#box4 {
+  display: none;
 }
 /*# sourceMappingURL=main.css.map */

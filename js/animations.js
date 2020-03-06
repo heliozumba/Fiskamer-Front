@@ -3,30 +3,33 @@ $(function() {
     duration: 2000
   });
   //$(".home-text").attr("data-aos", "fade-right");
-  $(".home-text").addClass("animated fadeInLeft");
-  $(".search-bar").addClass("animated fadeInUp");
+  if ($("body").scrollTop() < 800) {
+    $(".home-text").addClass("animated fadeInLeft");
+    $(".search-bar").addClass("animated fadeInUp");
+  }
+
   //$(".box").addClass("animated zoomIn");
-  $(".overlay").hover(
-    function() {
-      $(".box")
+  $(".box").hover(
+    function(event) {
+      $("#" + this.id)
         .animate({
-          height: "500px",
-          marginTop: "50px"
+          marginTop: "12%"
         })
         .css("box-shadow", "2px 2px 6px 0px #ffcd03");
 
-      $(".description-container").show();
-      $(".button-container").show();
+      //$("#" + this.id + " > .description-container").show();
     },
     function() {
-      $(".box")
+      $("#" + this.id)
         .animate({
-          height: "300px",
-          marginTop: "0px"
+          marginTop: "10%"
         })
         .css("box-shadow", "1px 2px 5px 0px gray");
-      $(".description-container").fadeOut();
-      $(".button-container").fadeOut();
+      // $("#" + this.id + " > .description-container").fadeOut();
     }
   );
+
+  function rep() {}
+
+  window.setInterval(rep, 10000);
 });
