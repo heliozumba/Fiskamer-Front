@@ -30,12 +30,30 @@
             src="src/img/logo2.png"
             alt="fiskamer-logo"
         /></a>
-        <ul>
-          <li class="d-inline"><a href="#">Inicio</a></li>
-          <li class="d-inline"><a href="#">Serviços</a></li>
-          <li class="d-inline"><a href="#">Fornecedores</a></li>
-          <li class="d-inline"><a href="#">Categorias</a></li>
+        <button
+          class="navbar-toogler d-block d-sm-none"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseNavbar"
+        >
+          <span class="navbar-toggler-icon d-block d-sm-none"></span>
+        </button>
+        <!--div class="collapse navbar-collapse" id="collapseNavbar"-->
+        <ul class="">
+          <li class=" d-inline">
+            <a class="" href="#">Inicio</a>
+          </li>
+          <li class=" d-inline">
+            <a class="" href="#">Serviços</a>
+          </li>
+          <li class=" d-inline">
+            <a class="" href="#">Fornecedores</a>
+          </li>
+          <li class=" d-inline">
+            <a class="" href="#">Categorias</a>
+          </li>
         </ul>
+        <!--/div-->
         <div class="navbar-buttons">
           <button class="btn btn-outline-dark signUp_button">
             Criar Conta
@@ -46,11 +64,11 @@
         </div>
       </nav>
     </header>
-    <div class="container-fluid">
+    <div class="container-fluid col-12">
       <div class="row">
         <div
           id="carouselExampleIndicators"
-          class="carousel slide carousel-fade"
+          class="carousel slide carousel-fade col-12"
           data-ride="carousel"
         >
           <!--ol class="carousel-indicators">
@@ -86,8 +104,8 @@
             </div>
           </div>
         </div>
-        <div class="home-background">
-          <section class="home-film">
+        <div class="home-background col-12">
+          <section class="home-film col-12">
             <section class="home-text">
               <article class="text-main">
                 <h1 class="display-4">
@@ -102,7 +120,7 @@
                 </h3>
               </article>
             </section>
-            <div class="search-bar-container">
+            <div class="search-bar-container col-sm-6">
               <div class="search-bar">
                 <form class="form-inline" action="">
                   <input
@@ -124,221 +142,247 @@
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="services w-100">
+        <div class="services w-100 col-sm-12">
           <div class="background-fisk services-background"></div>
           <div class="main-text text-center mt-5">
             <h1 class="font-weight-bold">Serviços Destacados</h1>
           </div>
           <section class="container-fluid container">
-            <div id="box1" class=" box text-center rounded " data-aos="zoom-in">
-              <div class="image-container">
-                <img
-                  class="image w-100"
-                  src="src/img/71462.jpg"
-                  alt="service-image"
-                />
-                <div class="overlay">
-                  <a href="#" class="show-details"
-                    ><i class="fa fa-eye" aria-hidden="true"></i
-                  ></a>
+            <div class="box-master">
+              <div
+                id="box1"
+                class=" box text-center rounded col-sm-4 col-xs-12"
+                data-aos="zoom-in"
+              >
+                <div class="image-container">
+                  <img
+                    class="image w-100"
+                    src="src/img/71462.jpg"
+                    alt="service-image"
+                  />
+                  <div class="overlay">
+                    <a href="#" class="show-details"
+                      ><i class="fa fa-eye" aria-hidden="true"></i
+                    ></a>
+                  </div>
                 </div>
-              </div>
 
-              <div class="details-container">
-                <p class="type text-uppercase">
-                  Salão de Festas
-                </p>
-                <p class="name">São João</p>
-                <p class="location">Luanda, Maianga</p>
-                <p class="price">250.000 AKZ</p>
-              </div>
-              <div class="description-container">
-                <p class="text text-justify">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime numquam, mollitia dicta harum voluptas incidunt
-                  voluptatum voluptate, dolores est, magni magnam quasi maiores!
-                </p>
-              </div>
-              <!--div class="button-container">
+                <div class="details-container">
+                  <p class="type text-uppercase">
+                    Salão de Festas
+                  </p>
+                  <p class="name">São João</p>
+                  <p class="location">Luanda, Maianga</p>
+                  <p class="price">250.000 AKZ</p>
+                </div>
+                <div class="description-container">
+                  <p class="text text-justify">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime numquam, mollitia dicta harum voluptas incidunt
+                    voluptatum voluptate, dolores est, magni magnam quasi
+                    maiores!
+                  </p>
+                </div>
+                <!--div class="button-container">
                 <button class=" button btn btn-block btn-raised btn-dark">
                   Ver Pacote
                 </button>
               </div-->
+              </div>
+              <div
+                id="box2"
+                class="box text-center rounded col-sm-4 col-xs-12"
+                data-aos="zoom-in"
+              >
+                <div class="image-container">
+                  <img
+                    class="image w-100"
+                    src="src/img/woman-4081760_1920.jpg"
+                    alt="service-image"
+                  />
+                  <div class="overlay">
+                    <a href="#" class="show-details"
+                      ><i class="fa fa-eye" aria-hidden="true"></i
+                    ></a>
+                  </div>
+                </div>
+
+                <div class="details-container">
+                  <p class="type text-uppercase">
+                    Salão de Festas
+                  </p>
+                  <p class="name">São João</p>
+                  <p class="location">Luanda, Maianga</p>
+                  <p class="price">250.000 AKZ</p>
+                </div>
+                <div class="description-container">
+                  <p class="text text-justify">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime numquam, mollitia dicta harum voluptas incidunt
+                    voluptatum voluptate, dolores est, magni magnam quasi
+                    maiores!
+                  </p>
+                </div>
+                <!--div class="button-container">
+                <button class=" button btn btn-block btn-raised btn-dark">
+                  Ver Pacote
+                </button>
+              </div-->
+              </div>
+              <div
+                id="box3"
+                class="box text-center rounded col-sm-4 col-xs-12"
+                data-aos="zoom-in"
+              >
+                <div class="image-container">
+                  <img
+                    class="image w-100"
+                    src="src/img/wedding3.jpg"
+                    alt="service-image"
+                  />
+                  <div class="overlay">
+                    <a href="#" class="show-details"
+                      ><i class="fa fa-eye" aria-hidden="true"></i
+                    ></a>
+                  </div>
+                </div>
+
+                <div class="details-container">
+                  <p class="type text-uppercase">
+                    Salão de Festas
+                  </p>
+                  <p class="name">São João</p>
+                  <p class="location">Luanda, Maianga</p>
+                  <p class="price">250.000 AKZ</p>
+                </div>
+                <div class="description-container">
+                  <p class="text text-justify">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime numquam, mollitia dicta harum voluptas incidunt
+                    voluptatum voluptate, dolores est, magni magnam quasi
+                    maiores!
+                  </p>
+                </div>
+                <!--div class="button-container">
+                <button class=" button btn btn-block btn-raised btn-dark">
+                  Ver Pacote
+                </button>
+              </div-->
+              </div>
             </div>
-            <div id="box2" class="box text-center rounded" data-aos="zoom-in">
-              <div class="image-container">
-                <img
-                  class="image w-100"
-                  src="src/img/woman-4081760_1920.jpg"
-                  alt="service-image"
-                />
-                <div class="overlay">
-                  <a href="#" class="show-details"
-                    ><i class="fa fa-eye" aria-hidden="true"></i
-                  ></a>
+            <div class="box-master2">
+              <div
+                id="box4"
+                class=" box text-center rounded"
+                data-aos="zoom-in"
+              >
+                <div class="image-container">
+                  <img
+                    class="image w-100"
+                    src="src/img/dj-3.jpeg"
+                    alt="service-image"
+                  />
+                  <div class="overlay">
+                    <a href="#" class="show-details"
+                      ><i class="fa fa-eye" aria-hidden="true"></i
+                    ></a>
+                  </div>
                 </div>
-              </div>
 
-              <div class="details-container">
-                <p class="type text-uppercase">
-                  Salão de Festas
-                </p>
-                <p class="name">São João</p>
-                <p class="location">Luanda, Maianga</p>
-                <p class="price">250.000 AKZ</p>
-              </div>
-              <div class="description-container">
-                <p class="text text-justify">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime numquam, mollitia dicta harum voluptas incidunt
-                  voluptatum voluptate, dolores est, magni magnam quasi maiores!
-                </p>
-              </div>
-              <!--div class="button-container">
+                <div class="details-container">
+                  <p class="type text-uppercase">
+                    Salão de Festas
+                  </p>
+                  <p class="name">São João</p>
+                  <p class="location">Luanda, Maianga</p>
+                  <p class="price">250.000 AKZ</p>
+                </div>
+                <div class="description-container">
+                  <p class="text text-justify">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime numquam, mollitia dicta harum voluptas incidunt
+                    voluptatum voluptate, dolores est, magni magnam quasi
+                    maiores!
+                  </p>
+                </div>
+                <!--div class="button-container">
                 <button class=" button btn btn-block btn-raised btn-dark">
                   Ver Pacote
                 </button>
               </div-->
-            </div>
-            <div id="box3" class="box text-center rounded" data-aos="zoom-in">
-              <div class="image-container">
-                <img
-                  class="image w-100"
-                  src="src/img/wedding3.jpg"
-                  alt="service-image"
-                />
-                <div class="overlay">
-                  <a href="#" class="show-details"
-                    ><i class="fa fa-eye" aria-hidden="true"></i
-                  ></a>
+              </div>
+              <div id="box5" class="box text-center rounded" data-aos="zoom-in">
+                <div class="image-container">
+                  <img
+                    class="image w-100"
+                    src="src/img/wedding2.jpg"
+                    alt="service-image"
+                  />
+                  <div class="overlay">
+                    <a href="#" class="show-details"
+                      ><i class="fa fa-eye" aria-hidden="true"></i
+                    ></a>
+                  </div>
                 </div>
-              </div>
 
-              <div class="details-container">
-                <p class="type text-uppercase">
-                  Salão de Festas
-                </p>
-                <p class="name">São João</p>
-                <p class="location">Luanda, Maianga</p>
-                <p class="price">250.000 AKZ</p>
-              </div>
-              <div class="description-container">
-                <p class="text text-justify">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime numquam, mollitia dicta harum voluptas incidunt
-                  voluptatum voluptate, dolores est, magni magnam quasi maiores!
-                </p>
-              </div>
-              <!--div class="button-container">
+                <div class="details-container">
+                  <p class="type text-uppercase">
+                    Salão de Festas
+                  </p>
+                  <p class="name">São João</p>
+                  <p class="location">Luanda, Maianga</p>
+                  <p class="price">250.000 AKZ</p>
+                </div>
+                <div class="description-container">
+                  <p class="text text-justify">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime numquam, mollitia dicta harum voluptas incidunt
+                    voluptatum voluptate, dolores est, magni magnam quasi
+                    maiores!
+                  </p>
+                </div>
+                <!--div class="button-container">
                 <button class=" button btn btn-block btn-raised btn-dark">
                   Ver Pacote
                 </button>
               </div-->
-            </div>
-            <div id="box4" class=" box text-center rounded" data-aos="zoom-in">
-              <div class="image-container">
-                <img
-                  class="image w-100"
-                  src="src/img/dj-3.jpeg"
-                  alt="service-image"
-                />
-                <div class="overlay">
-                  <a href="#" class="show-details"
-                    ><i class="fa fa-eye" aria-hidden="true"></i
-                  ></a>
+              </div>
+              <div id="box6" class="box text-center rounded" data-aos="zoom-in">
+                <div class="image-container">
+                  <img
+                    class="image w-100"
+                    src="src/img/wedding.jpg"
+                    alt="service-image"
+                  />
+                  <div class="overlay">
+                    <a href="#" class="show-details"
+                      ><i class="fa fa-eye" aria-hidden="true"></i
+                    ></a>
+                  </div>
                 </div>
-              </div>
 
-              <div class="details-container">
-                <p class="type text-uppercase">
-                  Salão de Festas
-                </p>
-                <p class="name">São João</p>
-                <p class="location">Luanda, Maianga</p>
-                <p class="price">250.000 AKZ</p>
-              </div>
-              <div class="description-container">
-                <p class="text text-justify">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime numquam, mollitia dicta harum voluptas incidunt
-                  voluptatum voluptate, dolores est, magni magnam quasi maiores!
-                </p>
-              </div>
-              <!--div class="button-container">
+                <div class="details-container">
+                  <p class="type text-uppercase">
+                    Salão de Festas
+                  </p>
+                  <p class="name">São João</p>
+                  <p class="location">Luanda, Maianga</p>
+                  <p class="price">250.000 AKZ</p>
+                </div>
+                <div class="description-container">
+                  <p class="text text-justify">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime numquam, mollitia dicta harum voluptas incidunt
+                    voluptatum voluptate, dolores est, magni magnam quasi
+                    maiores!
+                  </p>
+                </div>
+                <!--div class="button-container">
                 <button class=" button btn btn-block btn-raised btn-dark">
                   Ver Pacote
                 </button>
               </div-->
-            </div>
-            <div id="box5" class="box text-center rounded" data-aos="zoom-in">
-              <div class="image-container">
-                <img
-                  class="image w-100"
-                  src="src/img/wedding2.jpg"
-                  alt="service-image"
-                />
-                <div class="overlay">
-                  <a href="#" class="show-details"
-                    ><i class="fa fa-eye" aria-hidden="true"></i
-                  ></a>
-                </div>
               </div>
-
-              <div class="details-container">
-                <p class="type text-uppercase">
-                  Salão de Festas
-                </p>
-                <p class="name">São João</p>
-                <p class="location">Luanda, Maianga</p>
-                <p class="price">250.000 AKZ</p>
-              </div>
-              <div class="description-container">
-                <p class="text text-justify">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime numquam, mollitia dicta harum voluptas incidunt
-                  voluptatum voluptate, dolores est, magni magnam quasi maiores!
-                </p>
-              </div>
-              <!--div class="button-container">
-                <button class=" button btn btn-block btn-raised btn-dark">
-                  Ver Pacote
-                </button>
-              </div-->
-            </div>
-            <div id="box6" class="box text-center rounded" data-aos="zoom-in">
-              <div class="image-container">
-                <img
-                  class="image w-100"
-                  src="src/img/wedding.jpg"
-                  alt="service-image"
-                />
-                <div class="overlay">
-                  <a href="#" class="show-details"
-                    ><i class="fa fa-eye" aria-hidden="true"></i
-                  ></a>
-                </div>
-              </div>
-
-              <div class="details-container">
-                <p class="type text-uppercase">
-                  Salão de Festas
-                </p>
-                <p class="name">São João</p>
-                <p class="location">Luanda, Maianga</p>
-                <p class="price">250.000 AKZ</p>
-              </div>
-              <div class="description-container">
-                <p class="text text-justify">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Maxime numquam, mollitia dicta harum voluptas incidunt
-                  voluptatum voluptate, dolores est, magni magnam quasi maiores!
-                </p>
-              </div>
-              <!--div class="button-container">
-                <button class=" button btn btn-block btn-raised btn-dark">
-                  Ver Pacote
-                </button>
-              </div-->
             </div>
           </section>
         </div>
@@ -348,7 +392,10 @@
       <div class="row">
         <section class="additional-info">
           <div class="background-fisk info-background"></div>
-          <div class="jumbotron supplies" data-aos="fade-down-right">
+          <div
+            class="jumbotron supplies col-sm-6 col-xs-12"
+            data-aos="fade-down-right"
+          >
             <h1>É um fornecedor competente?</h1>
             <p class="lead text-justify">
               O Site Fiskamer é uma plataforma de divulgação de serviços para
@@ -362,7 +409,10 @@
               </button>
             </p>
           </div>
-          <div class="jumbotron events" data-aos="fade-down-left">
+          <div
+            class="jumbotron events col-sm-6 col-xs-12"
+            data-aos="fade-down-left"
+          >
             <h1>O Site de divulgação de serviços para Eventos</h1>
             <p class="lead text-justify">
               Pesquise no nosso site para se conectar instantaneamente com
@@ -375,8 +425,8 @@
         </section>
       </div>
     </div>
-    <footer>
-      <div class="menu">
+    <footer class="col-12">
+      <div class="menu col-sm-2">
         <ul>
           <li class="title">Menu</li>
           <hr />
@@ -386,7 +436,7 @@
           <li class="options"><a href="#">Eventos Locais</a></li>
         </ul>
       </div>
-      <div class="menu">
+      <div class="menu col-sm-2 col-sm-2">
         <ul>
           <li class="title">Informação</li>
           <hr />
@@ -395,20 +445,20 @@
           <li class="options"><a href="#">Políticas de Privacidade</a></li>
         </ul>
       </div>
-      <div class="menu">
+      <div class="menu col-sm-2">
         <ul>
           <li class="title">Ajuda</li>
           <hr />
           <li class="options"><a href="#">Recuperação de Senha</a></li>
         </ul>
       </div>
-      <div class="menu">
+      <div class="menu col-sm-2">
         <ul>
           <li class="title">Faça Download do Nosso App</li>
           <hr />
         </ul>
       </div>
-      <div class="social menu">
+      <div class="social menu col-sm-2">
         <ul>
           <li class="title">Siga-nos em:</li>
           <hr />

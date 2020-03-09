@@ -1,4 +1,6 @@
 /* Variables */
+@import "media-screen";
+
 $detailColor: #ffcd03;
 $backgroundColor: #2c3e50;
 $sectionColor: #f2f1ee;
@@ -10,6 +12,9 @@ nav ul {
   margin-left: -20%;
   width: 50%;
   margin-bottom: 0;
+}
+.navbar-nav {
+  height: auto !important;
 }
 
 .fiskamer-logo {
@@ -54,7 +59,7 @@ li {
 }
 
 .background-fisk {
-  width: 100%;
+  width: 98%;
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -85,6 +90,15 @@ li {
   opacity: 1;
 }
 
+.container-fluid .col-12 .col-sm-12 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.home-background {
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .home-film {
   background-color: rgba(0, 0, 0, 0.4);
   width: 100%;
@@ -141,7 +155,6 @@ li {
 .search-bar form {
   padding: 4%;
   width: 100%;
-  margin-left: 6%;
 }
 
 .search-bar form input {
@@ -174,6 +187,10 @@ li {
     height: 600px;
     margin-top: 2%;
     padding: 0 5% 0 5%;
+
+    .col-sm-4 {
+      padding: 0px;
+    }
 
     .box {
       width: 28%;
@@ -293,6 +310,7 @@ li {
 
   .info-background {
     background-image: url("/src/img/supplies.jpg");
+    width: 98%;
   }
 
   .jumbotron {
@@ -376,8 +394,6 @@ ul ul li {
   font-size: 30pt;
 }
 
-#box5,
-#box6,
-#box4 {
+.box-master2 {
   display: none;
 }

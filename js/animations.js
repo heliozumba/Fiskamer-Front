@@ -29,7 +29,10 @@ $(function() {
     }
   );
 
-  function rep() {}
+  function rep() {
+    $(".box-master").fadeToggle("slow");
+    $(".box-master2").fadeToggle("slow");
+  }
 
-  window.setInterval(rep, 10000);
+  window.setInterval(rep, 5000);
 });
