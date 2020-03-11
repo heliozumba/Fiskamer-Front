@@ -1,5 +1,6 @@
 /* Variables */
 @import "media-screen";
+@import "div-carousel";
 
 $detailColor: #ffcd03;
 $backgroundColor: #2c3e50;
@@ -13,8 +14,12 @@ nav ul {
   width: 50%;
   margin-bottom: 0;
 }
-.navbar-nav {
+.navbar {
   height: auto !important;
+  transition: 500ms ease;
+}
+nav {
+  transition: 500ms ease;
 }
 
 .fiskamer-logo {
@@ -81,8 +86,14 @@ li {
   height: 100vh;
 }
 
+.carousel-item .active {
+  margin: 0;
+}
 .carousel-item .active img {
   height: 100vh;
+}
+.carousel-control-next {
+  font-size: 24pt;
 }
 
 .land-background {
@@ -90,9 +101,7 @@ li {
   opacity: 1;
 }
 
-.container-fluid .col-12 .col-sm-12 {
-  padding-left: 0;
-  padding-right: 0;
+.col-12 {
 }
 
 .home-background {
@@ -104,6 +113,7 @@ li {
   width: 100%;
   height: 100vh;
   padding-top: 5%;
+  padding-left: 0;
 }
 
 .home-text {
@@ -193,7 +203,6 @@ li {
     }
 
     .box {
-      width: 28%;
       height: 450px;
       margin-top: 10%;
       box-shadow: 1px 2px 5px 0px gray;
@@ -341,7 +350,8 @@ footer {
   background-color: $footerColor;
   position: static;
   padding-top: 3%;
-  padding-left: 10%;
+  padding-left: 30%;
+  padding-right: 10%;
 
   .menu {
     width: 15%;
@@ -394,6 +404,7 @@ ul ul li {
   font-size: 30pt;
 }
 
-.box-master2 {
-  display: none;
+#carouselExampleIndicators {
+  padding-left: 0;
+  padding-right: 0;
 }

@@ -34,5 +34,37 @@ $(function() {
     $(".box-master2").fadeToggle("slow");
   }
 
-  window.setInterval(rep, 5000);
+  //window.setInterval(rep, 5000);
+  //$(this).height
+  $(window).scroll(function() {
+    $(".navbar").toggleClass("bg-dark", $(this).scrollTop() > 10);
+  });
+
+  $("#nextMaster").click(function() {
+    $("#bm-1").effect("slide");
+    $();
+  });
+
+  $("#myCarousel").on("slide.bs.carousel", function(e) {
+    var $e = $(e.relatedTarget);
+    var idx = $e.index();
+    var itemsPerSlide = 3;
+    var totalItems = $("#myCarousel > .carousel-item").length;
+
+    if (idx >= totalItems - (itemsPerSlide - 1)) {
+      var it = itemsPerSlide - (totalItems - idx);
+      for (var i = 0; i < it; i++) {
+        // append slides to end
+        if (e.direction == "left") {
+          $("#myCarousel > .carousel-item")
+            .eq(i)
+            .appendTo("#myCarousel > .carousel-inner");
+        } else {
+          $("#myCarousel > .carousel-item")
+            .eq(0)
+            .appendTo($(this).find("#myCarousel > .carousel-inner"));
+        }
+      }
+    }
+  });
 });

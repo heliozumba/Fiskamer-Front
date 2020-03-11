@@ -8,14 +8,107 @@
   }
 }
 
+#myCarousel {
+  z-index: 1;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  #myCarousel {
+    /* show 3 items */
+    /* left or forward direction */
+    /* farthest right hidden item must be abso position for animations */
+    /* right or prev direction */
+  }
+  #myCarousel .carousel-inner .active,
+  #myCarousel .carousel-inner .active + .carousel-item,
+  #myCarousel .carousel-inner .active + .carousel-item + .carousel-item {
+    display: block;
+  }
+  #myCarousel .carousel-item {
+    margin-right: auto !important;
+  }
+  #myCarousel .carousel-inner
+.carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+  #myCarousel .carousel-inner
+.carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)
++ .carousel-item,
+  #myCarousel .carousel-inner
+.carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)
++ .carousel-item
++ .carousel-item {
+    -webkit-transition: none;
+    transition: none;
+  }
+  #myCarousel .carousel-inner .carousel-item-next,
+  #myCarousel .carousel-inner .carousel-item-prev {
+    position: relative;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+  #myCarousel .carousel-inner
+.active.carousel-item
++ .carousel-item
++ .carousel-item
++ .carousel-item {
+    position: absolute;
+    top: 0;
+    right: -33.3333%;
+    z-index: -1;
+    display: block;
+    visibility: visible;
+  }
+  #myCarousel .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+  #myCarousel .carousel-item-next.carousel-item-left + .carousel-item,
+  #myCarousel .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+  #myCarousel .carousel-item-next.carousel-item-left
++ .carousel-item
++ .carousel-item
++ .carousel-item {
+    position: relative;
+    -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+  #myCarousel .carousel-inner .carousel-item-prev.carousel-item-right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    display: block;
+    visibility: visible;
+  }
+  #myCarousel .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+  #myCarousel .carousel-item-prev.carousel-item-right + .carousel-item,
+  #myCarousel .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+  #myCarousel .carousel-item-prev.carousel-item-right
++ .carousel-item
++ .carousel-item
++ .carousel-item {
+    position: relative;
+    -webkit-transform: translate3d(100%, 0, 0);
+            transform: translate3d(100%, 0, 0);
+    visibility: visible;
+    display: block;
+    visibility: visible;
+  }
+}
+
 nav ul {
   margin-left: -20%;
   width: 50%;
   margin-bottom: 0;
 }
 
-.navbar-nav {
+.navbar {
   height: auto !important;
+  -webkit-transition: 500ms ease;
+  transition: 500ms ease;
+}
+
+nav {
+  -webkit-transition: 500ms ease;
+  transition: 500ms ease;
 }
 
 .fiskamer-logo {
@@ -84,18 +177,21 @@ li a:hover {
   height: 100vh;
 }
 
+.carousel-item .active {
+  margin: 0;
+}
+
 .carousel-item .active img {
   height: 100vh;
+}
+
+.carousel-control-next {
+  font-size: 24pt;
 }
 
 .land-background {
   background-image: url(../src/img/woman-4081760_1920.jpg);
   opacity: 1;
-}
-
-.container-fluid .col-12 .col-sm-12 {
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .home-background {
@@ -108,6 +204,7 @@ li a:hover {
   width: 100%;
   height: 100vh;
   padding-top: 5%;
+  padding-left: 0;
 }
 
 .home-text {
@@ -204,7 +301,6 @@ li a:hover {
 }
 
 .services .container .box {
-  width: 28%;
   height: 450px;
   margin-top: 10%;
   -webkit-box-shadow: 1px 2px 5px 0px gray;
@@ -352,7 +448,8 @@ footer {
   background-color: #474645;
   position: static;
   padding-top: 3%;
-  padding-left: 10%;
+  padding-left: 30%;
+  padding-right: 10%;
 }
 
 footer .menu {
@@ -405,7 +502,8 @@ ul ul li {
   font-size: 30pt;
 }
 
-.box-master2 {
-  display: none;
+#carouselExampleIndicators {
+  padding-left: 0;
+  padding-right: 0;
 }
 /*# sourceMappingURL=main.css.map */
