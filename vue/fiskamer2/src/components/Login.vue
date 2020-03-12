@@ -5,7 +5,7 @@
         <input
           type="email"
           v-model="user.email"
-          class="form-control"
+          class="form-control rounded"
           name="email"
           placeholder="Email"
         />
@@ -14,15 +14,15 @@
         <input
           type="password"
           v-model="user.password"
-          class="form-control"
+          class="form-control rounded"
           name="pass"
           placeholder="Palavra-Passe"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Entrar</button>
+      <button type="submit" class="btn btn-block btn-dark">Entrar</button>
       <p>
         <small>
-          <router-link to="/register">Não possuo uma conta, Cadastrar.</router-link>
+          <router-link to="/credentials/register">Não possuo uma conta, Cadastrar.</router-link>
         </small>
       </p>
     </form>
@@ -47,10 +47,12 @@ export default {
   }
 };
 </script>
-<style>
-.loginDiv,
-.registerDiv {
-  margin: auto;
-  width: 20%;
+<style scoped>
+.loginDiv {
+  margin-top: 50%;
+  padding: 10%;
+}
+p {
+  margin-top: 5%;
 }
 </style>

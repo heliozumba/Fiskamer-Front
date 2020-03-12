@@ -55,10 +55,10 @@
           v-model="user.confirmPass"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Registrar</button>
+      <button type="submit" class="btn btn-block btn-dark">Registrar</button>
       <p>
         <small>
-          <router-link to="/">Ja possuo uma conta, Entrar.</router-link>
+          <router-link to="/credentials/login">Ja possuo uma conta, Entrar.</router-link>
         </small>
       </p>
     </form>
@@ -87,10 +87,20 @@ export default {
   }
 };
 </script>
-<style>
-.loginDiv,
+<style scoped>
 .registerDiv {
-  margin: auto;
-  width: 20%;
+  margin-top: 30%;
+  padding: 10%;
+}
+p {
+  margin-top: 5%;
+}
+
+form input:focus {
+  outline: none;
+  box-shadow: 0px 0px 10px #ffcd03;
+  transition: 300ms ease;
+  /*background: rgba(0, 0, 0, 0.5);
+  color: white;*/
 }
 </style>
