@@ -10,6 +10,7 @@ import axios from "axios";
 Vue.component("login", require("./components/Login.vue").default);
 Vue.component("register", require("./components/Register.vue").default);
 Vue.component("credentials", require("./components/Credentials.vue").default);
+Vue.component("home", require("./components/Home.vue").default);
 
 Vue.config.productionTip = false;
 

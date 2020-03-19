@@ -1,0 +1,17 @@
+@media screen and (max-width: 576px) {
+  body {
+    border: 5px solid red;
+  }
+  .home-text {
+    height: 30px;
+  }
+  .text-main {
+    font-size: 10pt;
+  }
+  .supplies,
+  .events {
+    height: 100vh;
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=media-screen.css.map */

@@ -3,24 +3,21 @@
     <div class="background-test"></div>
     <div class="container-fluid credentials-container">
       <div class="row">
-        <div class="credentials-box col-sm-4 col-xs-12 rounded">
+        <div class="credentials-box col-sm-3 rounded">
           <transition name="fade">
             <router-view name="helper" />
           </transition>
         </div>
-        <div class="about-box col-sm-6 rounded d-none d-sm-block">
+        <div class="about-box col-sm-7 rounded">
           <div class="background-box rounded"></div>
           <div class="box-overlay rounded">
             <div class="box-text">
               <div class="box-main-text">
                 <img class="img-fluid w-50 rounded" src="./../assets/imgs/logo2.png" alt />
               </div>
-              <div class="next-text">
-                <h1 class="display-4">Encontre tudo que precisa</h1>
-                <p
-                  class="text-justify"
-                >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus magnam, quaerat placeat nobis dolor molestiae delectus qui omnis esse debitis, itaque eveniet distinctio veniam quo iste deserunt adipisci ullam aliquid?</p>
-              </div>
+              <!--div
+              class="next-text"
+              >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus magnam, quaerat placeat nobis dolor molestiae delectus qui omnis esse debitis, itaque eveniet distinctio veniam quo iste deserunt adipisci ullam aliquid?</div-->
             </div>
           </div>
         </div>
@@ -43,12 +40,12 @@ export default {};
   width: 100%;
   height: 100vh;
   position: absolute;
-  background-position: 20%;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
-  background: url("./../assets/imgs/credentials.png");
-  filter: brightness(30%);
+  background: url("./../assets/imgs/pattern.jpg");
+  filter: blur(1px);
+  opacity: 0.5;
 }
 .row {
   margin-left: 15%;
@@ -64,14 +61,13 @@ export default {};
 }
 .credentials-box {
   background-color: white;
-  overflow-y: scroll;
 }
 .background-box,
 .box-overlay {
   height: inherit;
 }
 .background-box {
-  background: url("./../assets/imgs/credentials_overlay.jpg");
+  background: url("./../assets/imgs/casal.jpg");
   z-index: 0;
   position: absolute;
   width: inherit;
@@ -80,26 +76,13 @@ export default {};
   background-size: cover;
 }
 .box-overlay {
-  background: linear-gradient(rgba(246, 218, 17, 0.5), rgba(123, 109, 9, 0.5));
+  background-color: #000000de;
   z-index: 0;
   position: relative;
 }
 
 .box-text {
-  color: white;
-}
-.box-main-text {
-  padding-top: 5%;
-  padding-left: 10%;
-  margin-left: 20%;
-  font-weight: bolder;
-}
-
-.next-text {
-  margin-top: 15%;
-  padding-left: 10%;
-  padding-right: 10%;
-  font-size: 1.2vw;
+  padding-top: 30%;
 }
 
 .logo {
@@ -114,13 +97,5 @@ export default {};
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-}
-
-@media screen and (max-width: 576px) {
-  .credentials-box {
-    margin-left: -10%;
-    margin-right: 10%;
-    margin-top: 20%;
-  }
 }
 </style>

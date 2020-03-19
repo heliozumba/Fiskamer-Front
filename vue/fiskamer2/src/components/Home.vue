@@ -1,35 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css"
-    />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="scss\main.css" />
-    <title>Fiskamer</title>
-  </head>
-  <body>
+<template>
+  <div class="main-main">
     <header>
       <nav class="navbar navbar-expanded-sm fixed-top">
-        <a href="#" class="navbar-brand"
-          ><img
-            class="fiskamer-logo"
-            src="src/img/logo2.png"
-            alt="fiskamer-logo"
-        /></a>
+        <a href="#" class="navbar-brand">
+          <img class="fiskamer-logo" src="@/assets/imgs/logo2.png" alt="fiskamer-logo" />
+        </a>
         <button
           class="navbar-toogler d-block d-sm-none"
           type="button"
@@ -38,29 +13,31 @@
         >
           <span class="navbar-toggler-icon d-block d-sm-none"></span>
         </button>
-        <!--div class="collapse navbar-collapse" id="collapseNavbar"-->
-        <ul class="">
-          <li class=" d-inline">
-            <a class="" href="#">Inicio</a>
-          </li>
-          <li class=" d-inline">
-            <a class="" href="#">Serviços</a>
-          </li>
-          <li class=" d-inline">
-            <a class="" href="#">Fornecedores</a>
-          </li>
-          <li class=" d-inline">
-            <a class="" href="#">Categorias</a>
-          </li>
-        </ul>
-        <!--/div-->
+        <div class="collapse navbar-collapse" id="collapseNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Serviços</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Fornecedores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Categorias</a>
+            </li>
+          </ul>
+        </div>
         <div class="navbar-buttons">
-          <button class="btn btn-outline-dark signUp_button">
-            Criar Conta
-          </button>
-          <button class="btn btn-raised btn-warning signIn_button">
-            Entrar
-          </button>
+          <router-link
+            to="/credentials/register"
+            class="btn btn-outline-dark signUp_button"
+          >Criar Conta</router-link>
+          <router-link
+            to="/credentials/login"
+            class="btn btn-raised btn-warning signIn_button"
+          >Entrar</router-link>
         </div>
       </nav>
     </header>
@@ -73,25 +50,13 @@
         >
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img
-                class="d-block w-100"
-                src="src/img/wedding3.jpg"
-                alt="First slide"
-              />
+              <img class="d-block w-100" src="@/assets/imgs/wedding3.jpg" alt="First slide" />
             </div>
             <div class="carousel-item">
-              <img
-                class="d-block w-100"
-                src="src/img/dj-3.jpeg"
-                alt="Second slide"
-              />
+              <img class="d-block w-100" src="@/assets/imgs/dj-3.jpeg" alt="Second slide" />
             </div>
             <div class="carousel-item">
-              <img
-                class="d-block w-100"
-                src="src/img/salao.jpg"
-                alt="Third slide"
-              />
+              <img class="d-block w-100" src="@/assets/imgs/salao.jpg" alt="Third slide" />
             </div>
           </div>
         </div>
@@ -103,17 +68,12 @@
               role="button"
               data-slide="next"
             >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
             <section class="home-text">
               <article class="text-main">
-                <h1 class="display-4">
-                  Encontre tudo o que procura para o seu evento
-                </h1>
+                <h1 class="display-4">Encontre tudo o que procura para o seu evento</h1>
               </article>
               <article class="text-secondary">
                 <h3>
@@ -125,12 +85,8 @@
             </section>
             <div class="search-bar-container col-sm-6">
               <div class="search-bar">
-                <form class="form-inline" action="">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="O que está a procura?"
-                  />
+                <form class="form-inline" action>
+                  <input type="text" class="form-control" placeholder="O que está a procura?" />
                   <input type="text" class="form-control" placeholder="Onde?" />
                   <button class="btn btn-raised btn-dark">
                     <span class="fa fa-search" aria-hidden="true"></span> &nbsp;
@@ -164,16 +120,8 @@
             <h1 class="font-weight-bold">Serviços Destacados</h1>
           </div>
           <section class="container-fluid container">
-            <a
-              class="carousel-control-next "
-              href="#myCarousel"
-              role="button"
-              data-slide="next"
-            >
-              <span
-                class="fa fa-angle-right fa-5x text-dark"
-                aria-hidden="true"
-              ></span>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+              <span class="fa fa-angle-right fa-5x text-dark" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
             <!--div
@@ -205,28 +153,18 @@
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner row w-100 mx-auto">
                 <div class="carousel-item col-md-4 active">
-                  <div
-                    id="box1"
-                    class=" box text-center rounded "
-                    data-aos="zoom-in"
-                  >
+                  <div id="box1" class="box text-center rounded" data-aos="zoom-in">
                     <div class="image-container">
-                      <img
-                        class="image w-100"
-                        src="src/img/71462.jpg"
-                        alt="service-image"
-                      />
+                      <img class="image w-100" src="@/assets/imgs/71462.jpg" alt="service-image" />
                       <div class="overlay">
-                        <a href="#" class="show-details"
-                          ><i class="fa fa-eye" aria-hidden="true"></i
-                        ></a>
+                        <a href="#" class="show-details">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
                       </div>
                     </div>
 
                     <div class="details-container">
-                      <p class="type text-uppercase">
-                        Salão de Festas
-                      </p>
+                      <p class="type text-uppercase">Salão de Festas</p>
                       <p class="name">São João</p>
                       <p class="location">Luanda, Maianga</p>
                       <p class="price">250.000 AKZ</p>
@@ -240,35 +178,27 @@
                       </p>
                     </div>
                     <div class="button-container">
-                      <button class=" button btn btn-block btn-raised btn-dark">
-                        Ver Pacote
-                      </button>
+                      <button class="button btn btn-block btn-raised btn-dark">Ver Pacote</button>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-item col-md-4">
-                  <div
-                    id="box2"
-                    class="box text-center rounded"
-                    data-aos="zoom-in"
-                  >
+                  <div id="box2" class="box text-center rounded" data-aos="zoom-in">
                     <div class="image-container">
                       <img
                         class="image w-100"
-                        src="src/img/woman-4081760_1920.jpg"
+                        src="@/assets/imgs/woman-4081760_1920.jpg"
                         alt="service-image"
                       />
                       <div class="overlay">
-                        <a href="#" class="show-details"
-                          ><i class="fa fa-eye" aria-hidden="true"></i
-                        ></a>
+                        <a href="#" class="show-details">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
                       </div>
                     </div>
 
                     <div class="details-container">
-                      <p class="type text-uppercase">
-                        Salão de Festas
-                      </p>
+                      <p class="type text-uppercase">Salão de Festas</p>
                       <p class="name">São João</p>
                       <p class="location">Luanda, Maianga</p>
                       <p class="price">250.000 AKZ</p>
@@ -282,35 +212,23 @@
                       </p>
                     </div>
                     <div class="button-container">
-                      <button class=" button btn btn-block btn-raised btn-dark">
-                        Ver Pacote
-                      </button>
+                      <button class="button btn btn-block btn-raised btn-dark">Ver Pacote</button>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-item col-md-4">
-                  <div
-                    id="box3"
-                    class="box text-center rounded "
-                    data-aos="zoom-in"
-                  >
+                  <div id="box3" class="box text-center rounded" data-aos="zoom-in">
                     <div class="image-container">
-                      <img
-                        class="image w-100"
-                        src="src/img/wedding3.jpg"
-                        alt="service-image"
-                      />
+                      <img class="image w-100" src="@/assets/imgs/wedding3.jpg" alt="service-image" />
                       <div class="overlay">
-                        <a href="#" class="show-details"
-                          ><i class="fa fa-eye" aria-hidden="true"></i
-                        ></a>
+                        <a href="#" class="show-details">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
                       </div>
                     </div>
 
                     <div class="details-container">
-                      <p class="type text-uppercase">
-                        Salão de Festas
-                      </p>
+                      <p class="type text-uppercase">Salão de Festas</p>
                       <p class="name">São João</p>
                       <p class="location">Luanda, Maianga</p>
                       <p class="price">250.000 AKZ</p>
@@ -324,35 +242,23 @@
                       </p>
                     </div>
                     <div class="button-container">
-                      <button class=" button btn btn-block btn-raised btn-dark">
-                        Ver Pacote
-                      </button>
+                      <button class="button btn btn-block btn-raised btn-dark">Ver Pacote</button>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-item col-md-4">
-                  <div
-                    id="box4"
-                    class=" box text-center rounded"
-                    data-aos="zoom-in"
-                  >
+                  <div id="box4" class="box text-center rounded" data-aos="zoom-in">
                     <div class="image-container">
-                      <img
-                        class="image w-100"
-                        src="src/img/dj-3.jpeg"
-                        alt="service-image"
-                      />
+                      <img class="image w-100" src="@/assets/imgs/dj-3.jpeg" alt="service-image" />
                       <div class="overlay">
-                        <a href="#" class="show-details"
-                          ><i class="fa fa-eye" aria-hidden="true"></i
-                        ></a>
+                        <a href="#" class="show-details">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
                       </div>
                     </div>
 
                     <div class="details-container">
-                      <p class="type text-uppercase">
-                        Salão de Festas
-                      </p>
+                      <p class="type text-uppercase">Salão de Festas</p>
                       <p class="name">São João</p>
                       <p class="location">Luanda, Maianga</p>
                       <p class="price">250.000 AKZ</p>
@@ -366,35 +272,23 @@
                       </p>
                     </div>
                     <div class="button-container">
-                      <button class=" button btn btn-block btn-raised btn-dark">
-                        Ver Pacote
-                      </button>
+                      <button class="button btn btn-block btn-raised btn-dark">Ver Pacote</button>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-item col-md-4">
-                  <div
-                    id="box5"
-                    class="box text-center rounded"
-                    data-aos="zoom-in"
-                  >
+                  <div id="box5" class="box text-center rounded" data-aos="zoom-in">
                     <div class="image-container">
-                      <img
-                        class="image w-100"
-                        src="src/img/wedding2.jpg"
-                        alt="service-image"
-                      />
+                      <img class="image w-100" src="@/assets/imgs/wedding2.jpg" alt="service-image" />
                       <div class="overlay">
-                        <a href="#" class="show-details"
-                          ><i class="fa fa-eye" aria-hidden="true"></i
-                        ></a>
+                        <a href="#" class="show-details">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
                       </div>
                     </div>
 
                     <div class="details-container">
-                      <p class="type text-uppercase">
-                        Salão de Festas
-                      </p>
+                      <p class="type text-uppercase">Salão de Festas</p>
                       <p class="name">São João</p>
                       <p class="location">Luanda, Maianga</p>
                       <p class="price">250.000 AKZ</p>
@@ -408,35 +302,27 @@
                       </p>
                     </div>
                     <div class="button-container">
-                      <button class=" button btn btn-block btn-raised btn-dark">
-                        Ver Pacote
-                      </button>
+                      <button class="button btn btn-block btn-raised btn-dark">Ver Pacote</button>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-item col-md-4">
-                  <div
-                    id="box6"
-                    class="box text-center rounded"
-                    data-aos="zoom-in"
-                  >
+                  <div id="box6" class="box text-center rounded" data-aos="zoom-in">
                     <div class="image-container">
                       <img
                         class="image w-100"
-                        src="src/img/wedding.jpg"
+                        src="./../assets/imgs/wedding.jpg"
                         alt="service-image"
                       />
                       <div class="overlay">
-                        <a href="#" class="show-details"
-                          ><i class="fa fa-eye" aria-hidden="true"></i
-                        ></a>
+                        <a href="#" class="show-details">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
                       </div>
                     </div>
 
                     <div class="details-container">
-                      <p class="type text-uppercase">
-                        Salão de Festas
-                      </p>
+                      <p class="type text-uppercase">Salão de Festas</p>
                       <p class="name">São João</p>
                       <p class="location">Luanda, Maianga</p>
                       <p class="price">250.000 AKZ</p>
@@ -450,35 +336,23 @@
                       </p>
                     </div>
                     <div class="button-container">
-                      <button class=" button btn btn-block btn-raised btn-dark">
-                        Ver Pacote
-                      </button>
+                      <button class="button btn btn-block btn-raised btn-dark">Ver Pacote</button>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-item col-md-4">
-                  <div
-                    id="box6"
-                    class="box text-center rounded"
-                    data-aos="zoom-in"
-                  >
+                  <div id="box6" class="box text-center rounded" data-aos="zoom-in">
                     <div class="image-container">
-                      <img
-                        class="image w-100"
-                        src="src/img/wedding.jpg"
-                        alt="service-image"
-                      />
+                      <img class="image w-100" src="@/assets/imgs/wedding.jpg" alt="service-image" />
                       <div class="overlay">
-                        <a href="#" class="show-details"
-                          ><i class="fa fa-eye" aria-hidden="true"></i
-                        ></a>
+                        <a href="#" class="show-details">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
                       </div>
                     </div>
 
                     <div class="details-container">
-                      <p class="type text-uppercase">
-                        Salão de Festas
-                      </p>
+                      <p class="type text-uppercase">Salão de Festas</p>
                       <p class="name">São João</p>
                       <p class="location">Luanda, Maianga</p>
                       <p class="price">250.000 AKZ</p>
@@ -492,35 +366,23 @@
                       </p>
                     </div>
                     <div class="button-container">
-                      <button class=" button btn btn-block btn-raised btn-dark">
-                        Ver Pacote
-                      </button>
+                      <button class="button btn btn-block btn-raised btn-dark">Ver Pacote</button>
                     </div>
                   </div>
                 </div>
                 <div class="carousel-item col-md-4">
-                  <div
-                    id="box6"
-                    class="box text-center rounded"
-                    data-aos="zoom-in"
-                  >
+                  <div id="box6" class="box text-center rounded" data-aos="zoom-in">
                     <div class="image-container">
-                      <img
-                        class="image w-100"
-                        src="src/img/wedding.jpg"
-                        alt="service-image"
-                      />
+                      <img class="image w-100" src="@/assets/imgs/wedding.jpg" alt="service-image" />
                       <div class="overlay">
-                        <a href="#" class="show-details"
-                          ><i class="fa fa-eye" aria-hidden="true"></i
-                        ></a>
+                        <a href="#" class="show-details">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
                       </div>
                     </div>
 
                     <div class="details-container">
-                      <p class="type text-uppercase">
-                        Salão de Festas
-                      </p>
+                      <p class="type text-uppercase">Salão de Festas</p>
                       <p class="name">São João</p>
                       <p class="location">Luanda, Maianga</p>
                       <p class="price">250.000 AKZ</p>
@@ -534,9 +396,7 @@
                       </p>
                     </div>
                     <div class="button-container">
-                      <button class=" button btn btn-block btn-raised btn-dark">
-                        Ver Pacote
-                      </button>
+                      <button class="button btn btn-block btn-raised btn-dark">Ver Pacote</button>
                     </div>
                   </div>
                 </div>
@@ -557,10 +417,7 @@
       <div class="row">
         <section class="additional-info">
           <div class="background-fisk info-background"></div>
-          <div
-            class="jumbotron supplies col-sm-6 col-xs-12"
-            data-aos="fade-down-right"
-          >
+          <div class="jumbotron supplies col-sm-6 col-xs-12" data-aos="fade-down-right">
             <h1>É um fornecedor competente?</h1>
             <p class="lead text-justify">
               O Site Fiskamer é uma plataforma de divulgação de serviços para
@@ -569,15 +426,10 @@
               número de clientes a nível nacional e posteriormente aumentar
             </p>
             <p class="lead">
-              <button class="btn btn-raised btn-dark">
-                Comece a divulgar
-              </button>
+              <button class="btn btn-raised btn-dark">Comece a divulgar</button>
             </p>
           </div>
-          <div
-            class="jumbotron events col-sm-6 col-xs-12"
-            data-aos="fade-down-left"
-          >
+          <div class="jumbotron events col-sm-6 col-xs-12" data-aos="fade-down-left">
             <h1>O Site de divulgação de serviços para Eventos</h1>
             <p class="lead text-justify">
               Pesquise no nosso site para se conectar instantaneamente com
@@ -590,60 +442,90 @@
         </section>
       </div>
     </div>
-    <footer class="col-12">
-      <div class="menu col-sm-2">
+    <footer class="col-12 container-fluid">
+      <div class="menu col-sm-2 col-xs-12">
         <ul>
           <li class="title">Menu</li>
           <hr />
-          <li class="options"><a href="#">Inicio</a></li>
-          <li class="options"><a href="#">Serviços</a></li>
-          <li class="options"><a href="#">Categorias</a></li>
-          <li class="options"><a href="#">Eventos Locais</a></li>
+          <li class="options">
+            <a href="#">Inicio</a>
+          </li>
+          <li class="options">
+            <a href="#">Serviços</a>
+          </li>
+          <li class="options">
+            <a href="#">Categorias</a>
+          </li>
+          <li class="options">
+            <a href="#">Eventos Locais</a>
+          </li>
         </ul>
       </div>
-      <div class="menu col-sm-2 col-sm-2">
+      <div class="menu col-sm-2 col-xs-12">
         <ul>
           <li class="title">Informação</li>
           <hr />
-          <li class="options"><a href="#">Contactos</a></li>
-          <li class="options"><a href="#">Quem Somos?</a></li>
-          <li class="options"><a href="#">Políticas de Privacidade</a></li>
+          <li class="options">
+            <a href="#">Contactos</a>
+          </li>
+          <li class="options">
+            <a href="#">Quem Somos?</a>
+          </li>
+          <li class="options">
+            <a href="#">Políticas de Privacidade</a>
+          </li>
         </ul>
       </div>
-      <div class="menu col-sm-2">
+      <div class="menu col-sm-2 col-xs-12">
         <ul>
           <li class="title">Ajuda</li>
           <hr />
-          <li class="options"><a href="#">Recuperação de Senha</a></li>
-          <li class="options"><a href="#"></a></li>
-          <li class="options"><a href="#"></a></li>
+          <li class="options">
+            <a href="#">Recuperação de Senha</a>
+          </li>
+          <li class="options">
+            <a href="#"></a>
+          </li>
+          <li class="options">
+            <a href="#"></a>
+          </li>
         </ul>
       </div>
-      <div class="menu col-sm-2">
+      <div class="menu col-sm-4 col-xs-12">
         <ul>
           <li class="title">Faça Download do Nosso App</li>
           <hr />
           <li class="options">
-            <a href="#"><i class="fa fa-android fa-3x"></i></a>
+            <a href="#">
+              <i class="fa fa-android fa-3x"></i>
+            </a>
           </li>
           <li class="options mt-100">
-            <a href="#"><i class="fa fa-apple fa-3x"></i></a>
+            <a href="#">
+              <i class="fa fa-apple fa-3x"></i>
+            </a>
           </li>
         </ul>
       </div>
-      <div class="social menu col-sm-2">
+      <div class="social menu col-sm-2 col-xs-12">
         <ul>
           <li class="title">Siga-nos em:</li>
           <hr />
           <ul class="options-inline">
             <li>
-              <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              <a href="#">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+              <a href="#">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+              <a href="#">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
             </li>
           </ul>
         </ul>
@@ -653,22 +535,83 @@
         <p class="text-center">All Rights Reserved | uByte - 2020</p>
       </div>
     </footer>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="./js/animations.js"></script>
-  </body>
-</html>
+  </div>
+</template>
+<script>
+export default {};
+$(function() {
+  AOS.init({
+    duration: 2000
+  });
+  //$(".home-text").attr("data-aos", "fade-right");
+  if ($("body").scrollTop() < 800) {
+    $(".home-text").addClass("animated fadeInLeft");
+    $(".search-bar").addClass("animated fadeInUp");
+  }
+
+  //$(".box").addClass("animated zoomIn");
+  $(".box").hover(
+    function(event) {
+      $("#" + this.id)
+        .animate({
+          marginTop: "12%"
+        })
+        .css("box-shadow", "2px 2px 6px 0px #ffcd03");
+
+      //$("#" + this.id + " > .description-container").show();
+    },
+    function() {
+      $("#" + this.id)
+        .animate({
+          marginTop: "10%"
+        })
+        .css("box-shadow", "1px 2px 5px 0px gray");
+      // $("#" + this.id + " > .description-container").fadeOut();
+    }
+  );
+
+  function rep() {
+    console.log("In");
+  }
+
+  window.setInterval(rep, 5000);
+  //$(this).height
+  $(window).scroll(function() {
+    $(".navbar").toggleClass("bg-dark", $(this).scrollTop() > 10);
+  });
+
+  $("#nextMaster").click(function() {
+    $("#bm-1").effect("slide");
+    $();
+  });
+
+  $("#myCarousel").on("slide.bs.carousel", function(e) {
+    var $e = $(e.relatedTarget);
+    var idx = $e.index();
+    var itemsPerSlide = 3;
+    var totalItems = $("#myCarousel > .carousel-item").length;
+
+    if (idx >= totalItems - (itemsPerSlide - 1)) {
+      var it = itemsPerSlide - (totalItems - idx);
+      for (var i = 0; i < it; i++) {
+        // append slides to end
+        if (e.direction == "left") {
+          $("#myCarousel > .carousel-item")
+            .eq(i)
+            .appendTo("#myCarousel > .carousel-inner");
+        } else {
+          $("#myCarousel > .carousel-item")
+            .eq(0)
+            .appendTo($(this).find("#myCarousel > .carousel-inner"));
+        }
+      }
+    }
+  });
+});
+</script>
+<style lang="scss" scoped>
+@import "@/scss/main.scss";
+
+.main-main {
+}
+</style>
