@@ -19,27 +19,47 @@
         </button>
       </div>
     </div>
-    <form>
-      <div class="form-group">
-        <label for>
-          <small>Email ou Telemovel</small>
-        </label>
-        <input type="email" v-model="user.email" class="form-control rounded" name="email" />
-      </div>
-      <div class="form-group">
-        <label for>
-          <small>Palavra-Passe</small>
-        </label>
-        <input type="password" v-model="user.password" class="form-control rounded" name="pass" />
-      </div>
-      <button type="submit" class="btn btn-block logButton">Entrar</button>
-      <input type="checkbox" name="keepConnected" id="keepconnected" />
-      <small>Mantenha-me conectado</small>
-      &nbsp;
-      <small>
-        <router-link class="text-warning" to="#">Esqueci a palavra-passe</router-link>
-      </small>
-    </form>
+    <ValidationObserver v-slot="{ invalid }">
+      <form @submit.prevent="validateAll">
+        <div class="form-group">
+          <label for>
+            <small>Email ou Telemovel</small>
+          </label>
+          <ValidationProvider v-slot="{ errors }" mode="eager">
+            <input
+              type="email"
+              v-model="user.email"
+              rules="email|required"
+              class="form-control rounded"
+              name="email"
+            />
+            <span class="form-error">{{ errors[0] }}</span>
+          </ValidationProvider>
+        </div>
+        <div class="form-group">
+          <label for>
+            <small>Palavra-Passe</small>
+          </label>
+          <ValidationProvider v-slot="{ errors }" rules="required|min:8" mode="eager">
+            <input
+              type="password"
+              v-model="user.password"
+              class="form-control rounded"
+              name="pass"
+              ref="password"
+            />
+            <span class="form-error">{{ errors[0] }}</span>
+          </ValidationProvider>
+        </div>
+        <button type="submit" class="btn btn-block logButton" :disabled="invalid">Entrar</button>
+        <input type="checkbox" name="keepConnected" id="keepconnected" />
+        <small>Mantenha-me conectado</small>
+        &nbsp;
+        <small>
+          <router-link class="text-warning" to="#">Esqueci a palavra-passe</router-link>
+        </small>
+      </form>
+    </ValidationObserver>
   </div>
 </template>
 <script>
@@ -57,6 +77,15 @@ export default {
   methods: {
     loginUser() {
       axios.post("", { user: this.user }).then(response => {});
+    },
+    validateAll() {
+      this.$notify({
+        width: "25%",
+        group: "auth",
+        title: "Sucesso",
+        text: "Foi Enviado com sucesso",
+        type: "success"
+      });
     }
   }
 };
@@ -101,5 +130,11 @@ form {
   border-radius: 20px;
   font-weight: bold;
   margin-bottom: 5%;
+}
+
+.form-error {
+  color: #eb0600dd;
+  font-size: 1vw;
+  font-weight: bold;
 }
 </style>

@@ -21,50 +21,96 @@
         </button>
       </div>
     </div>
-    <form>
-      <div class="form-group">
-        <label for>
-          <small>Nome*</small>
-        </label>
-        <input type="text" v-model="user.name" class="form-control" name="name" />
-      </div>
-      <div class="form-group">
-        <label for>
-          <small>Email*</small>
-        </label>
-        <input type="email" v-model="user.email" class="form-control" name="email" id />
-      </div>
-      <div class="form-group">
-        <label for>
-          <small>Telemóvel*</small>
-        </label>
-        <input type="tel" v-model="user.phone" class="form-control" name="phone" id />
-        <input type="checkbox" name id />
-        <small>Funciona para Whatsapp</small>
-      </div>
-      <div class="form-group">
-        <label for>
-          <small>Password*</small>
-        </label>
-        <input type="password" v-model="user.password" class="form-control" name="pass" id />
-      </div>
-      <div class="form-group">
-        <label for>
-          <small>Confirmar Palavra-Passe*</small>
-        </label>
-        <input
-          type="password"
-          class="form-control"
-          name="confirmPass"
-          id
-          v-model="user.confirmPass"
-        />
-        <input type="checkbox" name id />
-        <small>Aceito os termos de uso e privacidade</small>
-      </div>
+    <ValidationObserver v-slot="{ invalid }">
+      <form @submit.prevent="validateAll">
+        <div class="form-group">
+          <label for>
+            <small>Nome*</small>
+          </label>
+          <ValidationProvider v-slot="{ errors }" mode="eager">
+            <input
+              type="text"
+              rules="required|alpha|max:20|min:2"
+              v-model="user.name"
+              class="form-control"
+              name="name"
+            />
+            <span class="form-error">{{ errors[0] }}</span>
+          </ValidationProvider>
+        </div>
+        <div class="form-group">
+          <label for>
+            <small>Email*</small>
+          </label>
+          <ValidationProvider v-slot="{ errors }" mode="eager">
+            <input
+              type="email"
+              rules="required|email"
+              v-model="user.email"
+              class="form-control"
+              name="email"
+              id
+            />
+            <span class="form-error">{{ errors[0] }}</span>
+          </ValidationProvider>
+        </div>
+        <div class="form-group">
+          <label for>
+            <small>Telemóvel*</small>
+          </label>
+          <ValidationProvider v-slot="{ errors }" mode="eager">
+            <input
+              type="tel"
+              v-model="user.phone"
+              rules="required|digits:9"
+              class="form-control"
+              name="phone"
+              id
+            />
+            <span class="form-error">{{ errors[0] }}</span>
+          </ValidationProvider>
+          <input type="checkbox" name id />
+          <small>Funciona para Whatsapp</small>
+        </div>
+        <div class="form-group">
+          <label for>
+            <small>Password*</small>
+          </label>
+          <ValidationProvider
+            v-slot="{ errors }"
+            mode="eager"
+            rules="required|min:8|password:@confirm"
+          >
+            <input type="password" v-model="user.password" class="form-control" name="pass" id />
+            <span class="form-error">{{ errors[0] }}</span>
+          </ValidationProvider>
+        </div>
+        <div class="form-group">
+          <label for>
+            <small>Confirmar Palavra-Passe*</small>
+          </label>
+          <ValidationProvider
+            name="confirm"
+            v-slot="{ errors }"
+            mode="eager"
+            rules="required|min:8"
+          >
+            <input
+              type="password"
+              class="form-control"
+              name="confirmPass"
+              id
+              v-model="user.confirmPass"
+            />
+            <span class="form-error">{{ errors[0] }}</span>
+          </ValidationProvider>
+          <input type="checkbox" name id />
+          <small>Aceito os termos de uso e privacidade</small>
+        </div>
 
-      <button type="submit" class="btn btn-block logButton">Registre-se</button>
-    </form>
+        <button type="submit" class="btn btn-block logButton" :disabled="invalid">Registre-se</button>
+      </form>
+    </ValidationObserver>
   </div>
 </template>
 <script>
@@ -86,6 +132,9 @@ export default {
   methods: {
     registerUser() {
       axios.post("", { user: this.user }).then(response => {});
+    },
+    validateAll() {
+      alert("Form Submitted");
     }
   }
 };
@@ -134,5 +183,10 @@ form {
   border-radius: 20px;
   font-weight: bold;
   margin-bottom: 5%;
+}
+.form-error {
+  color: #eb0600dd;
+  font-size: 1vw;
+  font-weight: bold;
 }
 </style>

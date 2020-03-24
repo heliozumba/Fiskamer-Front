@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <notifications position="top-left" group="auth" />
     <transition name="fade">
       <router-view />
     </transition>

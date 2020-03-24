@@ -570,11 +570,6 @@ $(function() {
     }
   );
 
-  function rep() {
-    console.log("In");
-  }
-
-  window.setInterval(rep, 5000);
   //$(this).height
   $(window).scroll(function() {
     $(".navbar").toggleClass("bg-dark", $(this).scrollTop() > 10);
