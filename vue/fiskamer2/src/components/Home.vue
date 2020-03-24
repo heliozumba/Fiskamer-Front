@@ -1,17 +1,19 @@
 <template>
   <div class="main-main">
     <header>
-      <nav class="navbar navbar-expanded-sm fixed-top">
+      <nav class="navbar navbar-expand-sm fixed-top">
         <a href="#" class="navbar-brand">
           <img class="fiskamer-logo" src="@/assets/imgs/logo2.png" alt="fiskamer-logo" />
         </a>
         <button
-          class="navbar-toogler d-block d-sm-none"
+          class="navbar-toggler d-block d-sm-none"
           type="button"
           data-toggle="collapse"
           data-target="#collapseNavbar"
+          aria-controls="collapseNavbar"
+          aria-expanded="false"
         >
-          <span class="navbar-toggler-icon d-block d-sm-none"></span>
+          <span class="fa fa-bars d-block d-sm-none text-warning" aria-hidden="true"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapseNavbar">
           <ul class="navbar-nav">
@@ -27,9 +29,15 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Categorias</a>
             </li>
+            <li class="nav-item d-block d-sm-none">
+              <router-link to="/credentials/register" class>Criar Conta</router-link>
+            </li>
+            <li class="nav-item d-block d-sm-none">
+              <router-link to="/credentials/login" class>Entrar</router-link>
+            </li>
           </ul>
         </div>
-        <div class="navbar-buttons">
+        <div class="navbar-buttons d-none d-sm-block">
           <router-link
             to="/credentials/register"
             class="btn btn-outline-dark signUp_button"
@@ -48,15 +56,15 @@
           class="carousel slide carousel-fade col-12"
           data-ride="carousel"
         >
-          <div class="carousel-inner">
+          <div class="carousel-inner col-12">
             <div class="carousel-item active">
-              <img class="d-block w-100" src="@/assets/imgs/wedding3.jpg" alt="First slide" />
+              <img class="d-block" src="@/assets/imgs/wedding3.jpg" alt="First slide" />
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="@/assets/imgs/dj-3.jpeg" alt="Second slide" />
+              <img class="d-block" src="@/assets/imgs/dj-3.jpeg" alt="Second slide" />
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="@/assets/imgs/salao.jpg" alt="Third slide" />
+              <img class="d-block" src="@/assets/imgs/salao.jpg" alt="Third slide" />
             </div>
           </div>
         </div>
@@ -83,12 +91,12 @@
                 </h3>
               </article>
             </section>
-            <div class="search-bar-container col-sm-6">
+            <div class="search-bar-container col-sm-8 col-xs-8">
               <div class="search-bar">
                 <form class="form-inline" action>
                   <input type="text" class="form-control" placeholder="O que está a procura?" />
                   <input type="text" class="form-control" placeholder="Onde?" />
-                  <button class="btn btn-raised btn-dark">
+                  <button class="btn btn-raised btn-dark search-button">
                     <span class="fa fa-search" aria-hidden="true"></span> &nbsp;
                     Pesquisar
                   </button>
@@ -101,7 +109,7 @@
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="services w-100 col-sm-12">
+        <div class="services col-sm-12">
           <!--a
             class="carousel-control-next"
             href="#bm-2"
@@ -115,13 +123,13 @@
             ></span>
             <span class="sr-only">Next</span>
           </a-->
-          <div class="background-fisk services-background"></div>
+          <div class="background-fisk services-background col-12"></div>
           <div class="main-text text-center mt-5">
             <h1 class="font-weight-bold">Serviços Destacados</h1>
           </div>
           <section class="container-fluid container">
             <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-              <span class="fa fa-angle-right fa-5x text-dark" aria-hidden="true"></span>
+              <span class="fa fa-angle-right text-dark service-arrow" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
             <!--div
@@ -415,9 +423,9 @@
     </div>
     <div class="container-fluid">
       <div class="row">
-        <section class="additional-info">
-          <div class="background-fisk info-background"></div>
-          <div class="jumbotron supplies col-sm-6 col-xs-12" data-aos="fade-down-right">
+        <section class="additional-info col-12">
+          <div class="background-fisk info-background col-12"></div>
+          <div class="jumbotron supplies col-sm-5 col-xs-12" data-aos="fade-down-right">
             <h1>É um fornecedor competente?</h1>
             <p class="lead text-justify">
               O Site Fiskamer é uma plataforma de divulgação de serviços para
@@ -429,7 +437,7 @@
               <button class="btn btn-raised btn-dark">Comece a divulgar</button>
             </p>
           </div>
-          <div class="jumbotron events col-sm-6 col-xs-12" data-aos="fade-down-left">
+          <div id="events" class="jumbotron events col-sm-6 col-xs-12" data-aos="fade-down-left">
             <h1>O Site de divulgação de serviços para Eventos</h1>
             <p class="lead text-justify">
               Pesquise no nosso site para se conectar instantaneamente com
@@ -491,7 +499,7 @@
           </li>
         </ul>
       </div>
-      <div class="menu col-sm-4 col-xs-12">
+      <div class="menu col-sm-2 col-xs-12">
         <ul>
           <li class="title">Faça Download do Nosso App</li>
           <hr />
@@ -507,7 +515,7 @@
           </li>
         </ul>
       </div>
-      <div class="social menu col-sm-2 col-xs-12">
+      <div class="social menu col-sm-3 col-xs-12">
         <ul>
           <li class="title">Siga-nos em:</li>
           <hr />
@@ -534,6 +542,7 @@
         <p class="text-center">Fiskamer &copy;</p>
         <p class="text-center">All Rights Reserved | uByte - 2020</p>
       </div>
+      <br />
     </footer>
   </div>
 </template>
@@ -606,7 +615,4 @@ $(function() {
 </script>
 <style lang="scss" scoped>
 @import "@/scss/main.scss";
-
-.main-main {
-}
 </style>
