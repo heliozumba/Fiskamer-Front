@@ -36,7 +36,7 @@ $(function() {
   //window.setInterval(rep, 5000);
   //$(this).height
   $(window).scroll(function() {
-    $(".navbar").toggleClass("bg-dark", $(this).scrollTop() > 10);
+    $("#home-nav").toggleClass("bg-dark", $(this).scrollTop() > 10);
   });
 
   $("#nextMaster").click(function() {

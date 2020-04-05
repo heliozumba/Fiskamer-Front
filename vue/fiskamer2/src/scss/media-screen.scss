@@ -1,7 +1,8 @@
 @media screen and (max-width: 576px) {
+  .home-text {
+    margin-top: 30% !important;
+  }
   .supplies {
-    height: 100vh;
-    width: 100%;
   }
 
   #events {
@@ -11,15 +12,24 @@
   .carousel-item .active img {
     height: 100vh;
     width: 100%;
-    object-fit: cover;
+    object-fit: cover !important;
   }
 
   .search-bar-container {
-    margin-left: 2%;
-  }
+    margin-top: 60% !important;
+    padding: 10% !important;
 
-  .search-bar {
-    margin-top: 80%;
+    .search-bar form input {
+      border-radius: 20px;
+      margin-bottom: 1%;
+      background: transparent;
+      &::placeholder {
+        color: whitesmoke;
+      }
+      &:focus {
+        box-shadow: 1px 1px 4px #343a40 !important;
+      }
+    }
   }
 
   .navbar {
@@ -28,5 +38,6 @@
 
   .search-button {
     margin: auto;
+    border-radius: 20px;
   }
 }

@@ -20,7 +20,7 @@
       </div>
     </div>
     <ValidationObserver v-slot="{ invalid }">
-      <form @submit.prevent="validateAll">
+      <form @submit.prevent="loginUser">
         <div class="form-group">
           <label for>
             <small>Email ou Telemovel</small>
@@ -64,6 +64,7 @@
 </template>
 <script>
 /* eslint-disable */
+import axios from "axios";
 export default {
   name: "Login",
   data() {
@@ -71,22 +72,37 @@ export default {
       user: {
         email: "",
         password: ""
-      }
+      },
+      logged: []
     };
   },
   methods: {
     loginUser() {
-      axios.post("", { user: this.user }).then(response => {});
+      axios
+        .post("http://localhost:3000/api/v1/users/login", this.user)
+        .then(response => {
+          this.logged = response.data.data.user;
+          console.log(this.logged);
+          this.$notify({
+            width: "50%",
+            title: "Sucesso",
+            text: " Sê bem vindo" + this.logged.name + "!",
+            type: "info",
+            group: "auth"
+          });
+          this.$router.push("/main/feed");
+        })
+        .catch(error => {
+          this.$notify({
+            width: "50%",
+            title: "Erro",
+            text: "Email ou palavra-passe errados",
+            type: "danger",
+            group: "auth"
+          });
+        });
     },
-    validateAll() {
-      this.$notify({
-        width: "25%",
-        group: "auth",
-        title: "Sucesso",
-        text: "Foi Enviado com sucesso",
-        type: "success"
-      });
-    }
+    validateAll() {}
   }
 };
 </script>

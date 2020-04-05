@@ -3,14 +3,24 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
-import axios from "axios";
+//import axios from "axios";
 
 Vue.component("login", require("./components/Login.vue").default);
 Vue.component("register", require("./components/Register.vue").default);
 Vue.component("credentials", require("./components/Credentials.vue").default);
 Vue.component("home", require("./components/Home.vue").default);
-
-//localize("pt", pt);
+Vue.component("feed", require("./components/Feed.vue").default);
+Vue.component("navbar", require("./components/Navbar.vue").default);
+Vue.component("main", require("./components/Main.vue").default);
+Vue.component("profile", require("./components/Profile.vue").default);
+Vue.component("explorer", require("./components/Explorer.vue").default);
+Vue.component("search-bar", require("./components/SearchBar.vue").default);
+Vue.component("service-card", require("./components/ServiceCard.vue").default);
+Vue.component("service-list", require("./components/ServiceList.vue").default);
+Vue.component(
+  "service-profile",
+  require("./components/ServiceProfile.vue").default
+);
 
 Vue.config.productionTip = false;
 

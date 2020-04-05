@@ -24,11 +24,14 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s;
+  transition: opacity 0.25s ease-out;
 }
 
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.vue-notifications-group {
 }
 </style>

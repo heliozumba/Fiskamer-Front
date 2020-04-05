@@ -21,8 +21,8 @@
         </button>
       </div>
     </div>
-    <ValidationObserver v-slot="{ invalid }">
-      <form @submit.prevent="validateAll">
+    <ValidationObserver v-slot="{  }">
+      <form @submit.prevent="registerUser">
         <div class="form-group">
           <label for>
             <small>Nome*</small>
@@ -34,6 +34,7 @@
               v-model="user.name"
               class="form-control"
               name="name"
+              id="name"
             />
             <span class="form-error">{{ errors[0] }}</span>
           </ValidationProvider>
@@ -49,7 +50,7 @@
               v-model="user.email"
               class="form-control"
               name="email"
-              id
+              id="email"
             />
             <span class="form-error">{{ errors[0] }}</span>
           </ValidationProvider>
@@ -61,11 +62,11 @@
           <ValidationProvider v-slot="{ errors }" mode="eager">
             <input
               type="tel"
-              v-model="user.phone"
+              v-model="user.telemovel"
               rules="required|digits:9"
               class="form-control"
-              name="phone"
-              id
+              name="telemovel"
+              id="telemovel"
             />
             <span class="form-error">{{ errors[0] }}</span>
           </ValidationProvider>
@@ -76,45 +77,51 @@
           <label for>
             <small>Password*</small>
           </label>
-          <ValidationProvider
-            v-slot="{ errors }"
+          <!--ValidationProvider
+            /*v-slot="{ errors }"
             mode="eager"
             rules="required|min:8|password:@confirm"
-          >
-            <input type="password" v-model="user.password" class="form-control" name="pass" id />
-            <span class="form-error">{{ errors[0] }}</span>
-          </ValidationProvider>
+          -->
+          <input
+            type="password"
+            v-model="user.password"
+            class="form-control"
+            name="pass"
+            id="password"
+          />
+          <span class="form-error"></span>
+          <!--/ValidationProvider-->
         </div>
         <div class="form-group">
           <label for>
             <small>Confirmar Palavra-Passe*</small>
           </label>
-          <ValidationProvider
+          <!--ValidationProvider
             name="confirm"
             v-slot="{ errors }"
             mode="eager"
             rules="required|min:8"
-          >
-            <input
-              type="password"
-              class="form-control"
-              name="confirmPass"
-              id
-              v-model="user.confirmPass"
-            />
-            <span class="form-error">{{ errors[0] }}</span>
-          </ValidationProvider>
+          -->
+          <input
+            type="password"
+            class="form-control"
+            name="passwordConfirm"
+            id="passwordConfirm"
+            v-model="user.passwordConfirm"
+          />
+          <span class="form-error"></span>
+          <!--/ValidationProvider-->
           <input type="checkbox" name id />
           <small>Aceito os termos de uso e privacidade</small>
         </div>
 
-        <button type="submit" class="btn btn-block logButton" :disabled="invalid">Registre-se</button>
+        <button type="submit" class="btn btn-block logButton">Registre-se</button>
       </form>
     </ValidationObserver>
   </div>
 </template>
 <script>
-/* eslint-disable */
+import axios from "axios";
 export default {
   name: "Register",
   data() {
@@ -123,15 +130,27 @@ export default {
         name: "",
         lastName: "",
         email: "",
-        phone: "",
-        pass: "",
-        confirmPass: ""
+        telemovel: "",
+        password: "",
+        passwordConfirm: "",
+        role: "1",
+        endereco: "Abcdsadeafsagfsajkgsahgksakgskagsagsa"
       }
     };
   },
   methods: {
     registerUser() {
-      axios.post("", { user: this.user }).then(response => {});
+      axios
+        .post("http://localhost:3000/api/v1/users/signup", this.user)
+        .then(response => {
+          this.$notify({
+            width: "25%",
+            group: "auth",
+            title: "Sucesso",
+            text: this.user.name + " Foi Cadastrado com sucesso",
+            type: "success"
+          });
+        });
     },
     validateAll() {
       alert("Form Submitted");

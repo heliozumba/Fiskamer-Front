@@ -1,6 +1,10 @@
 /* Variables */
+@import "rfs.scss";
 @import "media-screen.scss";
 @import "div-carousel.scss";
+
+.title {
+}
 
 $detailColor: #ffcd03;
 $backgroundColor: #2c3e50;
@@ -154,7 +158,7 @@ li {
 
 .search-bar form {
   padding: 4%;
-  margin-left: 4%;
+  margin-left: 8%;
 }
 
 .search-bar form input {
@@ -194,7 +198,6 @@ li {
     }
 
     .box {
-      height: 450px;
       margin-top: 10%;
       box-shadow: 1px 2px 5px 0px gray;
       display: inline-block;

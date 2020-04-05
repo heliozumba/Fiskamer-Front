@@ -1,7 +1,7 @@
 <template>
   <div class="main-main">
     <header>
-      <nav class="navbar navbar-expand-sm fixed-top">
+      <nav id="home-nav" class="navbar navbar-expand-sm fixed-top">
         <a href="#" class="navbar-brand">
           <img class="fiskamer-logo" src="@/assets/imgs/logo2.png" alt="fiskamer-logo" />
         </a>
@@ -79,7 +79,7 @@
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
-            <section class="home-text">
+            <section class="home-text col-12 col-xs-8">
               <article class="text-main">
                 <h1 class="display-4">Encontre tudo o que procura para o seu evento</h1>
               </article>
@@ -581,7 +581,7 @@ $(function() {
 
   //$(this).height
   $(window).scroll(function() {
-    $(".navbar").toggleClass("bg-dark", $(this).scrollTop() > 10);
+    $("#home-nav").toggleClass("bg-dark", $(this).scrollTop() > 10);
   });
 
   $("#nextMaster").click(function() {
