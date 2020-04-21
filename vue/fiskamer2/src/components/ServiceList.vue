@@ -21,14 +21,21 @@
         <p class="lead text-justify">{{service.description}}</p>
 
         <div class="service-list-footer">
-          <span class="text-success font-weight-bold">
-            <i class="fa fa-money" aria-hidden="true"></i>
-            {{ service.price }}, 00 AOA
-          </span>
-          <router-link
-            :to="{name:'serviceProfile',params:{id:service.id}}"
-            class="list-button btn btn-raised btn-warning px-5"
-          >Ver</router-link>
+          <b-row>
+            <b-col md="9">
+              <span class="text-success font-weight-bold">
+                <i class="fa fa-money" aria-hidden="true"></i>
+                {{ service.price }}, 00 AOA
+              </span>
+            </b-col>
+            <b-col md="3">
+              <router-link
+                :to="{name:'serviceProfile',params:{id:service.id}}"
+                class="list-button btn btn-raised btn-warning px-5 mt-"
+                :service="service"
+              >Ver</router-link>
+            </b-col>
+          </b-row>
         </div>
       </div>
     </div>
@@ -36,9 +43,14 @@
 </template>
 
 <script>
+import ServiceProfile from "@/components/ServiceProfile";
 export default {
   props: {
     service: Object
+  },
+  components: { ServiceProfile },
+  data() {
+    return {};
   }
 };
 </script>
@@ -60,6 +72,5 @@ img {
 }
 
 .list-button {
-  margin-left: 60%;
 }
 </style>

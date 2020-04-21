@@ -11,7 +11,7 @@ Vue.component("credentials", require("./components/Credentials.vue").default);
 Vue.component("home", require("./components/Home.vue").default);
 Vue.component("feed", require("./components/Feed.vue").default);
 Vue.component("navbar", require("./components/Navbar.vue").default);
-Vue.component("main", require("./components/Main.vue").default);
+Vue.component("main-page", require("./components/MainPage.vue").default);
 Vue.component("profile", require("./components/Profile.vue").default);
 Vue.component("explorer", require("./components/Explorer.vue").default);
 Vue.component("search-bar", require("./components/SearchBar.vue").default);
@@ -21,7 +21,31 @@ Vue.component(
   "service-profile",
   require("./components/ServiceProfile.vue").default
 );
-
+Vue.component("category-box", require("./components/CategoryBox.vue").default);
+Vue.component(
+  "selected-view",
+  require("./components/SelectedView.vue").default
+);
+Vue.component("filter-inputs", require("./components/Filter.vue").default);
+Vue.component("user-profile", require("./components/UserProfile.vue").default);
+Vue.component(
+  "service-payment",
+  require("./components/ServicePayment.vue").default
+);
+Vue.component("supply", require("./components/Supply.vue").default);
+Vue.component("add-service", require("./components/AddService.vue").default);
+Vue.component(
+  "consult-service",
+  require("./components/ConsultService.vue").default
+);
+Vue.component(
+  "request-service",
+  require("./components/RequestService.vue").default
+);
+Vue.component(
+  "state-service",
+  require("./components/StateService.vue").default
+);
 Vue.config.productionTip = false;
 
 //Vuelidate for input validations
@@ -64,6 +88,16 @@ setInteractionMode("eager");
 //Notification for notifications
 import Notifications from "vue-notification";
 Vue.use(Notifications);
+
+//VueBootstrap
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
+
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+import "bootstrap-vue/dist/bootstrap-vue-icons.min.css";
 
 /* eslint-disable no-new */
 new Vue({

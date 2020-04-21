@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar></navbar>
-    <div class="main-navigator">
+    <div class="navigator-main container-fluid p-0">
       <transition name="fade">
         <router-view name="navigator" />
       </transition>

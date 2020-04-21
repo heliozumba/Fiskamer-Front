@@ -1,79 +1,126 @@
 <template>
-  <div class="main-div">
+  <div class="div-main">
     <div class="container-fluid landing-container">
-      <div class="row">
+      <div class="row landing-row">
         <div class="landing-images col-12"></div>
-        <div class="landing-text text-center">
-          <h1 class="display-3 text-warning">Explore</h1>
-          <h4 class="display-4 text-warning">Encontre tudo que precisa, em alguns cliques.</h4>
+        <div class=".col-md-1"></div>
+        <div class="landing-text text-center col-md-10 m-auto">
+          <!--h1 class="display-3 text-warning">Explore</h1>
+          <h4 class="display-4 text-warning">Encontre tudo que precisa, em alguns cliques.</h4-->
+          <img
+            class="explorer-logo img-fluid w-50"
+            src="@/assets/imgs/logo2.png"
+            alt="fiskamer-logo"
+          />
           <search-bar></search-bar>
         </div>
-      </div>
 
+        <div class=".col-md-1"></div>
+      </div>
+      <div class="row categories-row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+          <h1 class="text-center pt-3">Do que está à procura?</h1>
+          <div class="row">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+              <div id="category-carousel" class="carousel-inner row w-100 mx-auto">
+                <category-box
+                  v-for="category in categories"
+                  :key="category.id"
+                  :category="category"
+                  :class="{'active': category.id === 1}"
+                ></category-box>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="fa fa-angle-right text-dark service-arrow" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-1"></div>
-        <aside class="search-filters-container col-md-2">
-          <p>Provincia</p>
-          <form action>
-            <div class="form-group">
-              <select class="custom-select">
-                <option value="Luanda">Luanda</option>
-                <option value="Benguela">Benguela</option>
-              </select>
-            </div>
-          </form>
-          <p>Distrito</p>
-          <p>Categoria</p>
-          <p>Subcategoria</p>
-          <p>Caracteristica</p>
-          <p>Classificação</p>
+        <aside
+          id="filter-div"
+          class="collapse search-filters-container col-md-2 bg-light rounded position-sticky mr-1 p-4"
+        >
+          <p class="font-weight-bold">Provincia</p>
+          <filter-inputs :filterArray="provinces" kindOfArray="Provincia" @selected="setIndex"></filter-inputs>
+          <hr />
+          <p class="font-weight-bold">Distrito</p>
+          <filter-inputs :filterArray="provinces[selected].counties" kindOfArray="Distrito"></filter-inputs>
+          <hr />
+          <p class="font-weight-bold">Categoria</p>
+          <hr />
+          <p class="font-weight-bold">Subcategoria</p>
+          <hr />
+          <p class="font-weight-bold">Caracteristica</p>
+          <hr />
+          <p class="font-weight-bold">Classificação</p>
+          <hr />
+          <b-form-input variant="dark" type="range" v-model="range" min="1" max="10"></b-form-input>
+          <p class="text-center text-muted">{{ range }}</p>
         </aside>
         <section class="search-results-container container-fluid col-md-8">
           <div class="navbar navbar-expand-md search-view-options-container bg-light">
-            <div class="float-left">
-              <span class="text-muted font-italic">X de {{services.length}} Resultados encontrados:</span>
+            <a
+              data-toggle="collapse"
+              href="#filter-div"
+              role="button"
+              aria-expanded="false"
+              class="text-dark"
+              aria-controls="filter-div"
+            >
+              <i class="fa fa-filter" aria-hidden="true"></i>
+            </a>
+            <div class="float-left col-md-6">
+              <span
+                class="text-muted font-italic"
+              >{{ services.length}} de {{servicesMaster.length}} Resultados encontrados:</span>
             </div>
-            <div class="float-right ml-5">
+            <div class="float-right col-md-6">
               <ul class="navbar-nav">
                 <li class="nav-item py-2">
                   <span class="text-muted font-italic">Modo de Exibição:</span>
                 </li>
                 <li class="nav-item">
-                  <a role="button" class="nav-link" href="#" @click="viewToogle(0)">
+                  <button class="nav-link p-2" @click="viewToogle(0)">
                     <i class="fa fa-th-list text-dark" aria-hidden="true"></i>
-                  </a>
+                  </button>
                 </li>
                 <li class="nav-item">
-                  <a role="button" class="nav-link" href="#" @click="viewToogle(1)">
+                  <button class="nav-link p-2" @click="viewToogle(1)">
                     <i class="fa fa-th-large text-dark" aria-hidden="true"></i>
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>
+            <div class="row">
+              <div class="search-filters-dropdown"></div>
+            </div>
           </div>
-          <div v-if="cardView" class="results-container">
-            <service-card v-for="service in services" :key="service.id" :service="service" />
-          </div>
-          <div v-else class="results-container">
-            <service-list v-for="service in services" :key="service.id" :service="service" />
-          </div>
+          <transition>
+            <div v-if="cardView" class="results-container">
+              <service-card v-for="service in services" :key="service.id" :service="service" />
+            </div>
+            <div v-else class="results-container">
+              <service-list v-for="service in services" :key="service.id" :service="service" />
+            </div>
+          </transition>
           <hr />
           <nav aria-label="page-nav">
             <ul class="pagination justify-content-center">
               <li class="page-item disabled">
-                <span class="page-link">Anterior</span>
+                <span class="page-link text-dark">Anterior</span>
+              </li>
+              <li v-for="i in pages" :key="i" class="page-item">
+                <button class="page-link text-dark" @click="paginate(i,servicesMaster)">{{ i }}</button>
               </li>
               <li class="page-item">
-                <a href="#" class="page-link active">1</a>
-              </li>
-              <li class="page-item">
-                <a href="#" class="page-link">2</a>
-              </li>
-              <li class="page-item">
-                <a href="#" class="page-link">3</a>
-              </li>
-              <li class="page-item">
-                <span class="page-link">Próximo</span>
+                <span class="page-link text-dark">Próximo</span>
               </li>
             </ul>
           </nav>
@@ -84,10 +131,12 @@
 </template>
   
 <script>
+var aux = -1;
 export default {
   data() {
     return {
-      services: [
+      selected: 0,
+      servicesMaster: [
         {
           id: 1,
           image: "106418_3.jpg",
@@ -186,31 +235,284 @@ export default {
           location: "Mutamba, Luanda",
           type: "Salao",
           classification: 8.5
+        },
+        {
+          id: 10,
+          image: "106418_3.jpg",
+          title: "Teste3",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
+          price: "2500",
+          location: "Talatona, Luanda",
+          type: "Salao",
+          classification: 5.6
+        },
+        {
+          id: 11,
+          image: "wedding3.jpg",
+          title: "Teste3",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
+          price: "2500",
+          location: "Cazenga,Luanda",
+          type: "Salao",
+          classification: 7
+        },
+        {
+          id: 12,
+          image: "wedding2.jpg",
+          title: "Teste3",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
+          price: "2500",
+          location: "Mutamba, Luanda",
+          type: "Salao",
+          classification: 10
+        },
+        {
+          id: 13,
+          image: "wedding.jpg",
+          title: "Teste3",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
+          price: "3500",
+          location: "Mutamba, Luanda",
+          type: "Salao",
+          classification: 2
+        },
+        {
+          id: 14,
+          image: "106418_3.jpg",
+          title: "Teste3",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
+          price: "2500",
+          location: "Talatona, Luanda",
+          type: "Salao",
+          classification: 7
+        },
+        {
+          id: 15,
+          image: "wedding3.jpg",
+          title: "Teste3",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
+          price: "2500",
+          location: "Cazenga,Luanda",
+          type: "Salao",
+          classification: 1
+        },
+        {
+          id: 16,
+          image: "wedding2.jpg",
+          title: "Teste3",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
+          price: "2500",
+          location: "Mutamba, Luanda",
+          type: "Salao",
+          classification: 6
+        },
+        {
+          id: 17,
+          image: "wedding.jpg",
+          title: "Teste3",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
+          price: "3500",
+          location: "Mutamba, Luanda",
+          type: "Salao",
+          classification: 3
+        },
+        {
+          id: 18,
+          image: "wedding.jpg",
+          title: "Teste3",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
+          price: "3500",
+          location: "Mutamba, Luanda",
+          type: "Salao",
+          classification: 8.5
+        },
+        {
+          id: 19,
+          image: "wedding.jpg",
+          title: "Teste4",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
+          price: "3500",
+          location: "Mutamba, Luanda",
+          type: "Salao",
+          classification: 8.5
+        },
+        {
+          id: 20,
+          image: "wedding.jpg",
+          title: "Teste4",
+          description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
+          price: "3500",
+          location: "Mutamba, Luanda",
+          type: "Salao",
+          classification: 8.5
         }
       ],
-      cardView: true
+      categories: [
+        {
+          id: 1,
+          name: "Salões",
+          img: "salao.jpg"
+        },
+        {
+          id: 2,
+          name: "DJs",
+          img: "dj-1.jpg"
+        },
+        {
+          id: 3,
+          name: "Noivos",
+          img: "casal.jpg"
+        },
+        {
+          id: 4,
+          name: "Decoração",
+          img: "salao.jpg"
+        },
+        {
+          id: 5,
+          name: "Consultoria",
+          img: "credentials.png"
+        },
+        {
+          id: 6,
+          name: "Tecnologia",
+          img: "71462.jpg"
+        }
+      ],
+      range: 1,
+      cardView: true,
+      pages: 0,
+      services: [],
+      provinces: [
+        {
+          name: "Luanda",
+          counties: [
+            {
+              name: "Cacuaco"
+            },
+            {
+              name: "Belas"
+            },
+            {
+              name: "Cazenga"
+            },
+            {
+              name: "Icolo e Bengo"
+            },
+            {
+              name: "Luanda"
+            },
+            {
+              name: "Quissama"
+            },
+            {
+              name: "Kilamba Kiaxi"
+            },
+            {
+              name: "Talatona"
+            },
+            {
+              name: "Viana"
+            }
+          ]
+        },
+        {
+          name: "Bengo",
+          counties: [
+            {
+              name: "Ambriz"
+            },
+            {
+              name: "Bula Atumba"
+            },
+            {
+              name: "Dande"
+            },
+            {
+              name: "Dembos"
+            },
+            {
+              name: "Nambuangongo"
+            },
+            {
+              name: "Pango"
+            },
+            {
+              name: "Aluquem"
+            }
+          ]
+        }
+      ]
     };
   },
   methods: {
     viewToogle(flag) {
       this.cardView = flag;
+    },
+
+    paginate(pageNum, copyArray) {
+      this.services = copyArray.slice(9 * (pageNum - 1), 9 * pageNum);
+    },
+    setIndex(value) {
+      this.selected = value;
     }
+  },
+  mounted() {
+    var copyArray = this.servicesMaster;
+    this.pages = Math.ceil(copyArray.length / 9);
+    this.services = copyArray.slice(0, 9);
   }
 };
+
+$(".test").addClass("text-warning");
+
+$("#myCarousel").on("slide.bs.carousel", function(e) {
+  var $e = $(e.relatedTarget);
+  var idx = $e.index();
+  var itemsPerSlide = 3;
+  var totalItems = $("#myCarousel > .carousel-item").length;
+
+  if (idx >= totalItems - (itemsPerSlide - 1)) {
+    var it = itemsPerSlide - (totalItems - idx);
+    for (var i = 0; i < it; i++) {
+      // append slides to end
+      if (e.direction == "left") {
+        $("#myCarousel > .carousel-item")
+          .eq(i)
+          .appendTo("#category-carousel");
+      } else {
+        $("#myCarousel > .carousel-item")
+          .eq(0)
+          .appendTo($(this).find("#category-carousel"));
+      }
+    }
+  }
+});
 </script>
 
 <style lang="scss" scoped>
-.main-div {
+@import "@/scss/div-carousel.scss";
+.div-main {
   width: 99.99vw;
   height: 91.8vh;
   margin-top: 8.2vh;
 }
 .landing-container {
   height: 60vh;
-
-  .row {
-    height: 60vh;
-  }
+}
+.landing-row {
+  height: 60vh;
 }
 
 .landing-images {
@@ -218,7 +520,8 @@ export default {
   height: 60vh;
   z-index: -1;
   opacity: 0.7;
-  filter: blur(2px);
+  filter: blur(1px) brightness(60%);
+
   position: absolute;
   background-attachment: fixed;
   background-position: center;
@@ -226,19 +529,41 @@ export default {
   background-size: cover;
 }
 .landing-text {
-  margin-top: 5%;
-  margin-left: 12%;
+  /* margin-top: 5%;
+  margin-left: 12%; */
 }
 .search-filters-container,
 .search-results-container {
-  border: 1px solid red;
   margin: 0;
   padding: 0;
 }
 
 .search-filters-container {
+  box-shadow: 1px 1px 5px #343a40ee;
 }
+
 .results-container {
   padding-left: 10%;
+}
+
+.search-results-container {
+  box-shadow: 1px 1px 3px #343a40ee;
+  background-color: transparent;
+}
+
+.categories-row {
+}
+
+.category-box {
+  &:first-child {
+    margin-left: 15%;
+  }
+}
+
+.explorer-logo {
+}
+
+.nav-item button {
+  border: 0;
 }
 </style>

@@ -7,7 +7,7 @@
           <option>Onde?</option>
         </select>
 
-        <button class="btn btn-raised search-button btn-outline-dark btn-lg">Pesquisar</button>
+        <button class="btn btn-raised search-button btn-outline-warning btn-lg">Pesquisar</button>
       </form>
     </div>
   </div>
@@ -24,8 +24,8 @@ export default {};
 .search-bar {
   border-radius: 20px;
   margin-top: 5%;
-  background-color: #ffffffde;
-  box-shadow: 2px 2px 2px #00000040;
+  background-color: #343a40ee;
+  box-shadow: 2px 2px 2px #ffffff40;
 }
 
 .search-bar form {
@@ -36,14 +36,15 @@ export default {};
 .search-bar form {
   input,
   select {
-    border: 1px solid #2c3e5050;
+    border: 1px solid #ffc107;
     width: 44%;
     background-color: transparent;
+    color: #ffc107;
+    outline: #ffc107;
 
     &::placeholder {
+      color: #ffc107;
     }
   }
 }
-
-
 </style>
