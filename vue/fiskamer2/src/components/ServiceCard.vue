@@ -2,26 +2,31 @@
   <div class="card col-md-3 mx-3 my-3 p-0 d-inline-block">
     <img
       class="card-image img-fluid w-100"
-      :src="require('../assets/imgs/'+service.image)"
+      :src="require('../assets/imgs/credentials.png')"
       alt="ok"
     />
     <div class="card-body text-center">
-      <h5 class="card-title font-weight-bold">{{ service.title }}</h5>
+      <h5 class="card-title font-weight-bold">{{ service.nome}}</h5>
       <h6 class="text-center">
         {{ service.classification }}
         <i class="fa fa-star text-warning" aria-hidden="true"></i> -
-        <span class="text-muted text-center">{{ service.location }}</span>
+        <span class="text-muted text-center">{{ service.location.description }}</span>
       </h6>
 
       <h6 class="text-center text-success">
         <i class="fa fa-money" aria-hidden="true"></i>
         {{ service.price }},00 AOA
       </h6>
-      <!--hr>
-      <p class="card-text text-muted text-justify">{{service.description }}</p-->
+      <!--hr-->
+      <p class="card-text text-muted text-justify"></p>
+      <!--{{service.description}}-->
     </div>
     <div class="card-footer">
-      <button class="btn btn-raised btn-dark btn-block">Ver</button>
+      <router-link
+        @click.native="setService"
+        class="list-button btn btn-raised btn-dark btn-block"
+        :to="{name:'serviceProfile',params:{id:service._id}}"
+      >Ver</router-link>
     </div>
   </div>
 </template>
@@ -30,6 +35,14 @@
 export default {
   props: {
     service: Object
+  },
+  methods: {
+    setService() {
+      alert("here");
+      console.log("in");
+      console.log(this.service);
+      this.$store.commit("setService", this.service);
+    }
   }
 };
 </script>

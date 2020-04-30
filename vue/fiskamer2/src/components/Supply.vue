@@ -15,7 +15,7 @@
         <b-row class="p-0">
           <b-col md="12" class="background p-0"></b-col>
         </b-row>
-        <b-row class="border supplier-info-container mt-5 p-1">
+        <b-row class="supplier-info-container mt-5 p-1">
           <b-img
             class="rounded-circle mx-auto my-auto"
             alt="profile-img"
@@ -33,23 +33,26 @@
         <b-row class="mt-3">
           <b-navbar class="navbar-nav d-block w-100 m-0 p-0">
             <b-nav-item class>
-             
-              <router-link class="nav-link" to="/main/supply/state" >  <b-icon-graph-up></b-icon-graph-up>Estado</router-link>
+              <router-link class="nav-link" to="/main/supply/state">
+                <b-icon-graph-up></b-icon-graph-up>Estado
+              </router-link>
             </b-nav-item>
             <b-nav-item class>
-             
-               <router-link class="nav-link" to="/main/supply/add">  <b-icon-plus-circle></b-icon-plus-circle>Adicionar</router-link>
+              <router-link class="nav-link" to="/main/supply/add">
+                <b-icon-plus-circle></b-icon-plus-circle>Adicionar
+              </router-link>
             </b-nav-item>
             <b-nav-item class>
-              
-               <router-link class="nav-link" to="/main/supply/consult"> <b-icon-eye></b-icon-eye>Consultar</router-link>
+              <router-link class="nav-link" to="/main/supply/consult">
+                <b-icon-eye></b-icon-eye>Consultar
+              </router-link>
             </b-nav-item>
             <b-nav-item class>
-             
-              <router-link class="nav-link" to="/main/supply/request">  <b-icon-inbox></b-icon-inbox>Solicitações</router-link> 
-                
-                <b-badge pill variant="warning" class="ml-4">0</b-badge>
-              
+              <router-link class="nav-link" to="/main/supply/request">
+                <b-icon-inbox></b-icon-inbox>Solicitações
+              </router-link>
+
+              <b-badge pill variant="warning" class="ml-4">0</b-badge>
             </b-nav-item>
             <b-nav-item class>
               <b-icon-file-check></b-icon-file-check>
@@ -82,7 +85,7 @@
         </b-row>-->
         <b-row class="border supplier-data-container p-3">
           <b-col md="12">
-          <router-view name="helper2"></router-view>
+            <router-view name="helper2"></router-view>
           </b-col>
         </b-row>
       </b-col>
@@ -101,6 +104,9 @@ export default {
   methods: {
     firstTimeDone() {
       this.firstTime = false;
+    },
+    toEdit(service) {
+      this.$store.commit("setService", service);
     }
   }
 };

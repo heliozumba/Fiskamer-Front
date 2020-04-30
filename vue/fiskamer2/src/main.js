@@ -3,7 +3,10 @@
 import Vue from "vue";
 import App from "./App";
 import router from "./router";
+import axios from "axios";
 //import axios from "axios";
+
+export const bus = new Vue();
 
 Vue.component("login", require("./components/Login.vue").default);
 Vue.component("register", require("./components/Register.vue").default);
@@ -99,10 +102,15 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import "bootstrap-vue/dist/bootstrap-vue-icons.min.css";
 
+//VueX
+
+import store from "./store";
+
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
   router,
+  store,
   components: { App },
   template: "<App/>"
 });

@@ -10,7 +10,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods:{
+    getUser(){
+      
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

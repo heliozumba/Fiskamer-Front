@@ -6,7 +6,7 @@
         <div class="row">
           <div class="service-image-container col-md-9">
             <b-img
-              :src="require('../assets/imgs/'+service.image)"
+              :src="require('../assets/imgs/credentials.png')"
               fluid
               rounded
               alt="Responsive image"
@@ -16,17 +16,22 @@
               <div class="col-md-2">
                 <b-avatar
                   size="8rem"
-                  :src="require('../assets/imgs/'+service.image)"
+                  :src="require('../assets/imgs/credentials.png')"
                   class="mt-3 ml-1"
                 ></b-avatar>
               </div>
               <div class="col-md-7">
                 <div class="service-info">
-                  <h4>{{ service.title }}</h4>
-                  <p class="text-muted">{{ service.location }}</p>
+                  <h4>{{ service.nome }}</h4>
+                  <p class="text-muted">{{ }}</p>
 
                   <p class="text-success">{{ service.price }}, 00 AOA</p>
-                  <p class>fornecido por: Juca</p>
+                  <p class>
+                    fornecido por:
+                    <router-link
+                      :to="{name:'userProfile',params:{ id:service.fornecedor._id}}"
+                    >Teste</router-link>
+                  </p>
                 </div>
               </div>
               <div class="col-md-2 border text-center">
@@ -83,13 +88,13 @@
             </div>
           </div>
           <div class="description-container text-justify my-4">
-            <p class="lead">"{{service.description}}"</p>
+            <p class="lead">""</p>
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-7">
-            <h3>Sobre Nome do Serviço</h3>
+            <h3>Sobre {{service.nome}}</h3>
             <h5>Descrição</h5>
             <p
               class="text-justify"
@@ -121,7 +126,7 @@
           <h2 class="text-center mb-5">Veja o que outros utilizadores acharam deste serviço</h2>
           <b-card
             title="Title Comentary"
-            :img-src="require('../assets/imgs/'+service.image)"
+            :img-src="require('../assets/imgs/credentials.png')"
             img-alt="user-image"
             img-top
             tag="article"
@@ -141,7 +146,7 @@
           </b-card>
           <b-card
             title="Username"
-            :img-src="require('../assets/imgs/'+service.image)"
+            :img-src="require('../assets/imgs/credentials.png')"
             img-alt="user-image"
             img-top
             tag="article"
@@ -160,7 +165,7 @@
           </b-card>
           <b-card
             title="Username"
-            :img-src="require('../assets/imgs/'+service.image)"
+            :img-src="require('../assets/imgs/credentials.png')"
             img-alt="user-image"
             img-top
             tag="article"
@@ -186,6 +191,7 @@
 
 
 <script>
+import axios from "axios";
 export default {
   props: {},
   data() {
@@ -204,113 +210,28 @@ export default {
         { question: "Acesso para Deficientes", answer: "Cash" },
         { question: "Método de Pagamento", answer: "Cash" }
       ],
-      services: [
-        {
-          id: 1,
-          image: "106418_3.jpg",
-          title: "Teste",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Talatona, Luanda",
-          type: "Salao",
-          classification: 5.6
-        },
-        {
-          id: 2,
-          image: "wedding3.jpg",
-          title: "Teste",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Cazenga,Luanda",
-          type: "Salao",
-          classification: 7
-        },
-        {
-          id: 3,
-          image: "wedding2.jpg",
-          title: "Teste",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 10
-        },
-        {
-          id: 4,
-          image: "wedding.jpg",
-          title: "Teste2",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "3500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 2
-        },
-        {
-          id: 5,
-          image: "106418_3.jpg",
-          title: "Teste",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Talatona, Luanda",
-          type: "Salao",
-          classification: 7
-        },
-        {
-          id: 6,
-          image: "wedding3.jpg",
-          title: "Teste",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Cazenga,Luanda",
-          type: "Salao",
-          classification: 1
-        },
-        {
-          id: 7,
-          image: "wedding2.jpg",
-          title: "Teste",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 6
-        },
-        {
-          id: 8,
-          image: "wedding.jpg",
-          title: "Teste2",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "3500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 3
-        },
-        {
-          id: 9,
-          image: "wedding.jpg",
-          title: "Teste2",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "3500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 8.5
-        }
-      ],
-      service: null
+
+      service: this.$store.state.service
     };
   },
-  methods: {},
+  methods: {
+    getSupplier() {
+      console.log(this.service.fornecedor);
+      axios
+        .get(
+          "http://localhost:3000/api/v1/users/5e9f2333797eb7b7747e0c21" /* + this.service.fornecedor */
+        )
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  },
+  beforeMount() {},
   mounted() {
-    this.service = this.services[this.$route.params.id - 1];
+    this.getSupplier();
   }
 };
 </script>

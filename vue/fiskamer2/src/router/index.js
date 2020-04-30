@@ -59,7 +59,8 @@ export default new Router({
           }
         },
         {
-          path: "profile",
+          path: "profile/:id",
+          name: "userProfile",
           components: {
             navigator: UserProfile
           }
@@ -99,37 +100,34 @@ export default new Router({
             navigator: Supply,
             helper2: StateService
           },
-          children:[{
-            path:"add",
-            components:{
-              helper2: AddService
-            }
-            
-          },
-          {
-            path:"consult",
-            components:{
-              helper2: ConsultService
-            }
-            
-          },
+          children: [
+            {
+              path: "add",
+              components: {
+                helper2: AddService
+              }
+            },
+            {
+              path: "consult",
+              components: {
+                helper2: ConsultService
+              }
+            },
 
-          {
-            path:"request",
-            components:{
-              helper2: RequestService
-            }
-            
-          },
+            {
+              path: "request",
+              components: {
+                helper2: RequestService
+              }
+            },
 
-          {
-            path:"state",
-            components:{
-              helper2: StateService
+            {
+              path: "state",
+              components: {
+                helper2: StateService
+              }
             }
-            
-          },
-          ],
+          ]
         }
       ]
     }

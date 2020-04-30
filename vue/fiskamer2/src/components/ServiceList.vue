@@ -5,20 +5,21 @@
         <div class="list-image-container d-inline">
           <img
             class="img-fluid img-thumbnail w-100 rounded"
-            :src="require('../assets/imgs/'+service.image)"
+            :src="require('../assets/imgs/credentials.png')"
             alt="test"
           />
         </div>
       </div>
       <div class="col-md-9">
-        <h4>{{ service.title}}</h4>
+        <h4>{{ service.name}}</h4>
         <p>
           {{service.classification}}
           <i class="fa fa-star text-warning" aria-hidden="true"></i>
           -
-          <span class="text-muted">{{ service.location }}</span>
+          <span class="text-muted">{{ service.location.description}}</span>
         </p>
-        <p class="lead text-justify">{{service.description}}</p>
+        <p class="lead text-justify">{{}}</p>
+        <!--service.description-->
 
         <div class="service-list-footer">
           <b-row>
@@ -30,7 +31,7 @@
             </b-col>
             <b-col md="3">
               <router-link
-                :to="{name:'serviceProfile',params:{id:service.id}}"
+                :to="{name:'serviceProfile',params:{id:service._id}}"
                 class="list-button btn btn-raised btn-warning px-5 mt-"
                 :service="service"
               >Ver</router-link>

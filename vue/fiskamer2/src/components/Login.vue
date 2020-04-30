@@ -90,7 +90,10 @@ export default {
             type: "info",
             group: "auth"
           });
-          this.$router.push("/main/feed");
+          this.$store.commit("changeUser", this.logged);
+          this.logged.role == "2"
+            ? this.$router.push("/main/explorer")
+            : this.$router.push("/main/supply/state");
         })
         .catch(error => {
           this.$notify({

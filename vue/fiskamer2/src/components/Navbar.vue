@@ -10,7 +10,7 @@
           <router-link class="nav-link" to="/main/explorer">Explorar</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/main/feed">
+          <router-link class="nav-link" to="/main/profile">
             <!-- <b-icon-building></b-icon-building> -->
             Fornecedores
           </router-link>

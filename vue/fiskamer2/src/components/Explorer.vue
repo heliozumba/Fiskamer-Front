@@ -79,7 +79,7 @@
             <div class="float-left col-md-6">
               <span
                 class="text-muted font-italic"
-              >{{ services.length}} de {{servicesMaster.length}} Resultados encontrados:</span>
+              >{{ services.length}} de {{services2.length}} Resultados encontrados:</span>
             </div>
             <div class="float-right col-md-6">
               <ul class="navbar-nav">
@@ -104,10 +104,10 @@
           </div>
           <transition>
             <div v-if="cardView" class="results-container">
-              <service-card v-for="service in services" :key="service.id" :service="service" />
+              <service-card v-for="service in services" :key="service._id" :service="service" />
             </div>
             <div v-else class="results-container">
-              <service-list v-for="service in services" :key="service.id" :service="service" />
+              <service-list v-for="service in services" :key="service._id" :service="service" />
             </div>
           </transition>
           <hr />
@@ -117,7 +117,7 @@
                 <span class="page-link text-dark">Anterior</span>
               </li>
               <li v-for="i in pages" :key="i" class="page-item">
-                <button class="page-link text-dark" @click="paginate(i,servicesMaster)">{{ i }}</button>
+                <button class="page-link text-dark" @click="paginate(i,services2)">{{ i }}</button>
               </li>
               <li class="page-item">
                 <span class="page-link text-dark">Próximo</span>
@@ -131,233 +131,14 @@
 </template>
   
 <script>
+import axios from "axios";
 var aux = -1;
+var globalServices;
+var globalCategories;
 export default {
   data() {
     return {
       selected: 0,
-      servicesMaster: [
-        {
-          id: 1,
-          image: "106418_3.jpg",
-          title: "Teste",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Talatona, Luanda",
-          type: "Salao",
-          classification: 5.6
-        },
-        {
-          id: 2,
-          image: "wedding3.jpg",
-          title: "Teste",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Cazenga,Luanda",
-          type: "Salao",
-          classification: 7
-        },
-        {
-          id: 3,
-          image: "wedding2.jpg",
-          title: "Teste",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 10
-        },
-        {
-          id: 4,
-          image: "wedding.jpg",
-          title: "Teste2",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "3500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 2
-        },
-        {
-          id: 5,
-          image: "106418_3.jpg",
-          title: "Teste",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Talatona, Luanda",
-          type: "Salao",
-          classification: 7
-        },
-        {
-          id: 6,
-          image: "wedding3.jpg",
-          title: "Teste",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Cazenga,Luanda",
-          type: "Salao",
-          classification: 1
-        },
-        {
-          id: 7,
-          image: "wedding2.jpg",
-          title: "Teste",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 6
-        },
-        {
-          id: 8,
-          image: "wedding.jpg",
-          title: "Teste2",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "3500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 3
-        },
-        {
-          id: 9,
-          image: "wedding.jpg",
-          title: "Teste2",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "3500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 8.5
-        },
-        {
-          id: 10,
-          image: "106418_3.jpg",
-          title: "Teste3",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Talatona, Luanda",
-          type: "Salao",
-          classification: 5.6
-        },
-        {
-          id: 11,
-          image: "wedding3.jpg",
-          title: "Teste3",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Cazenga,Luanda",
-          type: "Salao",
-          classification: 7
-        },
-        {
-          id: 12,
-          image: "wedding2.jpg",
-          title: "Teste3",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 10
-        },
-        {
-          id: 13,
-          image: "wedding.jpg",
-          title: "Teste3",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "3500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 2
-        },
-        {
-          id: 14,
-          image: "106418_3.jpg",
-          title: "Teste3",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Talatona, Luanda",
-          type: "Salao",
-          classification: 7
-        },
-        {
-          id: 15,
-          image: "wedding3.jpg",
-          title: "Teste3",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Cazenga,Luanda",
-          type: "Salao",
-          classification: 1
-        },
-        {
-          id: 16,
-          image: "wedding2.jpg",
-          title: "Teste3",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "2500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 6
-        },
-        {
-          id: 17,
-          image: "wedding.jpg",
-          title: "Teste3",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "3500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 3
-        },
-        {
-          id: 18,
-          image: "wedding.jpg",
-          title: "Teste3",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "3500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 8.5
-        },
-        {
-          id: 19,
-          image: "wedding.jpg",
-          title: "Teste4",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "3500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 8.5
-        },
-        {
-          id: 20,
-          image: "wedding.jpg",
-          title: "Teste4",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan suscipit massa, id pharetra metus. Curabitur dignissim est ut pretium interdum. Duis euismod erat id nisl imperdiet ultrices. ",
-          price: "3500",
-          location: "Mutamba, Luanda",
-          type: "Salao",
-          classification: 8.5
-        }
-      ],
       categories: [
         {
           id: 1,
@@ -453,7 +234,9 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      services2: [],
+      categories2: []
     };
   },
   methods: {
@@ -466,12 +249,42 @@ export default {
     },
     setIndex(value) {
       this.selected = value;
+    },
+    setServices() {
+      axios
+        .get("http://localhost:3000/api/v1/services")
+        .then(response => {
+          this.mountArray(response.data.data.docs);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    /* getCategories() {
+      axios
+        .get("http://localhost:3000/api/v1/categories")
+        .then(response => {
+          this.categories2 = response.data.data.docs;
+        })
+        .catch(error => {});
+    }, */
+    mountArray(array) {
+      /* var copyArray = this.services2;
+      console.log(copyArray); */
+      console.log(array);
+      this.services2 = array;
+      this.pages = Math.ceil(array.length / 9);
+      this.services = array.slice(0, 9);
     }
   },
+  beforeMount() {
+    this.setServices();
+  },
+
   mounted() {
-    var copyArray = this.servicesMaster;
-    this.pages = Math.ceil(copyArray.length / 9);
-    this.services = copyArray.slice(0, 9);
+    console.log(this.pages);
+    console.log(this.services);
+    console.log(this.services2);
   }
 };
 

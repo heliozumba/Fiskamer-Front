@@ -15,14 +15,14 @@
           </div>
           <div class="col-md-6 border-left border-right">
             <div class="user-info-container">
-              <h5>Nome</h5>
-              <P class="text-muted font-italic mb-1">Endereco</P>
+              <h5>{{ user.name}}</h5>
+              <p class="text-muted font-italic mb-1">{{user.endereco}}</p>
               <p>Descrição</p>
               <button class="btn btn-raised btn-dark">{{isAuthUser? 'Editar' : 'Seguir'}}</button>
             </div>
           </div>
           <b-col v-if="!isClient" md="2" class="text-center p-3">
-            <p>Clientes</p> 
+            <p>Clientes</p>
             <h1>5</h1>
           </b-col>
         </div>
@@ -200,8 +200,13 @@ export default {
   data() {
     return {
       isClient: true,
-      isAuthUser: true
+      isAuthUser: true,
+      user: {}
     };
+  },
+  mounted() {
+    this.user = this.$store.state.user;
+    console.log(this.user);
   }
 };
 </script>

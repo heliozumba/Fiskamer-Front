@@ -21,8 +21,19 @@
         </button>
       </div>
     </div>
+
     <ValidationObserver v-slot="{  }">
       <form @submit.prevent="registerUser">
+        <div class="form-group">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label for class="btn btn-warning active" @click="selectedRole(2)">
+              <input type="radio" name="options" id="option1" />Cliente
+            </label>
+            <label for class="btn btn-warning" @click="selectedRole(1)">
+              <input type="radio" name="options" id="option2" value="1" v-model="user.role" />Fornecedor
+            </label>
+          </div>
+        </div>
         <div class="form-group">
           <label for>
             <small>Nome*</small>
@@ -70,7 +81,7 @@
             />
             <span class="form-error">{{ errors[0] }}</span>
           </ValidationProvider>
-          <input type="checkbox" name id />
+          <input type="checkbox" name id="whatsappCheck" />
           <small>Funciona para Whatsapp</small>
         </div>
         <div class="form-group">
@@ -111,7 +122,7 @@
           />
           <span class="form-error"></span>
           <!--/ValidationProvider-->
-          <input type="checkbox" name id />
+          <input type="checkbox" name id="privacyCheck" />
           <small>Aceito os termos de uso e privacidade</small>
         </div>
 
@@ -128,14 +139,14 @@ export default {
     return {
       user: {
         name: "",
-        lastName: "",
         email: "",
         telemovel: "",
         password: "",
         passwordConfirm: "",
-        role: "1",
-        endereco: "Abcdsadeafsagfsajkgsahgksakgskagsagsa"
-      }
+        role: "",
+        endereco: "Try"
+      },
+      picked: ""
     };
   },
   methods: {
@@ -150,10 +161,28 @@ export default {
             text: this.user.name + " Foi Cadastrado com sucesso",
             type: "success"
           });
+          this.$store.commit("changeUser", this.user);
+          this.user.role == "2"
+            ? this.$router.push("/main/explorer")
+            : this.$router.push("/main/supplier/state");
+        })
+        .catch(error => {
+          this.$notify({
+            width: "50%",
+            title: "Erro",
+            text:
+              "Não foi possível registrá-lo verifique os dados introduzidos",
+            type: "danger",
+            group: "auth"
+          });
         });
     },
     validateAll() {
       alert("Form Submitted");
+    },
+    selectedRole(roleID) {
+      console.log(roleID);
+      this.user.role = roleID;
     }
   }
 };

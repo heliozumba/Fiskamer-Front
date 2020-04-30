@@ -2,38 +2,78 @@
   <div>
     <b-form>
       <div class="add-service m-5 active">
-        <h3 class="text-center">Registro de Serviços</h3>
+        <h3 class="text-center">{{isEdit? "Edição de Serviços": "Registro de Serviços"}}</h3>
         <hr />
-
-        <!-- <b-row>
-        
-        <b-col md="7">-->
+        <div class="form-group">
+          <b-row>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label
+                for
+                v-for="pack in packages"
+                :key="pack._id"
+                class="btn btn-warning"
+                @click="selectedPackage(pack._id)"
+              >
+                <input type="radio" name="options" id="option1" v-model="service_.pacote" />
+                {{pack.pacote}}
+              </label>
+            </div>
+          </b-row>
+        </div>
         <b-form-group>
           <b-row>
             <b-col md="4">
-              <b-form-select v-model="selected" :options="options" id="service-category"></b-form-select>
+              <b-form-select v-model="service_.categoria" :options="options" id="service-category"></b-form-select>
             </b-col>
             <b-col md="8">
-              <b-form-input type="text" required placeholder="Nome do Serviço" id="service-name"></b-form-input>
+              <b-form-input
+                type="text"
+                required
+                placeholder="Nome do Serviço"
+                id="service-name"
+                v-model="service_.nome"
+              ></b-form-input>
             </b-col>
           </b-row>
         </b-form-group>
+
         <b-form-group>
-          <b-form-textarea rows="3" placeholder="Descreva o serviço..."></b-form-textarea>
-        </b-form-group>
-        <b-form-group>
-          <b-form-input type="text" required placeholder="Localização" id="service-name"></b-form-input>
+          <b-form-input
+            type="text"
+            required
+            placeholder="Localização"
+            id="service-location"
+            v-model="service_.location"
+          ></b-form-input>
         </b-form-group>
 
         <b-form-group>
           <b-row>
             <b-col md="6">
-              <b-form-input type="number" required placeholder="Preço" id="service-price"></b-form-input>
+              <b-form-input
+                type="number"
+                required
+                placeholder="Preço"
+                id="service-price"
+                v-model="service_.price"
+              ></b-form-input>
             </b-col>
             <b-col md="6">
-              <b-form-file placeholder="Selecionar Fotografia" accept=".jpg, .png, .jpeg"></b-form-file>
+              <b-form-file
+                placeholder="Selecionar Fotografia"
+                accept=".jpg, .png, .jpeg"
+                v-model="service_.images"
+                :state="Boolean(service_.images)"
+              ></b-form-file>
             </b-col>
           </b-row>
+        </b-form-group>
+        <b-form-group>
+          <b-form-textarea
+            rows="3"
+            placeholder="Descreva o serviço..."
+            v-model="service_.descricao"
+          ></b-form-textarea>
         </b-form-group>
         <b-row>
           <b-col md="8" offset-md="2">
@@ -48,23 +88,10 @@
           </b-col>
           <b-col md="2"></b-col>
         </b-row>
-
-        <!--  </b-col> -->
-        <!-- <b-col md="5"></b-col> -->
-        <!-- <div class="buttons-footer mx-auto">
-          <b-button
-            variant="success"
-            class="add-service-button mx-auto mt-2"
-            @click="nextPhase(0,1)"
-          >Continuar</b-button>
-        </div>-->
-
-        <!-- </b-row> -->
       </div>
       <div class="add-service2">
         <h3 class="text-center">Responda a estas questões para terminar</h3>
 
-        <!--   <b-table :items="questions"> -->
         <b-table :items="items" :fields="fields" responsive="sm">
           <template v-slot:cell(respostas)="row">
             <b-form-group v-model="row.detailsShowing">
@@ -78,37 +105,45 @@
               ></b-form-radio-group>
             </b-form-group>
           </template>
-
-          <!-- </b-table> -->
-          <!-- <template v-slot:cell(respostas)="row">
-            {{row.value}}
-          < <b-button v-model="row.detailsShowing">Try</b-button>-->
-          <!-- 
-          < </template>-->
         </b-table>
-        <!--  <b-button variant="secondary add-service-button" @click="nextPhase(1,0)">Voltar</b-button> -->
-        <div class="buttons-footer mx-auto">
-          <b-button size="lg" variant="success" class="mx-auto">FINALIZAR</b-button>
+        <div class="buttons-footer">
+          <b-button v-if="isEdit" variant="info" class="mx-auto" @click="updateService">Actualizar</b-button>
+          <b-button v-else variant="success" class="mx-auto" @click="addService">Adicionar</b-button>
         </div>
-
-        <hr />
       </div>
     </b-form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import { bus } from "../main";
 export default {
   data() {
     return {
+      isEdit: false,
+      packages: {},
       service_: {
-        category: "",
-        name: "",
-        description: "",
-        location: [],
-        photo: "",
+        categoria: "",
+        nome: "",
+        descricao: "",
+        endereco: [],
+        images: null,
         price: "",
-        availability: []
+        availability: [],
+        /* fornecedor: this.$store.state.user._id, */
+        fornecedor: "5ea7f5a4200ad642305fc732",
+        pacote: {},
+        features: [
+          {
+            feature: "Bebidas",
+            price: 2000
+          },
+          {
+            feature: "Musica",
+            price: 6000
+          }
+        ]
       },
       fields: ["questões", "respostas"],
       items: [
@@ -132,18 +167,6 @@ export default {
         {
           value: null,
           text: "Selecione a Categoria"
-        },
-        {
-          value: "Tecnologia",
-          text: "Tecnologia"
-        },
-        {
-          value: "Decoração",
-          text: "Decoração"
-        },
-        {
-          value: "Espaços",
-          text: "Espaços"
         }
       ],
       checked: [],
@@ -191,7 +214,8 @@ export default {
           value: "Por Definir"
         }
       ],
-      radioSelected: "Sim"
+      radioSelected: "Sim",
+      categories: {}
     };
   },
   methods: {
@@ -204,7 +228,83 @@ export default {
           .eq(to)
           .addClass("active");
       });
-    }
+    },
+    addService() {
+      axios
+        .post("http://localhost:3000/api/v1/services", this.service_)
+        .then(response => {
+          //console.log(this.response);
+        })
+        .catch(error => {
+          this.service_.fornecedor = {};
+          console.log(error);
+        });
+    },
+
+    updateService() {
+      axios
+        .patch("http://localhost:3000/api/v1/services/" + this.service_._id)
+        .then(response => {
+          console.log(this.response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    getCategories() {
+      axios
+        .get("http://localhost:3000/api/v1/categories")
+        .then(response => {
+          this.categories = response.data.data.docs;
+          this.setCategories(this.categories);
+          //console.log(this.categories);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      //this.setCategories();
+    },
+    setCategories(categories) {
+      for (var i = 0; i < categories.length; i++) {
+        this.options.push({
+          value: categories[i]._id,
+          text: categories[i].categoria
+        });
+      }
+    },
+    getPackages() {
+      axios
+        .get("http://localhost:3000/api/v1/packages")
+        .then(response => {
+          this.packages = response.data.data.docs;
+          //this.setCategories(this.packages);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      //this.setCategories();
+    },
+    selectedPackage(pack) {
+      this.service_.pacote = pack;
+    },
+    toEdit(service) {}
+  },
+  beforeMount() {
+    this.getCategories();
+    this.getPackages();
+  },
+
+  mounted() {},
+
+  created() {
+    bus.$on("toedit", service => {
+      this.service_ = service;
+      this.service_.pacote = this.service_.pacote.pacote;
+      this.service_.categoria = this.service_.categoria.categoria;
+      this.service_.fornecedor = this.service_.fornecedor._id;
+      this.isEdit = true;
+      console.log(this.service_);
+    });
   }
 };
 </script>
