@@ -37,22 +37,35 @@
             <b-col md="3" class>
               <b-img
                 class="img-fluid rounded w-100"
-                :src="require('../assets/imgs/106418_3.jpg')"
+                :src="/*require('../assets/imgs/106418_3.jpg')*/ service.coverImage"
                 alt="service-img"
               ></b-img>
             </b-col>
             <b-col md="8">
-              <h5 class="mb-2 font-weight-bold">{{service.nome}}</h5>
+              <h5 class="mb-2 font-weight-bold">
+                <router-link
+                  :to="{name:'serviceProfile', params:{id:service._id}}"
+                  @click.native="setService(service)"
+                >{{service.nome}}</router-link>
+              </h5>
+              <p>
+                <span class="text-muted">Estado:</span>
+                <span
+                  v-if="service.estado.estado == 'Activo'"
+                  class="font-italic success"
+                >{{ service.estado.estado}}</span>
+              </p>
               <p class="text-muted font-italic mb-2">{{service.location.description}}</p>
               <div class="service-actions">
                 <b-row>
                   <b-col md="8">
                     <p class="mb-2">
                       <i class="fa fa-money text-success" aria-hidden="true"></i>
-                      <span class="text-success">{{service.price}}</span>
+                      <span class="text-success">{{service.price.toLocaleString() }} ,00 AOA</span>
                       <span class="text-danger ml-4">
-                        <b-icon-heart-fill></b-icon-heart-fill>
-                        <span class="font-weight-bold">10</span>
+                        <b-icon-heart-fill v-if="service.like > 0"></b-icon-heart-fill>
+                        <b-icon-heart v-else></b-icon-heart>
+                        <span class="font-weight-bold">{{ service.like}}</span>
                       </span>
                     </p>
                   </b-col>
@@ -62,9 +75,11 @@
                         <b-icon-pencil></b-icon-pencil>Editar
                       </router-link>
                     </span>
-                    <span class="text-danger ml-2">
-                      <b-icon-exclude></b-icon-exclude>Eliminar
-                    </span>
+                    <a href="#" @click="callDeleteModal(service.nome, service._id)">
+                      <span class="text-danger ml-2">
+                        <b-icon-exclude></b-icon-exclude>Eliminar
+                      </span>
+                    </a>
                   </b-col>
                 </b-row>
               </div>
@@ -78,10 +93,12 @@
 
 <script>
 import axios from "axios";
+axios.defaults.withCredentials = true;
 import { bus } from "../main";
 export default {
   data() {
     return {
+      user: this.$store.state.user,
       selected: "Nome",
       options: [
         {
@@ -106,18 +123,45 @@ export default {
     };
   },
   methods: {
-    getServices() {
-      axios
-        .get(
-          "http://localhost:3000/api/v1/users/5ea7f5a4200ad642305fc732/services"
-        )
-        .then(response => {
-          this.services = response.data.data.docs;
-          //console.log(this.services);
-        });
-    },
     sendEdit(service) {
       bus.$emit("toedit", service);
+    },
+    notClient() {
+      bus.$emit("notclient");
+    },
+    callDeleteModal(name, id) {
+      this.$bvModal
+        .msgBoxConfirm("Tem a certeza que deseja eliminar " + name + " ?", {
+          title: "Eliminação de Serviço",
+          size: "md",
+          buttonSize: "sm",
+          okVariant: "danger",
+          okTitle: "Eliminar",
+          cancelTitle: "Cancelar",
+          footerClass: "p-2",
+          hideHeaderClose: "false",
+          centered: true
+        })
+        .then(value => {
+          value ? this.deleteService(id) : "";
+        });
+    },
+    deleteService(id) {
+      axios
+        .delete("http://localhost:3000/api/v1/services/" + id)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    setService(service) {
+      alert("here");
+      console.log("in");
+      console.log(service);
+      this.notClient();
+      this.$store.dispatch("setService", service);
     }
   },
   computed: {
@@ -125,10 +169,23 @@ export default {
       return Object.values(this.services).filter(item => {
         return item.nome.toLowerCase().includes(this.search.toLowerCase());
       });
+    },
+    getServices() {
+      axios
+        .get(
+          "http://localhost:3000/api/v1/users/" + this.user._id + "/services"
+        )
+        .then(response => {
+          console.log(this.services);
+          this.services = response.data.data.docs;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
   beforeMount() {
-    this.getServices();
+    this.getServices;
   }
 };
 </script>

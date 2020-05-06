@@ -22,7 +22,7 @@
         <div class="col-md-10">
           <h1 class="text-center pt-3">Do que está à procura?</h1>
           <div class="row">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div id="explorerCarousel" class="carousel slide" data-ride="carousel">
               <div id="category-carousel" class="carousel-inner row w-100 mx-auto">
                 <category-box
                   v-for="category in categories"
@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="col-md-1">
-          <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <a class="carousel-control-next" href="#explorerCarousel" role="button" data-slide="next">
             <span class="fa fa-angle-right text-dark service-arrow" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
@@ -54,6 +54,11 @@
           <filter-inputs :filterArray="provinces[selected].counties" kindOfArray="Distrito"></filter-inputs>
           <hr />
           <p class="font-weight-bold">Categoria</p>
+          <filter-inputs
+            :filterArray="Object.values(categories3)"
+            kindOfArray="Categoria"
+            @selected="setIndex"
+          ></filter-inputs>
           <hr />
           <p class="font-weight-bold">Subcategoria</p>
           <hr />
@@ -61,7 +66,7 @@
           <hr />
           <p class="font-weight-bold">Classificação</p>
           <hr />
-          <b-form-input variant="dark" type="range" v-model="range" min="1" max="10"></b-form-input>
+          <b-form-input variant="dark" type="range" v-model="range" min="0" max="10"></b-form-input>
           <p class="text-center text-muted">{{ range }}</p>
         </aside>
         <section class="search-results-container container-fluid col-md-8">
@@ -132,6 +137,7 @@
   
 <script>
 import axios from "axios";
+axios.defaults.withCredentials = true;
 var aux = -1;
 var globalServices;
 var globalCategories;
@@ -171,7 +177,7 @@ export default {
           img: "71462.jpg"
         }
       ],
-      range: 1,
+      range: 0,
       cardView: true,
       pages: 0,
       services: [],
@@ -236,7 +242,8 @@ export default {
         }
       ],
       services2: [],
-      categories2: []
+      categories2: [],
+      categories3: []
     };
   },
   methods: {
@@ -268,6 +275,18 @@ export default {
         })
         .catch(error => {});
     }, */
+    getCategories() {
+      axios
+        .get("http://localhost:3000/api/v1/categories")
+        .then(response => {
+          this.categories3 = response.data.data.docs;
+          console.log(Object.values(this.categories3));
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      //this.setCategories();
+    },
     mountArray(array) {
       /* var copyArray = this.services2;
       console.log(copyArray); */
@@ -279,6 +298,7 @@ export default {
   },
   beforeMount() {
     this.setServices();
+    this.getCategories();
   },
 
   mounted() {
@@ -290,24 +310,29 @@ export default {
 
 $(".test").addClass("text-warning");
 
-$("#myCarousel").on("slide.bs.carousel", function(e) {
+$("#explorerCarousel").on("slide.bs.carousel", function(e) {
   var $e = $(e.relatedTarget);
   var idx = $e.index();
   var itemsPerSlide = 3;
-  var totalItems = $("#myCarousel > .carousel-item").length;
+  var totalItems = $("#explorerCarousel > .carousel-item").length;
+  var x = 1;
 
+  if (x == 1) {
+    console.log(idx, totalItems, itemsPerSlide);
+    x++;
+  }
   if (idx >= totalItems - (itemsPerSlide - 1)) {
     var it = itemsPerSlide - (totalItems - idx);
     for (var i = 0; i < it; i++) {
       // append slides to end
       if (e.direction == "left") {
-        $("#myCarousel > .carousel-item")
+        $("#explorerCarousel > .carousel-item")
           .eq(i)
           .appendTo("#category-carousel");
       } else {
-        $("#myCarousel > .carousel-item")
+        /* $("#explorerCarousel > .carousel-item")
           .eq(0)
-          .appendTo($(this).find("#category-carousel"));
+          .appendTo($(this).find("#category-carousel")); */
       }
     }
   }

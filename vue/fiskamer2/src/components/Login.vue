@@ -64,7 +64,9 @@
 </template>
 <script>
 /* eslint-disable */
+import { mapState, mapMutations, mapActions } from "vuex";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 export default {
   name: "Login",
   data() {
@@ -90,8 +92,8 @@ export default {
             type: "info",
             group: "auth"
           });
-          this.$store.commit("changeUser", this.logged);
-          this.logged.role == "2"
+          this.changeUser(this.logged);
+          this.logged.role == 2
             ? this.$router.push("/main/explorer")
             : this.$router.push("/main/supply/state");
         })
@@ -105,8 +107,12 @@ export default {
           });
         });
     },
-    validateAll() {}
-  }
+    validateAll() {},
+    changeUser(payload) {
+      this.$store.dispatch("changeUser", payload);
+    }
+  },
+  computed: mapState(["userstore"])
 };
 </script>
 <style scoped>

@@ -25,7 +25,7 @@
                   <h4>{{ service.nome }}</h4>
                   <p class="text-muted">{{ }}</p>
 
-                  <p class="text-success">{{ service.price }}, 00 AOA</p>
+                  <p class="text-success">{{ service.price.toLocaleString() }},00 AOA</p>
                   <p class>
                     fornecido por:
                     <router-link
@@ -65,15 +65,21 @@
               </b-list-group-item>
             </b-list-group>
 
-            <div class="buttons-footer">
-              <b-button block variant="outline-danger" v-b-tooltip.hover title="Wishlist">
-                <b-icon-heart-fill></b-icon-heart-fill>
+            <div class="buttons-footer" v-if="isClient">
+              <b-button
+                block
+                variant="outline-danger"
+                v-b-tooltip.hover
+                title="Wishlist"
+                @click="addFavourite"
+              >
+                <b-icon-heart-fill></b-icon-heart-fill>Favorito
               </b-button>
               <b-button block variant="outline-warning" v-b-tooltip.hover title="Classificar">
-                <b-icon-star-fill></b-icon-star-fill>
+                <b-icon-star-fill></b-icon-star-fill>Classificar
               </b-button>
               <b-button block variant="outline-info" v-b-tooltip.hover title="Orçamento">
-                <b-icon-file-text></b-icon-file-text>
+                <b-icon-file-text></b-icon-file-text>Orçamento
               </b-button>
               <b-button
                 block
@@ -82,7 +88,16 @@
                 title="Solicitar"
                 v-b-modal.payment
               >
-                <i class="fa fa-credit-card" aria-hidden="true"></i>
+                <i class="fa fa-credit-card" aria-hidden="true"></i> Solicitar
+              </b-button>
+              <b-button
+                block
+                variant="outline-light"
+                v-b-tooltip.hover
+                title="Teste Solicitacao"
+                @click="requestService"
+              >
+                <i class="fa fa-credit-card" aria-hidden="true"></i> TesteSolicitar
               </b-button>
               <service-payment></service-payment>
             </div>
@@ -192,10 +207,14 @@
 
 <script>
 import axios from "axios";
+import { bus } from "../main";
+
+axios.defaults.withCredentials = true;
 export default {
   props: {},
   data() {
     return {
+      isClient: true,
       questions: [
         { question: "Celebração de mais de um evento diário", answer: "Não" },
         { question: "Aluguel só do espaço", answer: "Não" },
@@ -227,11 +246,43 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    addFavourite() {
+      axios
+        .post(
+          "http://localhost:3000/api/v1/services/" + this.service._id + "/like"
+        )
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    requestService() {
+      axios
+        .post(
+          "http://localhost:3000/api/v1/services/" +
+            this.service._id +
+            "/solicitacaos",
+          { data: "2020-05-10" }
+        )
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
   beforeMount() {},
   mounted() {
     this.getSupplier();
+  },
+  created() {
+    bus.$on("notclient", value => {
+      this.isClient = false;
+    });
   }
 };
 </script>

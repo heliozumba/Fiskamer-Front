@@ -43,12 +43,27 @@
         </li>
       </div>-->
       <b-icon-bell scale="1.8" variant="warning" class="mx-2"></b-icon-bell>
-      <b-avatar></b-avatar>
+
+      <b-avatar v-slot:button-content></b-avatar>
+      <b-dropdown>
+        <b-dropdown-item href="#">
+          <router-link
+            :to="{name:'userProfile',params:{id:this.$store.state.user._id}}"
+            @click.native="supplierFlag"
+          >
+            <b-icon-person-fill></b-icon-person-fill>Perfil
+          </router-link>
+        </b-dropdown-item>
+        <b-dropdown-item href="#">
+          <b-icon-arrow-bar-left></b-icon-arrow-bar-left>Sair
+        </b-dropdown-item>
+      </b-dropdown>
     </nav>
   </header>
 </template>
 
 <script>
+import { bus } from "../main";
 export default {
   data() {
     return {};
@@ -56,6 +71,13 @@ export default {
   methods: {
     mounted() {
       console.log("Navbar montada");
+    },
+    supplierFlag() {
+      console.log("Aqui");
+
+      if (this.$store.state.user.role.perfilCode == 1) {
+        bus.$emit("supplierProfile");
+      }
     }
   }
 };

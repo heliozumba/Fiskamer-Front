@@ -15,7 +15,7 @@
 
       <h6 class="text-center text-success">
         <i class="fa fa-money" aria-hidden="true"></i>
-        {{ service.price }},00 AOA
+        {{ service.price.toLocaleString() }} ,00 AOA
       </h6>
       <!--hr-->
       <p class="card-text text-muted text-justify"></p>
@@ -38,10 +38,8 @@ export default {
   },
   methods: {
     setService() {
-      alert("here");
-      console.log("in");
       console.log(this.service);
-      this.$store.commit("setService", this.service);
+      this.$store.dispatch("setService", this.service);
     }
   }
 };

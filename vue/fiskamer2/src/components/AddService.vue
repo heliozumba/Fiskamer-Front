@@ -117,6 +117,7 @@
 
 <script>
 import axios from "axios";
+axios.defaults.withCredentials = true;
 import { bus } from "../main";
 export default {
   data() {
@@ -246,10 +247,16 @@ export default {
         .patch("http://localhost:3000/api/v1/services/" + this.service_._id)
         .then(response => {
           console.log(this.response);
+          this.isEdit = false;
+          this.$router.push("/main/supply/consult");
         })
         .catch(error => {
           console.log(error);
         });
+
+      //Para testar
+      this.isEdit = false;
+      this.$router.push("/main/supply/consult");
     },
     getCategories() {
       axios

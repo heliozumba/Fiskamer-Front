@@ -26,14 +26,14 @@
             <b-col md="9">
               <span class="text-success font-weight-bold">
                 <i class="fa fa-money" aria-hidden="true"></i>
-                {{ service.price }}, 00 AOA
+                {{ service.price.toLocaleString()}} ,00 AOA
               </span>
             </b-col>
             <b-col md="3">
               <router-link
                 :to="{name:'serviceProfile',params:{id:service._id}}"
                 class="list-button btn btn-raised btn-warning px-5 mt-"
-                :service="service"
+                @click.native="setService"
               >Ver</router-link>
             </b-col>
           </b-row>
@@ -44,14 +44,17 @@
 </template>
 
 <script>
-import ServiceProfile from "@/components/ServiceProfile";
 export default {
   props: {
     service: Object
   },
-  components: { ServiceProfile },
   data() {
     return {};
+  },
+  methods: {
+    setService() {
+      this.$store.dispatch("setService", this.service);
+    }
   }
 };
 </script>

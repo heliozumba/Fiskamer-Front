@@ -6,10 +6,15 @@
 </template>
 
 <script>
+import axios from "axios";
+axios.defaults.withCredentials = true;
+
 export default {
   data() {
     return {
-      requests: [
+      user: this.$store.state.user,
+      requests: {},
+      requests2: [
         {
           solicitante: "<b-badge></b-badge>",
           serviço: "Salão Mar do Arroz",
@@ -76,6 +81,27 @@ export default {
         }
       ]
     };
+  },
+  computed: {
+    getRequests() {
+      axios
+        .get(
+          /* "http://localhost:3000/api/v1/users/" +
+            this.user._id +
+            "/solicitacaos" */
+          "http://localhost:3000/api/v1/solicitacoes"
+        )
+        .then(response => {
+          console.log(response.data.data.docs);
+          this.requests = response.data.data.docs;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  },
+  beforeMount() {
+    this.getRequests;
   }
 };
 </script>

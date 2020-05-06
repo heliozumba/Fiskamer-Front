@@ -7,15 +7,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: {
-      name: "",
-      email: "",
-      telemovel: "",
-      password: "",
-      passwordConfirm: "",
-      role: "",
-      endereco: ""
-    },
+    user: {},
     service: {}
   },
   getters: {},
@@ -27,5 +19,13 @@ export default new Vuex.Store({
       state.service = payload;
     }
   },
-  actions: {}
+  actions: {
+    changeUser(context, payload) {
+      context.commit("changeUser", payload);
+    },
+
+    setService(context, payload) {
+      context.commit("setService", payload);
+    }
+  }
 });

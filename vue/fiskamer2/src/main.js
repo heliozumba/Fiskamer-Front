@@ -49,6 +49,7 @@ Vue.component(
   "state-service",
   require("./components/StateService.vue").default
 );
+Vue.component("edit-user", require("./components/EditUser.vue").default);
 Vue.config.productionTip = false;
 
 //Vuelidate for input validations

@@ -18,13 +18,15 @@
               <h5>{{ user.name}}</h5>
               <p class="text-muted font-italic mb-1">{{user.endereco}}</p>
               <p>Descrição</p>
-              <button class="btn btn-raised btn-dark">{{isAuthUser? 'Editar' : 'Seguir'}}</button>
+              <button v-if="isAuthUser" class="btn btn-raised btn-dark" v-b-modal.editUser>Editar</button>
+              <button v-else class="btn btn-raised btn-dark">Seguir</button>
             </div>
           </div>
           <b-col v-if="!isClient" md="2" class="text-center p-3">
             <p>Clientes</p>
             <h1>5</h1>
           </b-col>
+          <edit-user></edit-user>
         </div>
         <hr />
         <div class="row">
@@ -49,26 +51,24 @@
             </span>
             <hr />
           </div>
-
-          <b-card
-            :img-src="require('../assets/imgs/71462.jpg')"
-            class="col-md-3 mx-3 my-3 p-0 rounded d-inline-block"
-            no-body
-          >
-            <b-card-footer class="p-0">
-              <small class="text-muted">Escolhido a XX/XX/XXXX</small>
-            </b-card-footer>
-          </b-card>
-          <b-card
-            :img-src="require('../assets/imgs/71462.jpg')"
-            class="col-md-3 mx-4 my-3 p-0"
-            no-body
-          >
-            <b-card-footer class="p-0">
-              <small class="text-muted">Escolhido a XX/XX/XXXX</small>
-            </b-card-footer>
-          </b-card>
-          <b-card
+          <div class="service-cards" v-for="service in services" :key="service._id">
+            <b-card
+              :img-src="require('../assets/imgs/71462.jpg')"
+              class="col-md-3 mx-4 my-3 p-0"
+              no-body
+            >
+              <b-card-footer class="p-0 text-center">
+                <p class="mb-0">
+                  <small class>{{service.nome}}</small>
+                </p>
+                <p class="mb-0">
+                  <small class="text-success">{{service.price}}</small>
+                </p>
+                <small class="text-muted">{{isClient? "Escolhido" : "Cadastrado"}} a XX/XX/XXXX</small>
+              </b-card-footer>
+            </b-card>
+          </div>
+          <!-- <b-card
             :img-src="require('../assets/imgs/71462.jpg')"
             class="col-md-3 mx-4 my-3 p-0"
             no-body
@@ -157,37 +157,7 @@
               </p>
               <small class="text-muted">Escolhido a XX/XX/XXXX</small>
             </b-card-footer>
-          </b-card>
-          <b-card
-            :img-src="require('../assets/imgs/71462.jpg')"
-            class="col-md-3 mx-4 my-3 p-0"
-            no-body
-          >
-            <b-card-footer class="p-0 text-center">
-              <p class="mb-0">
-                <small class>Serviço X</small>
-              </p>
-              <p class="mb-0">
-                <small class="text-success">25 000,00 AOA</small>
-              </p>
-              <small class="text-muted">Escolhido a XX/XX/XXXX</small>
-            </b-card-footer>
-          </b-card>
-          <b-card
-            :img-src="require('../assets/imgs/71462.jpg')"
-            class="col-md-3 mx-4 my-3 p-0"
-            no-body
-          >
-            <b-card-footer class="p-0 text-center">
-              <p class="mb-0">
-                <small class>Serviço X</small>
-              </p>
-              <p class="mb-0">
-                <small class="text-success">25 000,00 AOA</small>
-              </p>
-              <small class="text-muted">Escolhido a XX/XX/XXXX</small>
-            </b-card-footer>
-          </b-card>
+          </b-card>-->
         </div>
       </div>
       <div class="col-md-2"></div>
@@ -196,17 +166,41 @@
 </template>
 
 <script>
+import { bus } from "../main";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 export default {
   data() {
     return {
       isClient: true,
       isAuthUser: true,
+      services: {},
       user: {}
     };
   },
+  beforeMount() {
+    this.getServices();
+  },
   mounted() {
     this.user = this.$store.state.user;
-    console.log(this.user);
+  },
+  created() {
+    bus.$on("supplierProfile", value => {
+      this.isClient = false;
+    });
+  },
+  methods: {
+    getServices() {
+      axios
+        .get(
+          "http://localhost:3000/api/v1/users/5ea7f5a4200ad642305fc732/services"
+        )
+        .then(response => {
+          console.log(response.data.data.docs);
+          this.services = response.data.data.docs;
+          //console.log(this.services);
+        });
+    }
   }
 };
 </script>
