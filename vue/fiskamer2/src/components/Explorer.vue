@@ -294,11 +294,23 @@ export default {
       this.services2 = array;
       this.pages = Math.ceil(array.length / 9);
       this.services = array.slice(0, 9);
+    },
+
+    getFavourites() {
+      axios
+        .get("http://localhost:3000/api/v1/favoriteServices/MyFavorites")
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
   beforeMount() {
     this.setServices();
     this.getCategories();
+    this.getFavourites();
   },
 
   mounted() {

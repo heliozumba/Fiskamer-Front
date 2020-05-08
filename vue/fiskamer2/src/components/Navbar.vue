@@ -1,10 +1,58 @@
 <template>
   <header>
-    <nav class="navbar navbar-expand-sm fixed-top bg-dark main-navbar">
+    <nav v-if="isGuest" id="home-nav" class="navbar navbar-expand-sm fixed-top">
+      <a href="#" class="navbar-brand">
+        <img class="fiskamer-logo" src="@/assets/imgs/logo2.png" alt="fiskamer-logo" />
+      </a>
+      <button
+        class="navbar-toggler d-block d-sm-none"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapseNavbar"
+        aria-controls="collapseNavbar"
+        aria-expanded="false"
+      >
+        <span class="fa fa-bars d-block d-sm-none text-warning" aria-hidden="true"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapseNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <router-link to="/" class="nav-link" href="#">Inicio</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/main/explorer" class="nav-link" href="#">Serviços</router-link>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Fornecedores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Categorias</a>
+          </li>
+          <li class="nav-item d-block d-sm-none">
+            <router-link to="/credentials/register" class>Criar Conta</router-link>
+          </li>
+          <li class="nav-item d-block d-sm-none">
+            <router-link to="/credentials/login" class>Entrar</router-link>
+          </li>
+        </ul>
+      </div>
+      <div class="navbar-buttons d-none d-sm-block">
+        <router-link
+          to="/credentials/register"
+          class="btn btn-outline-dark signUp_button"
+        >Criar Conta</router-link>
+        <router-link to="/credentials/login" class="btn btn-raised btn-warning signIn_button">Entrar</router-link>
+      </div>
+    </nav>
+    <nav v-else class="navbar navbar-expand-sm fixed-top bg-dark main-navbar">
       <a href="/" class="navbar-brand">
         <img class="img-fluid w-100" src="@/assets/imgs/logo2.png" alt="fiskamer-logo" />
       </a>
       <ul class="navbar-nav">
+        <li class="nav-item">
+          <!--  <b-icon-compass></b-icon-compass> -->
+          <router-link class="nav-link" to="/main/feed">Feed</router-link>
+        </li>
         <li class="nav-item">
           <!--  <b-icon-compass></b-icon-compass> -->
           <router-link class="nav-link" to="/main/explorer">Explorar</router-link>
@@ -54,7 +102,7 @@
             <b-icon-person-fill></b-icon-person-fill>Perfil
           </router-link>
         </b-dropdown-item>
-        <b-dropdown-item href="#">
+        <b-dropdown-item href="#" @click="logout">
           <b-icon-arrow-bar-left></b-icon-arrow-bar-left>Sair
         </b-dropdown-item>
       </b-dropdown>
@@ -63,10 +111,13 @@
 </template>
 
 <script>
+import axios from "axios";
 import { bus } from "../main";
 export default {
   data() {
-    return {};
+    return {
+      isGuest: true
+    };
   },
   methods: {
     mounted() {
@@ -78,6 +129,22 @@ export default {
       if (this.$store.state.user.role.perfilCode == 1) {
         bus.$emit("supplierProfile");
       }
+    },
+    logout() {
+      axios
+        .get("http://localhost:3000/api/v1/users/logout")
+        .then(response => {
+          this.$store.dispatch("changeUser", null);
+          this.$router.push("/");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  },
+  beforeMount() {
+    if (Boolean(this.$store.state.user)) {
+      this.isGuest = false;
     }
   }
 };

@@ -29,7 +29,15 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  beforeMount() {
+    if (Boolean(this.$store.state.user)) {
+      this.$store.state.user.role.perfilCode == 1
+        ? this.$router.push("/main/supply/state")
+        : this.$router.push("/main/explorer");
+    }
+  }
+};
 </script>
 <style scoped>
 .row {

@@ -93,8 +93,8 @@ export default {
             group: "auth"
           });
           this.changeUser(this.logged);
-          this.logged.role == 2
-            ? this.$router.push("/main/explorer")
+          this.logged.role.perfilCode == 2
+            ? this.$router.push("/main/feed")
             : this.$router.push("/main/supply/state");
         })
         .catch(error => {

@@ -21,7 +21,7 @@
               <a class="nav-link" href="#">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Serviços</a>
+              <router-link to="/main/explorer" class="nav-link" href="#">Serviços</router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Fornecedores</a>

@@ -163,8 +163,8 @@ export default {
             type: "success"
           });
           this.$store.commit("changeUser", this.user);
-          this.user.role == "2"
-            ? this.$router.push("/main/explorer")
+          this.user.role.profileCode == 2
+            ? this.$router.push("/main/feed")
             : this.$router.push("/main/supplier/state");
         })
         .catch(error => {

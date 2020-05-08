@@ -30,7 +30,7 @@
                     fornecido por:
                     <router-link
                       :to="{name:'userProfile',params:{ id:service.fornecedor._id}}"
-                    >Teste</router-link>
+                    >{{service.fornecedor._id}}</router-link>
                   </p>
                 </div>
               </div>
@@ -235,11 +235,9 @@ export default {
   },
   methods: {
     getSupplier() {
-      console.log(this.service.fornecedor);
+      console.log(this.service.fornecedor._id);
       axios
-        .get(
-          "http://localhost:3000/api/v1/users/5e9f2333797eb7b7747e0c21" /* + this.service.fornecedor */
-        )
+        .get("http://localhost:3000/api/v1/users/" + this.service.fornecedor)
         .then(response => {
           console.log(response);
         })
@@ -250,7 +248,9 @@ export default {
     addFavourite() {
       axios
         .post(
-          "http://localhost:3000/api/v1/services/" + this.service._id + "/like"
+          "http://localhost:3000/api/v1/services/" +
+            this.service._id +
+            "/favourites"
         )
         .then(response => {
           console.log(response);
@@ -275,7 +275,11 @@ export default {
         });
     }
   },
-  beforeMount() {},
+  beforeMount() {
+    if (!Boolean(this.$store.state.user)) {
+      this.isClient = false;
+    }
+  },
   mounted() {
     this.getSupplier();
   },

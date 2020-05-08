@@ -1,5 +1,5 @@
 <template>
-  <b-modal id="editUser" title="Edição de Utilizador" class="text-center" busy="true">
+  <b-modal id="editUser" title="Edição de Utilizador" class="text-center" hide-footer="true">
     <div class="payment-phase">
       <h4 class="text-center">Dados Pessoais</h4>
       <b-avatar size="10rem" class="profile-photo my-3"></b-avatar>
@@ -37,7 +37,7 @@ axios.defaults.withCredentials = true;
 export default {
   data() {
     return {
-      user: this.$store.state.user
+      user: {}
     };
   },
   methods: {
@@ -53,7 +53,7 @@ export default {
     }
   },
   beforeMount() {
-    console.log(this.user);
+    this.user = Object.assign({}, this.$store.state.user);
   }
 };
 </script>

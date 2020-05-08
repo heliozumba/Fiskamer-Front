@@ -62,9 +62,14 @@
               <b-form-file
                 placeholder="Selecionar Fotografia"
                 accept=".jpg, .png, .jpeg"
-                v-model="service_.images"
-                :state="Boolean(service_.images)"
+                v-model="service_.coverImage"
+                :state="Boolean(service_.coverImage)"
+                ref="fileInput"
               ></b-form-file>
+              <b-button variant="info" @click="uploadFile">
+                <!-- @click="$refs.fileInput.click() -->
+                <b-icon-camera></b-icon-camera>Imagem
+              </b-button>
             </b-col>
           </b-row>
         </b-form-group>
@@ -122,7 +127,7 @@ import { bus } from "../main";
 export default {
   data() {
     return {
-      isEdit: false,
+      isEdit: true,
       packages: {},
       service_: {
         categoria: "",
@@ -130,10 +135,11 @@ export default {
         descricao: "",
         endereco: [],
         images: null,
+        coverImage: null,
         price: "",
         availability: [],
-        /* fornecedor: this.$store.state.user._id, */
-        fornecedor: "5ea7f5a4200ad642305fc732",
+        fornecedor: this.$store.state.user._id,
+        /*  fornecedor: "5ea7f5a4200ad642305fc732", */
         pacote: {},
         features: [
           {
@@ -144,7 +150,8 @@ export default {
             feature: "Musica",
             price: 6000
           }
-        ]
+        ],
+        formData: null
       },
       fields: ["questões", "respostas"],
       items: [
@@ -231,6 +238,7 @@ export default {
       });
     },
     addService() {
+      this.uploadFile();
       axios
         .post("http://localhost:3000/api/v1/services", this.service_)
         .then(response => {
@@ -294,7 +302,44 @@ export default {
     selectedPackage(pack) {
       this.service_.pacote = pack;
     },
-    toEdit(service) {}
+    toEdit(service) {},
+    fileChange(fieldName, file) {
+      let imageFile = file[0];
+      let formData = new FormData();
+
+      let imageURL = URL.createObjectURL(imageFile);
+      formData.append(fieldName, imageFile);
+    },
+    uploadFile() {
+      const formData = new FormData();
+      formData.append(
+        "coverImage",
+        this.service_.coverImage,
+        this.service_.coverImage.name
+      );
+
+      axios
+        .patch(
+          "http://localhost:3000/api/v1/services/" + this.service_._id,
+          formData
+        )
+        .then(response => {
+          console.log(this.response);
+          this.isEdit = false;
+          this.$router.push("/main/supply/consult");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+      console.log(formData);
+    },
+
+    onFileSelected(event) {
+      console.log("here");
+      console.log(event.target.files[0]);
+      this.service_.coverImage = event.target.files[0];
+    }
   },
   beforeMount() {
     this.getCategories();

@@ -61,7 +61,7 @@
                   <b-col md="8">
                     <p class="mb-2">
                       <i class="fa fa-money text-success" aria-hidden="true"></i>
-                      <span class="text-success">{{service.price.toLocaleString() }} ,00 AOA</span>
+                      <span class="text-success">{{ service.price}} ,00 AOA</span>
                       <span class="text-danger ml-4">
                         <b-icon-heart-fill v-if="service.like > 0"></b-icon-heart-fill>
                         <b-icon-heart v-else></b-icon-heart>
