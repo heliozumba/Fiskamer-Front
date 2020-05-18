@@ -37,7 +37,7 @@
             <b-col md="3" class>
               <b-img
                 class="img-fluid rounded w-100"
-                :src="/*require('../assets/imgs/106418_3.jpg')*/ service.coverImage"
+                src="http://localhost:3000/public/img/services/service-5eb3fc02f349ea9ab0a2dbcc-1589105381798-cover.jpeg"
                 alt="service-img"
               ></b-img>
             </b-col>
@@ -73,6 +73,11 @@
                     <span class="text-warning">
                       <router-link @click.native="sendEdit(service)" to="/main/supply/add">
                         <b-icon-pencil></b-icon-pencil>Editar
+                      </router-link>
+                    </span>
+                    <span class="text-dark">
+                      <router-link @click.native="blockService(service)" to="/">
+                        <b-icon-lock></b-icon-lock>Bloquear
                       </router-link>
                     </span>
                     <a href="#" @click="callDeleteModal(service.nome, service._id)">
@@ -119,7 +124,8 @@ export default {
         }
       ],
       services: {},
-      search: ""
+      search: "",
+      server: "http://localhost:3000/public/img/"
     };
   },
   methods: {
@@ -171,10 +177,16 @@ export default {
       });
     },
     getServices() {
+      var request = "";
+      this.user.role.perfilCode == 0
+        ? (request = "http://localhost:3000/api/v1/services/")
+        : (request =
+            "http://localhost:3000/api/v1/users/" +
+            this.user._id +
+            "/services");
+      console.log(request);
       axios
-        .get(
-          "http://localhost:3000/api/v1/users/" + this.user._id + "/services"
-        )
+        .get(request)
         .then(response => {
           console.log(this.services);
           this.services = response.data.data.docs;
@@ -182,6 +194,9 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    blockService(service) {
+      //
     }
   },
   beforeMount() {

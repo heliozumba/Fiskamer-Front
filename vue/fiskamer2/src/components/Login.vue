@@ -40,7 +40,7 @@
           <label for>
             <small>Palavra-Passe</small>
           </label>
-          <ValidationProvider v-slot="{ errors }" rules="required|min:8" mode="eager">
+          <ValidationProvider v-slot="{ errors }" rules="required" mode="eager">
             <input
               type="password"
               v-model="user.password"
@@ -93,9 +93,20 @@ export default {
             group: "auth"
           });
           this.changeUser(this.logged);
-          this.logged.role.perfilCode == 2
-            ? this.$router.push("/main/feed")
-            : this.$router.push("/main/supply/state");
+
+          switch (this.logged.role.perfilCode) {
+            case 0:
+              this.$router.push("/main/admin");
+              break;
+            case 1:
+              this.$router.push("/main/supply/state");
+              break;
+            case 2:
+              this.$router.push("/main/feed");
+              break;
+            default:
+              this.$router.push("/");
+          }
         })
         .catch(error => {
           this.$notify({

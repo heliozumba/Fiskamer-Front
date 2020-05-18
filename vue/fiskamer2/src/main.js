@@ -50,6 +50,20 @@ Vue.component(
   require("./components/StateService.vue").default
 );
 Vue.component("edit-user", require("./components/EditUser.vue").default);
+
+Vue.component("contact", require("./components/Contact.vue").default);
+Vue.component("sidebar", require("./components/Sidebar.vue").default);
+Vue.component("admin", require("./components/Admin.vue").default);
+Vue.component("tabletests", require("./components/TableTests.vue").default);
+Vue.component(
+  "register-form",
+  require("./components/RegisterForm.vue").default
+);
+Vue.component(
+  "register-modal",
+  require("./components/RegisterModal.vue").default
+);
+
 Vue.config.productionTip = false;
 
 //Vuelidate for input validations

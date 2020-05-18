@@ -12,13 +12,7 @@ export default new Vuex.Store({
     user: {},
     service: {}
   },
-  plugins: [
-    createdPersistedState(/*{
-      getState: key => Cookies.getJSON(key),
-      setState: (key, state) =>
-        Cookies.set(key, state, { expires: 3, secure: true })
-    }*/)
-  ],
+  plugins: [createdPersistedState()],
   getters: {},
   mutations: {
     changeUser(state, payload) {

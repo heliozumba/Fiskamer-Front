@@ -20,6 +20,7 @@ import AddService from "@/components/AddService";
 import ConsultService from "@/components/ConsultService";
 import RequestService from "@/components/RequestService";
 import StateService from "@/components/StateService";
+import Admin from "@/components/Admin";
 
 Vue.use(Router);
 
@@ -128,6 +129,12 @@ export default new Router({
               }
             }
           ]
+        },
+        {
+          path: "admin",
+          components: {
+            navigator: Admin
+          }
         }
       ]
     }

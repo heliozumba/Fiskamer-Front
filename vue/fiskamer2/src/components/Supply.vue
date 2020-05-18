@@ -11,7 +11,8 @@
       <b-button variant="warning" href="#" @click="firstTimeDone">Começar</b-button>
     </b-jumbotron>
     <b-row class="border">
-      <b-col md="2" class="supplier-sidebar border p-4">
+      <sidebar></sidebar>
+      <!--b-col md="2" class="supplier-sidebar border p-4">
         <b-row class="p-0">
           <b-col md="12" class="background p-0"></b-col>
         </b-row>
@@ -24,9 +25,7 @@
           ></b-img>
         </b-row>
         <b-row class>
-          <!--  <p class="font-weight-bold">Nome</p>
-         
-          <p class="text-muted font-italic">Fornecedor</p>-->
+        
           <p>Juca</p>
           <p>Andrade</p>
         </b-row>
@@ -62,7 +61,7 @@
             </b-nav-item>
           </b-navbar>
         </b-row>
-      </b-col>
+      </b-col-->
       <b-col md="9" offset-md class="supplier-data border bg-white p-5">
         <!-- <b-row class="border supplier-statics-container text-center">
           <b-col md="3" class="border p-2 text-primary">

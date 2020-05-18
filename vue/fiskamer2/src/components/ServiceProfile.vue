@@ -87,6 +87,7 @@
                 v-b-tooltip.hover
                 title="Solicitar"
                 v-b-modal.payment
+                @click="sendToPay(service)"
               >
                 <i class="fa fa-credit-card" aria-hidden="true"></i> Solicitar
               </b-button>
@@ -100,6 +101,19 @@
                 <i class="fa fa-credit-card" aria-hidden="true"></i> TesteSolicitar
               </b-button>
               <service-payment></service-payment>
+            </div>
+            <div class="button-footer" v-else>
+              <b-button
+                block
+                variant="outline-warning"
+                v-b-tooltip.hover
+                title="Contactar"
+                v-b-modal.contact
+                @click="sendSupplier"
+              >
+                <b-icon-phone></b-icon-phone>Contactar
+              </b-button>
+              <contact></contact>
             </div>
           </div>
           <div class="description-container text-justify my-4">
@@ -273,6 +287,12 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    sendSupplier() {
+      bus.$emit("sendsupplier", this.service.fornecedor);
+    },
+    sendToPay() {
+      bus.$emit("sendtopay", this.service);
     }
   },
   beforeMount() {

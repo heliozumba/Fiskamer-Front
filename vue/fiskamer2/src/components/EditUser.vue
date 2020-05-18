@@ -1,5 +1,5 @@
 <template>
-  <b-modal id="editUser" title="Edição de Utilizador" class="text-center" hide-footer="true">
+  <b-modal id="editUser" title="Edição de Utilizador" class="text-center" hide-footer>
     <div class="payment-phase">
       <h4 class="text-center">Dados Pessoais</h4>
       <b-avatar size="10rem" class="profile-photo my-3"></b-avatar>
@@ -32,6 +32,7 @@
   </b-modal>
 </template>
 <script>
+import { bus } from "../main";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 export default {
@@ -42,8 +43,14 @@ export default {
   },
   methods: {
     updateUser() {
+      var route = "";
+      console.log(this.user.role);
+      this.user.role.perfilCode != 0
+        ? (route = "http://localhost:3000/api/v1/users/" + this.user._id)
+        : (route = "http://localhost:3000/api/v1/users/updateMe");
+
       axios
-        .patch("http://localhost:3000/api/v1/users/updateMe", this.user)
+        .patch(route, this.user)
         .then(response => {
           console.log(response.data);
         })
@@ -53,7 +60,14 @@ export default {
     }
   },
   beforeMount() {
-    this.user = Object.assign({}, this.$store.state.user);
+    if (this.user.role.perfilCode != 0)
+      this.user = Object.assign({}, this.$store.state.user);
+  },
+  created() {
+    bus.$on("senduser", user => {
+      this.user = user;
+      alert(user);
+    });
   }
 };
 </script>
