@@ -21,6 +21,9 @@ import ConsultService from "@/components/ConsultService";
 import RequestService from "@/components/RequestService";
 import StateService from "@/components/StateService";
 import Admin from "@/components/Admin";
+import Plan from "@/components/Plan";
+import Suggestions from "@/components/Suggestions";
+import MyPlan from "@/components/MyPlan";
 
 Vue.use(Router);
 
@@ -135,6 +138,26 @@ export default new Router({
           components: {
             navigator: Admin
           }
+        },
+        {
+          path: "plan",
+          components: {
+            navigator: Plan
+          },
+          children: [
+            {
+              path: "suggestions",
+              components: {
+                helper2: Suggestions
+              }
+            },
+            {
+              path: "my",
+              components: {
+                helper2: MyPlan
+              }
+            }
+          ]
         }
       ]
     }

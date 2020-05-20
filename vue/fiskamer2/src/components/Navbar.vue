@@ -58,10 +58,7 @@
           <router-link class="nav-link" to="/main/explorer">Explorar</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/main/profile">
-            <!-- <b-icon-building></b-icon-building> -->
-            Fornecedores
-          </router-link>
+          <router-link class="nav-link" to="/main/plan">Planejamento</router-link>
         </li>
         <li class="nav-item">
           <a href class="nav-link">

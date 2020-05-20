@@ -83,6 +83,15 @@
               </b-button>
               <b-button
                 block
+                variant="outline-primary"
+                v-b-tooltip.hover
+                title="Adicionar ao Planejamento"
+                @click="addPlan"
+              >
+                <b-icon-plus-square></b-icon-plus-square>Planejamento
+              </b-button>
+              <b-button
+                block
                 variant="outline-success"
                 v-b-tooltip.hover
                 title="Solicitar"
@@ -265,6 +274,20 @@ export default {
           "http://localhost:3000/api/v1/services/" +
             this.service._id +
             "/favourites"
+        )
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    addPlan() {
+      axios
+        .patch(
+          "http://localhost:3000/api/v1/planejamentos/" +
+            this.service._id +
+            "/addToPlanejamento"
         )
         .then(response => {
           console.log(response);

@@ -63,6 +63,13 @@ Vue.component(
   "register-modal",
   require("./components/RegisterModal.vue").default
 );
+Vue.component("plan", require("./components/Plan.vue").default);
+Vue.component("suggestions", require("./components/Suggestions.vue").default);
+Vue.component("my-plan", require("./components/MyPlan.vue").default);
+Vue.component(
+  "confirm-modal",
+  require("./components/ConfirmModal.vue").default
+);
 
 Vue.config.productionTip = false;
 
@@ -120,6 +127,8 @@ import "bootstrap-vue/dist/bootstrap-vue-icons.min.css";
 //VueX
 
 import store from "./store";
+
+//Mixin
 
 /* eslint-disable no-new */
 new Vue({
