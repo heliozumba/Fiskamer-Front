@@ -49,8 +49,9 @@
 <script>
 import axios from "axios";
 import { confirm } from "../mixins/confirm";
+import { toast } from "../mixins/toasts";
 export default {
-  mixins: [confirm],
+  mixins: [confirm, toast],
   data() {
     return {
       columnTotal: 0,
@@ -102,7 +103,8 @@ export default {
               price: Math.floor(Math.random() * 10 * 1000)
             }
           ],
-          selected: [0, 0]
+          selected: [0, 0],
+          key: i
         };
         plan.total = plan.price;
         this.plan2.push(plan);
@@ -111,8 +113,13 @@ export default {
     totalRow(total, selected) {
       if (Boolean(selected)) return (total += selected.reduce((a, b) => a + b));
     },
-    removeFromPlan(flag, entity) {
-      flag ? this.plan2.splice(entity.index, 1) : alert("erro");
+    removeFromPlan(flag, entity, name) {
+      if (flag) {
+        this.plan2.splice(entity.index, 1);
+        this.notify("success", name + " eliminado com sucesso", "Eliminação");
+      } else {
+        alert("erro");
+      }
     }
   },
   beforeMount() {

@@ -1,3 +1,4 @@
+import toast from "../mixins/toasts";
 export const confirm = {
   methods: {
     confirmAction(action, kind, name, entity, actionFunction) {
@@ -18,7 +19,7 @@ export const confirm = {
           }
         )
         .then(value => {
-          actionFunction(value, entity);
+          actionFunction(value, entity, name);
         });
     }
   }

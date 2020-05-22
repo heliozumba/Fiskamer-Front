@@ -137,11 +137,13 @@
   
 <script>
 import axios from "axios";
+import { general } from "../mixins/general";
 axios.defaults.withCredentials = true;
 var aux = -1;
 var globalServices;
 var globalCategories;
 export default {
+  mixins: [general],
   data() {
     return {
       selected: 0,
@@ -275,7 +277,7 @@ export default {
         })
         .catch(error => {});
     }, */
-    getCategories() {
+    /* getCategories() {
       axios
         .get("http://localhost:3000/api/v1/categories")
         .then(response => {
@@ -286,7 +288,8 @@ export default {
           console.log(error);
         });
       //this.setCategories();
-    },
+    } */
+
     mountArray(array) {
       /* var copyArray = this.services2;
       console.log(copyArray); */
@@ -309,6 +312,7 @@ export default {
   },
   beforeMount() {
     this.setServices();
+    this.generalGet("categories", this.categories3);
     this.getCategories();
     this.getFavourites();
   },

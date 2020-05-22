@@ -154,6 +154,7 @@
 
 <script>
 import { bus } from "../main";
+import { general } from "../mixins/general";
 import axios from "axios";
 axios.defaults.credentials = true;
 export default {
@@ -193,28 +194,19 @@ export default {
   },
   computed: {
     getUsers() {
-      axios
+      /*  axios
         .get(this.baseUrl + "users")
         .then(response => {
           this.users = response.data.data.docs;
-          /*  this.users.actions = [
-            {
-              name: "add",
-              route: ""
-            },
-            {
-              name: "edit",
-              route: ""
-            },
-            (name: "delete"),
-            (route: "")
-          ]; */
 
           this.setItems(this.users);
         })
         .catch(error => {
           console.log(error);
-        });
+        }); */
+
+      this.generalGet("users", this.users);
+      this.setItems(this.users);
     }
   },
   methods: {
@@ -294,7 +286,8 @@ export default {
 
   beforeMount() {
     this.getUsers;
-    this.getServices;
+    /* this.getServices; */
+    this.generalGet("services", this.services);
     this.setStats();
   },
 
