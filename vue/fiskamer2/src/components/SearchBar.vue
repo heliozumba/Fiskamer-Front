@@ -1,13 +1,13 @@
 <template>
   <div class="search-bar-container">
-    <div class="search-bar">
+    <div class="search-bar elegant-color">
       <form class="form-inline" action>
         <input type="text" class="form-control form-control-lg" placeholder="O que está a procura?" />
         <select class="form-control form-control-lg" id="selectLocation">
           <option>Onde?</option>
         </select>
 
-        <button class="btn btn-raised search-button btn-outline-warning btn-lg">Pesquisar</button>
+        <button class="btn warning-color btn-lg">Pesquisar</button>
       </form>
     </div>
   </div>
@@ -22,10 +22,8 @@ export default {};
 }
 
 .search-bar {
-  border-radius: 20px;
-  margin-top: 5%;
-  background-color: #343a40ee;
-  box-shadow: 2px 2px 2px #ffffff40;
+  box-shadow: 3px 3px 2px #00000055;
+  margin-top: 2%;
 }
 
 .search-bar form {
@@ -37,7 +35,7 @@ export default {};
   input,
   select {
     border: 1px solid #ffc107;
-    width: 44%;
+    width: 40%;
     background-color: transparent;
     color: #ffc107;
     outline: #ffc107;

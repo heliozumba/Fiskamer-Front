@@ -66,8 +66,11 @@
 /* eslint-disable */
 import { mapState, mapMutations, mapActions } from "vuex";
 import axios from "axios";
+import { toast } from "../mixins/toasts";
 axios.defaults.withCredentials = true;
+
 export default {
+  mixins: [toast],
   name: "Login",
   data() {
     return {
@@ -84,14 +87,7 @@ export default {
         .post("http://localhost:3000/api/v1/users/login", this.user)
         .then(response => {
           this.logged = response.data.data.user;
-          console.log(this.logged);
-          this.$notify({
-            width: "50%",
-            title: "Sucesso",
-            text: " Sê bem vindo" + this.logged.name + "!",
-            type: "info",
-            group: "auth"
-          });
+
           this.changeUser(this.logged);
 
           switch (this.logged.role.perfilCode) {
@@ -107,15 +103,18 @@ export default {
             default:
               this.$router.push("/");
           }
+          this.notify(
+            "info",
+            "Sê bem vindo ao Fiskamer " + this.logged.name + "!",
+            "Saudação"
+          );
         })
         .catch(error => {
-          this.$notify({
-            width: "50%",
-            title: "Erro",
-            text: "Email ou palavra-passe errados",
-            type: "danger",
-            group: "auth"
-          });
+          this.notify(
+            "danger",
+            "Por favor verifique as suas credênciais e tente novamente",
+            "Erro"
+          );
         });
     },
     validateAll() {},

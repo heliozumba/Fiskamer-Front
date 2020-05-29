@@ -86,7 +86,7 @@ export default {
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 .div-main {
   width: 99.99vw;
   height: 91.8vh;

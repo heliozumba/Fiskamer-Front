@@ -1,31 +1,35 @@
 <template>
   <div>
-    <div class="row p-2">
+    <div class="service-listed row p-2 my-3 rounded border">
       <div class="col-md-3">
         <div class="list-image-container d-inline">
           <img
-            class="img-fluid img-thumbnail w-100 rounded"
+            class="img-fluid w-100 rounded"
             :src="require('../assets/imgs/credentials.png')"
             alt="test"
           />
         </div>
       </div>
       <div class="col-md-9">
-        <h4>{{ service.name}}</h4>
-        <p>
-          {{service.classification}}
-          <i class="fa fa-star text-warning" aria-hidden="true"></i>
-          -
-          <span class="text-muted">{{ service.location.description}}</span>
+        <h5 class="font-weight-bold">
+          {{ service.nome}} -
+          <small>
+            {{service.classification}}
+            <i class="fa fa-star text-warning" aria-hidden="true"></i>
+          </small>
+        </h5>
+        <p class="mt-0">
+          <small class="text-muted">
+            <i class="fas fa-map-marker-alt"></i>
+            <span class="text-muted">{{ service.location.description}}</span>
+          </small>
         </p>
-        <p class="lead text-justify">{{}}</p>
-        <!--service.description-->
 
         <div class="service-list-footer">
           <b-row>
             <b-col md="9">
               <span class="text-success font-weight-bold">
-                <i class="fa fa-money" aria-hidden="true"></i>
+                <i class="fas fa-dollar-sign"></i>
                 {{ service.price.toLocaleString()}} ,00 AOA
               </span>
             </b-col>
@@ -61,11 +65,10 @@ export default {
 
 <style lang="scss" scoped>
 img {
-  height: 25vh;
+  height: 15vh;
   object-fit: cover;
 }
 .row {
-  border-bottom: 0.5px solid #00000030;
   padding: 0;
 
   .col-md-3 {
@@ -76,5 +79,9 @@ img {
 }
 
 .list-button {
+}
+
+.service-listed {
+  box-shadow: 2px 3px 8px #00000022;
 }
 </style>

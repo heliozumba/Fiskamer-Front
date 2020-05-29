@@ -1,25 +1,37 @@
 <template>
-  <div class="card col-md-3 mx-3 my-3 p-0 d-inline-block">
-    <img
-      class="card-image img-fluid w-100"
-      :src="require('../assets/imgs/credentials.png')"
-      alt="ok"
-    />
-    <div class="card-body text-center">
-      <h5 class="card-title font-weight-bold">{{ service.nome}}</h5>
-      <h6 class="text-center">
-        {{ service.classification }}
-        <i class="fa fa-star text-warning" aria-hidden="true"></i> -
-        <span class="text-muted text-center">{{ service.location.description }}</span>
-      </h6>
+  <div class="card col-md-3 mx-4 my-3 p-0 d-inline-block">
+    <mdb-view hover class="zoom">
+      <a href="#!">
+        <img
+          class="card-image img-fluid w-100"
+          :src="require('../assets/imgs/credentials.png')"
+          alt="ok"
+        />
 
-      <h6 class="text-center text-success">
+        <mdb-mask flex-center waves overlay="yellow-slight"></mdb-mask>
+      </a>
+    </mdb-view>
+
+    <div class="card-body text-center">
+      <h6 class="card-title font-weight-bold">{{ service.nome}}</h6>
+      <p class="text-muted text-center my-0">
+        <small class="font-weight-bold">
+          <i class="fas fa-map-marker-alt"></i>
+          {{ service.location.description }}
+        </small>
+      </p>
+      <small class="text-center">
+        {{ service.classification }}
+        <i class="fa fa-star text-warning" aria-hidden="true"></i>
+        -
+      </small>
+
+      <small class="text-center text-success">
         <i class="fa fa-money" aria-hidden="true"></i>
         {{ service.price.toLocaleString() }} ,00 AOA
-      </h6>
-      <!--hr-->
+      </small>
+
       <p class="card-text text-muted text-justify"></p>
-      <!--{{service.description}}-->
     </div>
     <div class="card-footer">
       <router-link
@@ -32,7 +44,46 @@
 </template>
 
 <script>
+import {
+  mdbContainer,
+  mdbRow,
+  mdbCol,
+  mdbCard,
+  mdbCardImage,
+  mdbCardHeader,
+  mdbCardBody,
+  mdbCardTitle,
+  mdbCardText,
+  mdbCardFooter,
+  mdbCardUp,
+  mdbCardAvatar,
+  mdbCardGroup,
+  mdbBtn,
+  mdbView,
+  mdbMask,
+  mdbIcon
+} from "mdbvue";
+
 export default {
+  components: {
+    mdbContainer,
+    mdbRow,
+    mdbCol,
+    mdbCard,
+    mdbCardImage,
+    mdbCardHeader,
+    mdbCardBody,
+    mdbCardTitle,
+    mdbCardText,
+    mdbCardFooter,
+    mdbCardUp,
+    mdbCardAvatar,
+    mdbCardGroup,
+    mdbBtn,
+    mdbView,
+    mdbMask,
+    mdbIcon
+  },
   props: {
     service: Object
   },

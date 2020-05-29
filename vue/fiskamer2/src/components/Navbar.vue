@@ -81,13 +81,45 @@
           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-user-circle fa-2x px-2" aria-hidden="true"></i>
           </a>
-          <div class="dropdown-menu bg-dark">
-            <a href="#" class="dropdown-item">Perfil</a>
-            <a href="#" class="dropdown-item">Sair</a>
-          </div>
+          
         </li>
       </div>-->
-      <b-icon-bell scale="1.8" variant="warning" class="mx-2"></b-icon-bell>
+      <div class="text-center text-warning">
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light fa-2x">
+              <i class="fas fa-envelope mt-2"></i>
+            </a>
+          </li>
+          <mdb-dropdown tag="li" class="nav-item text-warning">
+            <mdb-dropdown-toggle tag="a" navLink slot="toggle" waves-fixed>
+              <img
+                src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+                class="rounded-circle z-depth-0"
+                alt="avatar image"
+                height="60"
+              />
+            </mdb-dropdown-toggle>
+            <mdb-dropdown-menu class="bg-dark text-warning">
+              <mdb-dropdown-item>
+                <router-link
+                  :to="{name:'userProfile',params:{id:this.$store.state.user._id}}"
+                  @click.native="supplierFlag"
+                >
+                  <i class="fas fa-user"></i>
+                  <span>Perfil</span>
+                </router-link>
+              </mdb-dropdown-item>
+              <mdb-dropdown-item @click="logout">
+                <i class="fas fa-door-open"></i>
+                <span>Sair</span>
+              </mdb-dropdown-item>
+            </mdb-dropdown-menu>
+          </mdb-dropdown>
+        </ul>
+      </div>
+
+      <!--b-icon-bell scale="1.8" variant="warning" class="mx-2"></b-icon-bell>
 
       <b-avatar v-slot:button-content></b-avatar>
       <b-dropdown>
@@ -102,7 +134,7 @@
         <b-dropdown-item href="#" @click="logout">
           <b-icon-arrow-bar-left></b-icon-arrow-bar-left>Sair
         </b-dropdown-item>
-      </b-dropdown>
+      </b-dropdown-->
     </nav>
   </header>
 </template>
@@ -110,7 +142,21 @@
 <script>
 import axios from "axios";
 import { bus } from "../main";
+import {
+  mdbNavItem,
+  mdbDropdown,
+  mdbDropdownMenu,
+  mdbDropdownToggle,
+  mdbDropdownItem
+} from "mdbvue";
 export default {
+  components: {
+    mdbNavItem,
+    mdbDropdown,
+    mdbDropdownMenu,
+    mdbDropdownToggle,
+    mdbDropdownItem
+  },
   data() {
     return {
       isGuest: true
@@ -147,7 +193,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $detailColor: #ffcd03;
 
 .main-navbar {

@@ -21,7 +21,7 @@ export default {
   /*text-align: center;*/
   color: #2c3e50;
 }
-
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.25s ease-out;
@@ -32,6 +32,12 @@ export default {
   opacity: 0;
 }
 
-.vue-notifications-group {
+#explorer-carousel .view {
+  height: 80vh;
+}
+
+#explorer-carousel .view img {
+  object-fit: cover !important;
+  filter: blur(1px) brightness(70%);
 }
 </style>

@@ -231,9 +231,11 @@
 <script>
 import axios from "axios";
 import { bus } from "../main";
+import { general } from "../mixins/general"
 
 axios.defaults.withCredentials = true;
 export default {
+  mixins:[general],
   props: {},
   data() {
     return {
@@ -257,7 +259,7 @@ export default {
     };
   },
   methods: {
-    getSupplier() {
+     getSupplier() {
       console.log(this.service.fornecedor._id);
       axios
         .get("http://localhost:3000/api/v1/users/" + this.service.fornecedor)
@@ -267,7 +269,7 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    },
+    } ,
     addFavourite() {
       axios
         .post(
@@ -324,7 +326,7 @@ export default {
     }
   },
   mounted() {
-    this.getSupplier();
+    this.getSupplier()
   },
   created() {
     bus.$on("notclient", value => {

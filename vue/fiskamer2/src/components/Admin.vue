@@ -232,7 +232,7 @@ export default {
           console.log(error);
         });
     },
-    getServices() {
+    /* getServices() {
       axios
         .get(this.baseUrl + "services")
         .then(response => {
@@ -241,7 +241,7 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    },
+    }, */
     onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
       this.totalRows = filteredItems.length;

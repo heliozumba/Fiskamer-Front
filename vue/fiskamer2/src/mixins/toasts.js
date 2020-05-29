@@ -4,7 +4,8 @@ export const toast = {
       this.$bvToast.toast(message, {
         title: kind,
         variant: variant,
-        toaster: "b-toaster-top-left"
+        toaster: "b-toaster-top-left",
+        solid: true
       });
     }
   }

@@ -12,9 +12,8 @@
       ></b-img>
     </b-row>
     <b-row class>
-      <!--  <p class="font-weight-bold">Nome</p>
-         
-      <p class="text-muted font-italic">Fornecedor</p>-->
+      <p class="font-weight-bold">Nome</p>comentar
+      <p class="text-muted font-italic">Fornecedor</p>
       <p>Juca</p>
       <p>Andrade</p>
     </b-row>
@@ -54,7 +53,37 @@
 </template>
 
 <script>
-export default {};
+import {
+  mdbSideNav,
+  mdbSideNavNav,
+  mdbSideNavCat,
+  mdbSideNavItem,
+  mdbContainer,
+  mdbIcon,
+  waves
+} from "mdbvue";
+export default {
+  name: "SideNavPage",
+  components: {
+    mdbSideNav,
+    mdbSideNavNav,
+    mdbSideNavCat,
+    mdbSideNavItem,
+    mdbContainer,
+    mdbIcon
+  },
+  data() {
+    return {
+      toggleA: false
+    };
+  },
+  methods: {
+    toggleLeftSideNav() {
+      this.toggleA = !this.toggleA;
+    }
+  },
+  mixins: [waves]
+};
 </script>
 
 <style lang="scss" scoped>
@@ -98,5 +127,15 @@ export default {};
     );
     object-fit: cover;
   }
+}
+.container {
+  height: 750px;
+}
+.icon-div {
+  width: 49%;
+  display: inline-block;
+}
+.icon-div .fa {
+  cursor: pointer;
 }
 </style>

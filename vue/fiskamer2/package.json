@@ -17,6 +17,7 @@
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.10.1",
     "js-cookie": "^2.2.1",
+    "mdbvue": "^6.7.1",
     "portal-vue": "^2.1.7",
     "rfs": "^9.0.2",
     "vee-validate": "^3.2.5",

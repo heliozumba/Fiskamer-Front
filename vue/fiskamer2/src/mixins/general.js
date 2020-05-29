@@ -8,12 +8,22 @@ export const general = {
     };
   },
   methods: {
-    generalGet(entity, retriever) {
+    generalGet(entity, retriever, id = false, aditional = false) {
+      var api = "";
+      Boolean(id)
+        ? (api = this.baseUrl + entity + id)
+        : (api = this.baseUrl + entity);
+
+      Boolean(aditional) ? (api += aditional) : "";
+
       axios
-        .get(this.baseUrl + "/" + entity)
+        .get(this.baseUrl + entity)
         .then(response => {
           console.log(response.data);
-          retriver.apply.push(response.data.data.docs);
+
+          Array.isArray(response.data.data.docs)
+            ? retriever.apply.push(response.data.data.docs)
+            : (retriever = response.data.data.docs);
         })
         .catch(error => {
           console.log(error);

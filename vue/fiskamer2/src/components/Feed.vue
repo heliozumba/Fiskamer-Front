@@ -19,8 +19,11 @@
 </template>
 <script>
 import axios from "axios";
+import { general } from "../mixins/general";
+
 axios.defaults.withCredentials = true;
 export default {
+  mixins: [general],
   data() {
     return {
       requests: {},
@@ -53,8 +56,10 @@ export default {
     }
   },
   beforeMount() {
-    this.getFavorites();
-    this.getRequests();
+    /*  this.getFavorites();
+    this.getRequests(); */
+    this.generalGet("favoriteServices/MyFavorites", this.favorites);
+    this.generalGet("solicitacoes/MySolicitacoes", this.requests);
   }
 };
 </script>

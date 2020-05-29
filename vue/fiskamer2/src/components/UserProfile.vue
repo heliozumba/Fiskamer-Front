@@ -167,19 +167,26 @@
 
 <script>
 import { bus } from "../main";
+import { general } from "../mixins/general";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 export default {
+  mixins: [general],
   data() {
     return {
       isClient: true,
       isAuthUser: true,
-      services: {},
+      services: [],
       user: {}
     };
   },
   beforeMount() {
-    this.getServices();
+    this.generalGet(
+      "users",
+      this.services,
+      "5ea7f5a4200ad642305fc732",
+      "services"
+    );
   },
   mounted() {
     this.user = this.$store.state.user;
@@ -190,7 +197,7 @@ export default {
     });
   },
   methods: {
-    getServices() {
+    /* getServices() {
       axios
         .get(
           "http://localhost:3000/api/v1/users/5ea7f5a4200ad642305fc732/services"
@@ -200,7 +207,7 @@ export default {
           this.services = response.data.data.docs;
           //console.log(this.services);
         });
-    }
+    } */
   }
 };
 </script>
