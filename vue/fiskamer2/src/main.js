@@ -70,7 +70,7 @@ Vue.component(
   "confirm-modal",
   require("./components/ConfirmModal.vue").default
 );
-
+Vue.component("fisk-footer", require("./components/Footer.vue").default);
 Vue.config.productionTip = false;
 
 //Vuelidate for input validations

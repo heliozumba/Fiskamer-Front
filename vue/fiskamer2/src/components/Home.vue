@@ -40,7 +40,7 @@
         <div class="navbar-buttons d-none d-sm-block">
           <router-link
             to="/credentials/register"
-            class="btn btn-outline-dark signUp_button"
+            class="btn btn-outline-dark signUp_button text-white"
           >Criar Conta</router-link>
           <router-link
             to="/credentials/login"
@@ -91,11 +91,15 @@
                 </h3>
               </article>
             </section>
-            <div class="search-bar-container col-sm-8 col-xs-8">
+            <div class="search-bar-container col-sm-10 col-xs-8">
               <div class="search-bar">
                 <form class="form-inline" action>
-                  <input type="text" class="form-control" placeholder="O que está a procura?" />
-                  <input type="text" class="form-control" placeholder="Onde?" />
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="O que está a procura?"
+                  />
+                  <input type="text" class="form-control form-control-lg" placeholder="Onde?" />
                   <button class="btn btn-raised btn-dark search-button">
                     <span class="fa fa-search" aria-hidden="true"></span> &nbsp;
                     Pesquisar
@@ -433,6 +437,7 @@
               serviços nesta área, a ter mais presença online, alcançar o maior
               número de clientes a nível nacional e posteriormente aumentar
             </p>
+
             <p class="lead">
               <button class="btn btn-raised btn-dark">Comece a divulgar</button>
             </p>
@@ -505,12 +510,12 @@
           <hr />
           <li class="options">
             <a href="#">
-              <i class="fa fa-android fa-3x"></i>
+              <i class="fab fa-google-play fa-3x"></i>
             </a>
           </li>
-          <li class="options mt-100">
+          <li class="options mt-3">
             <a href="#">
-              <i class="fa fa-apple fa-3x"></i>
+              <i class="fab fa-app-store-ios fa-3x"></i>
             </a>
           </li>
         </ul>
@@ -522,17 +527,17 @@
           <ul class="options-inline">
             <li>
               <a href="#">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
+                <i class="fab fa-facebook" aria-hidden="true"></i>
               </a>
             </li>
             <li>
               <a href="#">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <i class="fab fa-twitter" aria-hidden="true"></i>
               </a>
             </li>
             <li>
               <a href="#">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
+                <i class="fab fa-instagram" aria-hidden="true"></i>
               </a>
             </li>
           </ul>

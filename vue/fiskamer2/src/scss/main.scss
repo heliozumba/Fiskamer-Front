@@ -43,7 +43,7 @@ li {
 
 .signUp_button {
   border-radius: 20px;
-  color: whitesmoke;
+  color: whitesmoke !important;
   border: 1px solid #ffcd03;
   font-weight: bold;
   &:hover {
@@ -86,6 +86,10 @@ li {
 
   height: 100vh;
   padding: 0;
+}
+
+.carousel-item img {
+  width: -webkit-fill-available;
 }
 
 .carousel-item .active {
@@ -162,7 +166,7 @@ li {
 }
 
 .search-bar form input {
-  margin-right: 4%;
+  margin-right: 2%;
   border: 1px solid #2c3e5050;
 }
 
@@ -325,7 +329,7 @@ li {
 
     .btn {
       margin-left: 30%;
-      margin-top: 3%;
+      margin-top: -4%;
     }
   }
 
@@ -395,5 +399,5 @@ ul ul li {
 }
 
 .service-arrow {
-  font-size: 10vw;
+  font-size: 5vw;
 }

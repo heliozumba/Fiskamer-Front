@@ -2,7 +2,7 @@
   <div class="consult-service-container">
     <b-row>
       <b-col md="12" class="mb-4">
-        <h3 class="text-center">Os seus Serviços</h3>
+        <h3 class="font-weight-bold">Serviços</h3>
       </b-col>
     </b-row>
     <b-row class>
@@ -30,8 +30,10 @@
         ></b-form-radio-group>
       </b-form-group>
     </b-collapse>
-    <b-row class>
-      <b-list-group class="w-100">
+
+    <b-row class v-for="service in filtered" :key="service._id">
+      <service-list :service="service"></service-list>
+      <!--b-list-group class="w-100">
         <b-list-group-item v-for="service in filtered" :key="service._id" class="p-2 mt-1">
           <b-row>
             <b-col md="3" class>
@@ -45,7 +47,7 @@
               <h5 class="mb-2 font-weight-bold">
                 <router-link
                   :to="{name:'serviceProfile', params:{id:service._id}}"
-                  @click.native="setService(service)"
+                  @click.native="setService2(service)"
                 >{{service.nome}}</router-link>
               </h5>
               <p>
@@ -91,7 +93,7 @@
             </b-col>
           </b-row>
         </b-list-group-item>
-      </b-list-group>
+      </b-list-group-->
     </b-row>
   </div>
 </template>
@@ -162,7 +164,7 @@ export default {
           console.log(error);
         });
     },
-    setService(service) {
+    setService2(service) {
       alert("here");
       console.log("in");
       console.log(service);

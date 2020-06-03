@@ -97,7 +97,7 @@
                 src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
                 class="rounded-circle z-depth-0"
                 alt="avatar image"
-                height="60"
+                height="45"
               />
             </mdb-dropdown-toggle>
             <mdb-dropdown-menu class="bg-dark text-warning">

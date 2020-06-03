@@ -6,15 +6,14 @@
         <router-view name="navigator" />
       </transition>
     </div>
+    <fisk-footer></fisk-footer>
   </div>
 </template>
 
 <script>
 export default {
-  methods:{
-    getUser(){
-      
-    }
+  methods: {
+    getUser() {}
   }
 };
 </script>

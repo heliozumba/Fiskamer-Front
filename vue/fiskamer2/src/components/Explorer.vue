@@ -3,7 +3,7 @@
     <div class="container-fluid landing-container">
       <div class="row landing-row">
         <!-- <div class="landing-images col-12"></div> -->
-        <mdb-carousel :interval="8000" :items="items" indicators id="explorer-carousel"></mdb-carousel>
+        <mdb-carousel :interval="5000" :items="items" indicators id="explorer-carousel"></mdb-carousel>
         <div class=".col-md-2"></div>
         <div class="landing-text text-center col-md-8 m-auto">
           <!--h1 class="display-3 text-warning">Explore</h1>
@@ -302,8 +302,8 @@ export default {
       services2: [],
       categories2: [],
       categories3: [],
-      active0: true,
-      active1: false,
+      active0: false,
+      active1: true,
       items: [
         {
           img: true,
@@ -440,7 +440,8 @@ $("#explorerCarousel").on("slide.bs.carousel", function(e) {
   height: 80vh;
   /* Chrome10+,Safari5.1+ */
 
-  background-image: linear-gradient(315deg, #edd81277 0%, #766a6577 74%);
+  /*  background-image: linear-gradient(315deg,  0%,  74%); */
+  background-image: linear-gradient(315deg, #edd81277 0%, #766a6577 80%);
 }
 .landing-row {
   height: 80vh;

@@ -1,25 +1,33 @@
 <template>
-  <div class="container-fluid div-main">
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="profile-container col-md-8 bg-light">
-        <div class="row p-3">
+  <div class="container-fluid div-main grey lighten-4">
+    <div class="row mt-5">
+      <div class="col-md-1"></div>
+      <div class="col-md-10 mt-4 rounded">
+        <div class="row p-3 my-4 bg-white profile-container rounded">
           <div class="col-md-4">
             <div class="profile-image-container">
               <img
                 class="profile-img img-fluid rounded-circle ml-5"
-                src="../assets/imgs/wedding.jpg"
+                src="../assets/imgs/profile.jpg"
                 alt
               />
             </div>
           </div>
-          <div class="col-md-6 border-left border-right">
+          <div class="col-md-6 p-4">
             <div class="user-info-container">
+              <small class="text-muted font-weight-bold">Nome</small>
               <h5>{{ user.name}}</h5>
+              <small class="text-muted font-weight-bold">Endereço</small>
               <p class="text-muted font-italic mb-1">{{user.endereco}}</p>
               <p>Descrição</p>
-              <button v-if="isAuthUser" class="btn btn-raised btn-dark" v-b-modal.editUser>Editar</button>
-              <button v-else class="btn btn-raised btn-dark">Seguir</button>
+              <div class="text-right">
+                <button
+                  v-if="isAuthUser"
+                  class="btn btn-raised btn-dark rounded"
+                  v-b-modal.editUser
+                >Editar</button>
+                <button v-else class="btn btn-raised btn-dark">Seguir</button>
+              </div>
             </div>
           </div>
           <b-col v-if="!isClient" md="2" class="text-center p-3">
@@ -28,8 +36,82 @@
           </b-col>
           <edit-user></edit-user>
         </div>
-        <hr />
-        <div class="row">
+        <div class="mt-5">
+          <div class="row">
+            <div class="col-md-3 border profile-container rounded bg-white p-4 mx-5">
+              <div class="text-center">
+                <i class="fas fa-file fa-2x"></i>
+                <h1 class="font-weight-bold mt-3">5</h1>
+                <p class="text-muted">Solicitações</p>
+              </div>
+            </div>
+            <div class="col-md-3 border profile-container rounded bg-white p-4 mx-5">
+              <div class="text-center">
+                <i class="fas fa-hand-holding-heart fa-2x"></i>
+                <h1 class="font-weight-bold mt-3">5</h1>
+                <p class="text-muted">Wishlist</p>
+              </div>
+            </div>
+            <div class="col-md-3 border profile-container rounded bg-white p-4 mx-5">
+              <div class="text-center">
+                <i class="fas fa-heart fa-2x"></i>
+                <h1 class="font-weight-bold mt-3">5</h1>
+                <p class="text-muted">Favoritos</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="service-table">
+          <div class="row mt-5">
+            <div class="col-md-9 profile-container rounded bg-white">
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+            </div>
+            <div class="col-md-2 ml-2">
+              <div class="row">
+                <!-- <h4 class="font-weight-bold border-bottom">Esta Semana</h4> -->
+                <div class="profile-container rounded bg-white p-5 col-md-12">
+                  <div class="text-center">
+                    <h4 class="text-muted">Semanal</h4>
+                    <h1 class="font-weight-bold mt-3">20%</h1>
+                    <mdb-progress :height="15" :value="20" color="yellow"></mdb-progress>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-4">
+                <!-- <h4 class="font-weight-bold border-bottom">Este Mês</h4> -->
+                <div class="profile-container rounded bg-white p-5 col-md-12">
+                  <div class="text-center">
+                    <h4 class="text-muted">Mensal</h4>
+                    <h1 class="font-weight-bold mt-3">60%</h1>
+                    <mdb-progress :height="15" :value="60" color="yellow"></mdb-progress>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-1"></div>
+        <div class="row mt-4">
           <div v-if="isClient" class="col-md-12 text-center">
             <h2 class>Wishlist</h2>
             <h5 class="text-muted">Serviços selecionados por Nome para a realização do seu evento</h5>
@@ -160,7 +242,7 @@
           </b-card>-->
         </div>
       </div>
-      <div class="col-md-2"></div>
+      <div class="col-md-1"></div>
     </div>
   </div>
 </template>
@@ -168,10 +250,15 @@
 <script>
 import { bus } from "../main";
 import { general } from "../mixins/general";
+import { mdbProgress, mdbEdgeHeader } from "mdbvue";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 export default {
   mixins: [general],
+  components: {
+    mdbProgress,
+    mdbEdgeHeader
+  },
   data() {
     return {
       isClient: true,
@@ -215,8 +302,8 @@ export default {
 <style lang="scss" scoped>
 .div-main {
   width: 99.99vw;
-  height: 91.8vh;
-  margin-top: 8.2vh;
+
+  margin-top: 10.2vh;
 }
 
 .profile-image-container {
@@ -224,11 +311,15 @@ export default {
 
 .profile-img {
   object-fit: cover;
-  width: 12vw;
-  height: 18vh;
+  width: 16rem;
+  height: 16rem;
 }
 
 .profile-container {
-  box-shadow: 1px 1px 4px #343a40ee;
+  box-shadow: 1px 1px 8px #343a4033;
+}
+
+.test-img {
+  z-index: -2;
 }
 </style>

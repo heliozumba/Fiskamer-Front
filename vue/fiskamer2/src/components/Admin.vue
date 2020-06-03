@@ -158,6 +158,7 @@ import { general } from "../mixins/general";
 import axios from "axios";
 axios.defaults.credentials = true;
 export default {
+  mixins: [general],
   data() {
     return {
       stats: {
@@ -192,9 +193,10 @@ export default {
       filterOn: []
     };
   },
-  computed: {
+  computed: {},
+  methods: {
     getUsers() {
-      /*  axios
+      axios
         .get(this.baseUrl + "users")
         .then(response => {
           this.users = response.data.data.docs;
@@ -203,13 +205,12 @@ export default {
         })
         .catch(error => {
           console.log(error);
-        }); */
+        });
 
-      this.generalGet("users", this.users);
-      this.setItems(this.users);
-    }
-  },
-  methods: {
+      /* //this.generalGet("users", this.users);
+      console.log(this.users);
+      this.setItems(this.users); */
+    },
     blockUser(user) {
       console.log(user);
       /* this.user.active = false;
@@ -256,7 +257,8 @@ export default {
           telemovel: users[i].telemovel,
           perfil: users[i].role.perfil,
           estado: users[i].active,
-          user: users[i]
+          user: users[i],
+          key: i
         });
       }
     },
@@ -285,7 +287,7 @@ export default {
   },
 
   beforeMount() {
-    this.getUsers;
+    this.getUsers();
     /* this.getServices; */
     this.generalGet("services", this.services);
     this.setStats();

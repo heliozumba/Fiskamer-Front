@@ -19,9 +19,9 @@ export const general = {
       axios
         .get(this.baseUrl + entity)
         .then(response => {
-          console.log(response.data);
+          /* console.log(response.data); */
 
-          Array.isArray(response.data.data.docs)
+          Array.isArray(retriever)
             ? retriever.apply.push(response.data.data.docs)
             : (retriever = response.data.data.docs);
         })

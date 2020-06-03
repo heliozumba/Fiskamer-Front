@@ -60,8 +60,10 @@ export default {
     }
   },
   beforeMount() {
-    if (this.user.role.perfilCode != 0)
-      this.user = Object.assign({}, this.$store.state.user);
+    /* if (Boolean(this.user)) {
+      if (this.user.role.perfilCode != 0)
+        this.user = Object.assign({}, this.$store.state.user);
+    } */
   },
   created() {
     bus.$on("senduser", user => {

@@ -38,6 +38,6 @@ export default {
 
 #explorer-carousel .view img {
   object-fit: cover !important;
-  filter: blur(1px) brightness(70%);
+  filter: blur(1px) brightness(40%);
 }
 </style>
