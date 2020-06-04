@@ -114,7 +114,7 @@ export default {
 <style lang="scss" scoped>
 .div-main {
   width: 99.99vw;
-  height: 91.8vh;
+
   margin-top: 8.2vh;
 }
 .first-time {

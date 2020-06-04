@@ -433,7 +433,7 @@ $("#explorerCarousel").on("slide.bs.carousel", function(e) {
 @import "@/scss/div-carousel.scss";
 .div-main {
   width: 99.99vw;
-  height: 91.8vh;
+
   margin-top: 8.2vh;
 }
 .landing-container {

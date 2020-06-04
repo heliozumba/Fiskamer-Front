@@ -1,65 +1,64 @@
 <template>
-  <div class="loginDiv">
+  <div class="loginDiv p-4 rounded">
     <div class="session-box text-center">
-      <h4>Iniciar Sessão</h4>
+      <img class="img-fluid w-75 rounded mr-4 my-2" src="./../assets/imgs/logo2.png" alt />
       <p>
-        <small>
+        <small class="text-light">
           Ainda não tem uma conta?
           <router-link class="text-warning" to="/credentials/register">Crie agora</router-link>
         </small>
       </p>
-      <div class="d-inline">
+      <div class="row d-inline-block p-2">
         <button class="btn btn-primary btn-raised session-button">
-          <i class="fa fa-facebook" aria-hidden="true"></i>
-          Facebook
+          <i class="fab fa-facebook-f"></i>
         </button>
         <button class="btn btn-danger btn-raised session-button">
-          <i class="fa fa-google" aria-hidden="true"></i>
-          Google
+          <i class="fab fa-google"></i>
         </button>
       </div>
     </div>
-    <ValidationObserver v-slot="{ invalid }">
-      <form @submit.prevent="loginUser">
-        <div class="form-group">
-          <label for>
-            <small>Email ou Telemovel</small>
-          </label>
-          <ValidationProvider v-slot="{ errors }" mode="eager">
-            <input
-              type="email"
-              v-model="user.email"
-              rules="email|required"
-              class="form-control rounded"
-              name="email"
-            />
-            <span class="form-error">{{ errors[0] }}</span>
-          </ValidationProvider>
-        </div>
-        <div class="form-group">
-          <label for>
-            <small>Palavra-Passe</small>
-          </label>
-          <ValidationProvider v-slot="{ errors }" rules="required" mode="eager">
-            <input
-              type="password"
-              v-model="user.password"
-              class="form-control rounded"
-              name="pass"
-              ref="password"
-            />
-            <span class="form-error">{{ errors[0] }}</span>
-          </ValidationProvider>
-        </div>
-        <button type="submit" class="btn btn-block logButton" :disabled="invalid">Entrar</button>
-        <input type="checkbox" name="keepConnected" id="keepconnected" />
-        <small>Mantenha-me conectado</small>
-        &nbsp;
-        <small>
-          <router-link class="text-warning" to="#">Esqueci a palavra-passe</router-link>
-        </small>
-      </form>
-    </ValidationObserver>
+    <!-- <ValidationObserver v-slot="{ invalid }"> -->
+    <form @submit.prevent="loginUser" class="mt-3 mb-5 text-warning" id="login-form">
+      <div class="form-group">
+        <!-- <ValidationProvider v-slot="{ errors }" mode="eager"> -->
+        <mdb-input
+          label="Email"
+          type="email"
+          v-model="user.email"
+          validate
+          error="wrong"
+          success="right"
+          name="email"
+          icon="envelope"
+          size="sm"
+          id="login-mail"
+        />
+        <!-- <span class="form-error">{{ errors[0] }}</span>
+        </ValidationProvider>-->
+      </div>
+      <div class="form-group mt-2">
+        <!--  <ValidationProvider v-slot="{ errors }" rules="required" mode="eager"> -->
+        <mdb-input
+          label="Palavra-passe"
+          type="password"
+          v-model="user.password"
+          name="pass"
+          icon="lock"
+          size="sm"
+        />
+        <!-- ref="password"class="form-control rounded" -->
+        <!-- <span class="form-error">{{ errors[0] }}</span> -->
+        <!--  </ValidationProvider> -->
+      </div>
+      <button type="submit" class="btn btn-block mt-5 logButton">Entrar</button>
+      <input type="checkbox" name="keepConnected" id="keepconnected" />
+      <small class="text-light">Mantenha-me conectado</small>
+      &nbsp;
+      <small>
+        <router-link class="text-warning" to="#">Esqueci a palavra-passe</router-link>
+      </small>
+    </form>
+    <!-- </ValidationObserver> -->
   </div>
 </template>
 <script>
@@ -67,10 +66,12 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 import axios from "axios";
 import { toast } from "../mixins/toasts";
+import { mdbInput } from "mdbvue";
 axios.defaults.withCredentials = true;
 
 export default {
   mixins: [toast],
+  components: { mdbInput },
   name: "Login",
   data() {
     return {
@@ -125,16 +126,19 @@ export default {
   computed: mapState(["userstore"])
 };
 </script>
-<style scoped>
-.loginDiv {
-  padding: 10%;
+<style scoped lang="scss">
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .loginDiv {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    /* background-color: rgba(255, 255, 255, 0); */
+  }
 }
+/* .loginDiv {
+  backdrop-filter: blur(0.8);
+} */
 p {
   margin-top: 5%;
-}
-
-form {
-  margin-top: 10%;
 }
 
 .session-button {
@@ -172,4 +176,23 @@ form {
   font-size: 1vw;
   font-weight: bold;
 }
+
+.credentials-background {
+  z-index: 1;
+  background: url("../assets/imgs/credentials_overlay.jpg");
+  position: absolute;
+  width: inherit;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+input::placeholder {
+  color: red !important;
+}
+
+label {
+  color: red !important;
+}
+//
 </style>

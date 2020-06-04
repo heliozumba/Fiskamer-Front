@@ -3,12 +3,12 @@
     <div class="background-test"></div>
     <div class="container-fluid credentials-container">
       <div class="row">
-        <div class="credentials-box col-sm-4 col-xs-12 rounded">
+        <div class="credentials-box col-md-4 offset-md-3 col-xs-12 rounded">
           <transition name="fade">
             <router-view name="helper" />
           </transition>
         </div>
-        <div class="about-box col-sm-6 rounded d-none d-sm-block">
+        <!-- <div class="about-box col-sm-6 rounded d-none d-sm-block">
           <div class="background-box rounded"></div>
           <div class="box-overlay rounded">
             <div class="box-text">
@@ -23,7 +23,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
@@ -39,7 +39,13 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .credentials-box {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
 .row {
   padding-top: 8%;
 }
@@ -51,12 +57,12 @@ export default {
   width: 100%;
   height: 100vh;
   position: absolute;
-  background-position: 20%;
+
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  background: url("./../assets/imgs/credentials.png");
-  filter: brightness(30%);
+  background: url("./../assets/imgs/wedding-room.jpg");
+  filter: brightness(100%);
 }
 .row {
   margin-left: 15%;
@@ -71,8 +77,8 @@ export default {
   height: 70vh;
 }
 .credentials-box {
-  background-color: white;
-  overflow-y: scroll;
+  background-color: rgba(0, 0, 0, 0.45);
+  /*  overflow-y: scroll; */
 }
 .background-box,
 .box-overlay {

@@ -1,5 +1,5 @@
 <template>
-  <b-modal id="editUser" title="Edição de Utilizador" class="text-center" hide-footer>
+  <!--   <b-modal id="editUser" title="Edição de Utilizador" class="text-center" hide-footer>
     <div class="payment-phase">
       <h4 class="text-center">Dados Pessoais</h4>
       <b-avatar size="10rem" class="profile-photo my-3"></b-avatar>
@@ -29,16 +29,114 @@
       </b-form-group>
       <b-button variant="info" class="update-button" @click="updateUser">Actualizar</b-button>
     </div>
-  </b-modal>
+  </b-modal>-->
+
+  <mdb-container>
+    <mdb-row>
+      <mdb-col size="12" class="text-center mb-5">
+        <mdb-btn @click.native="showModal = true" color="info">Editar</mdb-btn>
+        <mdb-modal :show="showModal" @close="showModal = false" cascade class="text-left">
+          <mdb-modal-header class="primary-color white-text blue-gradient">
+            <h4 class="title">
+              <fa class="fas fa-pencil-alt" />Edição de Dados Pessoais
+            </h4>
+          </mdb-modal-header>
+          <mdb-modal-body class="grey-text">
+            <mdb-input
+              size="sm"
+              label="Nome"
+              icon="user"
+              group
+              type="text"
+              validate
+              error="wrong"
+              success="right"
+              v-model="user.name"
+            />
+            <mdb-input
+              size="sm"
+              label="Email"
+              icon="envelope"
+              group
+              type="email"
+              validate
+              error="wrong"
+              success="right"
+              v-model="user.email"
+            />
+            <mdb-input
+              size="sm"
+              label="Telemóvel"
+              icon="phone"
+              group
+              type="number"
+              validate
+              error="wrong"
+              success="right"
+              v-model="user.telemovel"
+            />
+
+            <mdb-input
+              size="sm"
+              label="Endereço"
+              icon="map-marker-alt"
+              group
+              type="text"
+              validate
+              error="wrong"
+              success="right"
+              v-model="user.endereco"
+            />
+
+            <mdb-textarea size="sm" :rows="3" label="Descrição" icon="pen-fancy" />
+          </mdb-modal-body>
+          <mdb-modal-footer class="mr-5">
+            <mdb-btn color="blue-gradient" class="blue-gradient">Actualizar</mdb-btn>
+            <mdb-btn color="secondary" @click.native="showModal = false">Cancelar</mdb-btn>
+          </mdb-modal-footer>
+        </mdb-modal>
+      </mdb-col>
+    </mdb-row>
+  </mdb-container>
 </template>
 <script>
 import { bus } from "../main";
 import axios from "axios";
+import {
+  mdbInput,
+  mdbBtn,
+  mdbContainer,
+  mdbRow,
+  mdbCol,
+  mdbTextarea,
+  mdbIcon,
+  mdbModal,
+  mdbModalHeader,
+  mdbModalBody,
+  mdbModalFooter
+} from "mdbvue";
 axios.defaults.withCredentials = true;
 export default {
+  components: {
+    mdbInput,
+    mdbBtn,
+    mdbContainer,
+    mdbRow,
+    mdbCol,
+
+    mdbTextarea,
+
+    mdbIcon,
+    mdbModal,
+    mdbModalHeader,
+    mdbModalBody,
+    mdbModalFooter
+  },
   data() {
     return {
-      user: {}
+      /*  user: {}, */
+      user: this.$store.state.user,
+      showModal: false
     };
   },
   methods: {
@@ -60,10 +158,10 @@ export default {
     }
   },
   beforeMount() {
-    /* if (Boolean(this.user)) {
+    /*   if (Boolean(this.user)) {
       if (this.user.role.perfilCode != 0)
         this.user = Object.assign({}, this.$store.state.user);
-    } */
+    }  */
   },
   created() {
     bus.$on("senduser", user => {
