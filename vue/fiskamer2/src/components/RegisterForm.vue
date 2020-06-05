@@ -1,70 +1,108 @@
 <template>
-  <ValidationObserver v-slot="{  }">
-    <form @submit.prevent="registerUser">
-      <div class="form-group">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label for class="btn btn-warning active" @click="selectedRole(2)">
-            <input type="radio" name="options" id="option1" />Cliente
-          </label>
-          <label for class="btn btn-warning" @click="selectedRole(1)">
-            <input type="radio" name="options" id="option2" value="1" v-model="user.role" />Fornecedor
-          </label>
-        </div>
+  <!--  <ValidationObserver v-slot="{  }"> -->
+  <form @submit.prevent="registerUser" class="text-warning">
+    <div class="form-group text-center">
+      <div class="btn-group btn-group-toggle btn-group-md my-2" data-toggle="buttons">
+        <label for class="btn btn-warning active" @click="selectedRole(2)">
+          <input type="radio" name="options" id="option1" />Cliente
+        </label>
+        <label for class="btn btn-warning" @click="selectedRole(1)">
+          <input type="radio" name="options" id="option2" value="1" v-model="user.role" />Fornecedor
+        </label>
       </div>
+    </div>
+    <mdb-input
+      size="sm"
+      label="Nome"
+      icon="user"
+      group
+      type="text"
+      validate
+      error="wrong"
+      success="right"
+      v-model="user.name"
+    />
+    <mdb-input
+      size="sm"
+      label="Email"
+      icon="envelope"
+      group
+      type="email"
+      validate
+      error="wrong"
+      success="right"
+      v-model="user.email"
+    />
+    <mdb-input
+      size="sm"
+      label="Telemóvel"
+      icon="phone"
+      group
+      type="number"
+      validate
+      error="wrong"
+      success="right"
+      v-model="user.telemovel"
+    />
+    <mdb-input
+      label="Palavra-passe"
+      type="password"
+      v-model="user.password"
+      name="pass"
+      icon="lock"
+      size="sm"
+    />
+    <mdb-input
+      label="Confirmar Palavra-Passe"
+      type="password"
+      v-model="user.passwordConfirm"
+      name="pass"
+      icon="lock"
+      size="sm"
+    />
+    <div class="d-none">
       <div class="form-group">
-        <label for>
+        <!-- <label for>
           <small>Nome*</small>
         </label>
-        <ValidationProvider v-slot="{ errors }" mode="eager">
-          <input
-            type="text"
-            rules="required|alpha|max:20|min:2"
-            v-model="user.name"
-            class="form-control"
-            name="name"
-            id="name"
-          />
-          <span class="form-error">{{ errors[0] }}</span>
-        </ValidationProvider>
+        <ValidationProvider v-slot="{ errors }" mode="eager">-->
+        <input type="text" v-model="user.name" class="form-control" name="name" id="name" />
+        <!-- rules="required|alpha|max:20|min:2" -->
+        <!--  <span class="form-error">{{ errors[0] }}</span>
+        </ValidationProvider>-->
       </div>
       <div class="form-group">
-        <label for>
+        <!-- label for>
           <small>Email*</small>
-        </label>
-        <ValidationProvider v-slot="{ errors }" mode="eager">
-          <input
-            type="email"
-            rules="required|email"
-            v-model="user.email"
-            class="form-control"
-            name="email"
-            id="email"
-          />
-          <span class="form-error">{{ errors[0] }}</span>
-        </ValidationProvider>
+        </label>-->
+        <!--  <ValidationProvider v-slot="{ errors }" mode="eager"> -->
+        <input type="email" v-model="user.email" class="form-control" name="email" id="email" />
+        <!-- rules="required|email" -->
+        <!--   <span class="form-error">{{ errors[0] }}</span>
+        </ValidationProvider>-->
       </div>
       <div class="form-group">
-        <label for>
+        <!--  <label for>
           <small>Telemóvel*</small>
         </label>
-        <ValidationProvider v-slot="{ errors }" mode="eager">
-          <input
-            type="tel"
-            v-model="user.telemovel"
-            rules="required|digits:9"
-            class="form-control"
-            name="telemovel"
-            id="telemovel"
-          />
-          <span class="form-error">{{ errors[0] }}</span>
-        </ValidationProvider>
-        <input type="checkbox" name id="whatsappCheck" />
-        <small>Funciona para Whatsapp</small>
+        <ValidationProvider v-slot="{ errors }" mode="eager">-->
+        <input
+          type="tel"
+          v-model="user.telemovel"
+          class="form-control"
+          name="telemovel"
+          id="telemovel"
+        />
+        <!-- rules="required|digits:9" -->
+        <!-- <span class="form-error">{{ errors[0] }}</span> -->
+        <!--  </ValidationProvider> -->
+        <!--     <input type="checkbox" name id="whatsappCheck" /> -->
+        <!-- <small>Funciona para Whatsapp</small> -->
       </div>
       <div class="form-group">
-        <label for>
+        <!-- <label for>
           <small>Password*</small>
-        </label>
+        </label>-->
         <!--ValidationProvider
             /*v-slot="{ errors }"
             mode="eager"
@@ -81,9 +119,9 @@
         <!--/ValidationProvider-->
       </div>
       <div class="form-group">
-        <label for>
+        <!-- <label for>
           <small>Confirmar Palavra-Passe*</small>
-        </label>
+        </label>-->
         <!--ValidationProvider
             name="confirm"
             v-slot="{ errors }"
@@ -97,21 +135,25 @@
           id="passwordConfirm"
           v-model="user.passwordConfirm"
         />
-        <span class="form-error"></span>
+        <!-- <span class="form-error"></span> -->
         <!--/ValidationProvider-->
-        <input type="checkbox" name id="privacyCheck" />
-        <small>Aceito os termos de uso e privacidade</small>
       </div>
-
-      <button type="submit" class="btn btn-block logButton">Registre-se</button>
-    </form>
-  </ValidationObserver>
+    </div>
+    <input type="checkbox" name id="privacyCheck" />
+    <small class="text-light">Aceito os termos de uso e privacidade</small>
+    <button type="submit" class="btn btn-block logButton">Registre-se</button>
+  </form>
+  <!-- </ValidationObserver> -->
 </template>
 
 <script>
 import axios from "axios";
+import { mdbInput } from "mdbvue";
 axios.defaults.withCredentials = true;
 export default {
+  components: {
+    mdbInput
+  },
   data() {
     return {
       user: {
@@ -169,7 +211,6 @@ export default {
 
 <style scoped>
 .registerDiv {
-  padding: 10%;
 }
 p {
   margin-top: 5%;
@@ -183,7 +224,7 @@ form input:focus {
   color: white;*/
 }
 form {
-  margin-top: 10%;
+  /* margin-top: 10%; */
 }
 
 .session-button {
@@ -210,7 +251,6 @@ form {
   color: white;
   border-radius: 20px;
   font-weight: bold;
-  margin-bottom: 5%;
 }
 .form-error {
   color: #eb0600dd;

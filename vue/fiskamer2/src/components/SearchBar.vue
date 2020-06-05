@@ -1,6 +1,6 @@
 <template>
   <div class="search-bar-container">
-    <div class="search-bar elegant-color">
+    <div class="search-bar">
       <form class="form-inline" action>
         <input type="text" class="form-control form-control-lg" placeholder="O que está a procura?" />
         <select class="form-control form-control-lg" id="selectLocation">
@@ -19,6 +19,14 @@ export default {};
 
 <style lang="scss" scoped>
 .search-bar-container {
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .search-bar {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: #00000077;
+  }
 }
 
 .search-bar {

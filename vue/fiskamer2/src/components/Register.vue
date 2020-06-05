@@ -1,23 +1,21 @@
 
 <template>
   <div class="registerDiv">
+    <
     <div class="session-box text-center">
-      <h4>Criar Conta</h4>
+      <img class="img-fluid w-75 rounded mr-4 my-2" src="./../assets/imgs/logo2.png" alt />
       <p>
-        <small>
-          Já tem uma conta?
+        <small class="text-light">
+          Já possui uma conta?
           <router-link class="text-warning" to="/credentials/login">Entrar</router-link>
         </small>
       </p>
-      <div class="d-inline">
+      <div class="row d-inline-block p-2">
         <button class="btn btn-primary btn-raised session-button">
-          <i class="fa fa-facebook" aria-hidden="true"></i>
-          Facebook
+          <i class="fab fa-facebook-f"></i>
         </button>
-        &nbsp;
         <button class="btn btn-danger btn-raised session-button">
-          <i class="fa fa-google" aria-hidden="true"></i>
-          Google
+          <i class="fab fa-google"></i>
         </button>
       </div>
     </div>

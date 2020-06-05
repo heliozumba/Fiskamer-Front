@@ -451,7 +451,7 @@ $("#explorerCarousel").on("slide.bs.carousel", function(e) {
   background: url("../assets/imgs/wedding-landing.jpg");
   height: 80vh;
   z-index: -1;
-  filter: blur(1px) brightness(70%);
+  filter: blur(1px) brightness(100%);
 
   position: absolute;
   background-attachment: fixed;

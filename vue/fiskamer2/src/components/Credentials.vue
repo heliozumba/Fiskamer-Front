@@ -74,7 +74,6 @@ export default {
 }
 .credentials-box,
 .about-box {
-  height: 70vh;
 }
 .credentials-box {
   background-color: rgba(0, 0, 0, 0.45);
