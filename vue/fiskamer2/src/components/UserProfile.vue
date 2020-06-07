@@ -126,26 +126,6 @@
                 </mdb-card-body>
               </mdb-card>
               <mdb-datatable-2 v-model="data" bordered reactive :time="5000" />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
             </div>
             <div class="col-md-2 ml-2">
               <div class="row">

@@ -2,13 +2,13 @@
   <div class="div-main">
     <b-row>
       <!--b-col md="2"></b-col-->
-      <b-col md="10" offset="1" class="mt-5">
+      <b-col md="12" class="m-5">
         <h1 class="text-center">Planejamento de Eventos</h1>
         <hr />
-        <div>
+        <!--  <div>
           <router-link to="/main/plan/suggestions">Sugestões</router-link>
           <router-link to="/main/plan/my">O meu planejamento</router-link>
-        </div>
+        </div>-->
         <router-view name="helper2"></router-view>
       </b-col>
     </b-row>
