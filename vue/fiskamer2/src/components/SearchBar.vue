@@ -1,13 +1,17 @@
 <template>
   <div class="search-bar-container">
-    <div class="search-bar">
-      <form class="form-inline" action>
-        <input type="text" class="form-control form-control-lg" placeholder="O que está a procura?" />
-        <select class="form-control form-control-lg" id="selectLocation">
+    <div class="search-bar p-2">
+      <form class="form-inline col-md-12" action>
+        <input
+          type="text"
+          class="form-control form-control-lg col-md-5 ml-4"
+          placeholder="O que está a procura?"
+        />
+        <select class="form-control form-control-lg col-md-4" id="selectLocation">
           <option>Onde?</option>
         </select>
 
-        <button class="btn warning-color btn-lg">Pesquisar</button>
+        <button class="btn warning-color col-md-2">Pesquisar</button>
       </form>
     </div>
   </div>

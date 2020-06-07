@@ -30,7 +30,7 @@
                   v-for="category in categories"
                   :key="category.id"
                   :category="category"
-                  :class="{'active': category.id === 1}"
+                  :class="{'active': category.id === 1 }"
                 ></category-box>
               </div>
             </div>
@@ -38,8 +38,10 @@
         </div>
         <div class="col-md-1">
           <a class="carousel-control-next" href="#explorerCarousel" role="button" data-slide="next">
-            <span class="fa fa-angle-right text-dark service-arrow" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <div class="float-left mr-5">
+              <span class="fa fa-angle-right text-dark service-arrow fa-2x" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </div>
           </a>
         </div>
       </div>
@@ -47,15 +49,15 @@
         <div class="col-md-1"></div>
         <aside
           id="filter-div"
-          class="search-filters-container col-md-2 bg-light rounded position-sticky mr-1 p-4"
+          class="search-filters-container col-md-2 bg-light rounded position-sticky mr-1 p-4 ml-5s"
         >
-          <p class="font-weight-bold">Provincia</p>
+          <!--  <p class="font-weight-bold mb-0">Provincia</p> -->
           <filter-inputs :filterArray="provinces" kindOfArray="Provincia" @selected="setIndex"></filter-inputs>
           <hr />
-          <p class="font-weight-bold">Distrito</p>
+          <!-- <p class="font-weight-bold">Distrito</p> -->
           <filter-inputs :filterArray="provinces[selected].counties" kindOfArray="Distrito"></filter-inputs>
           <hr />
-          <p class="font-weight-bold">Categoria</p>
+          <!--  <p class="font-weight-bold">Categoria</p> -->
           <filter-inputs
             :filterArray="Object.values(categories3)"
             kindOfArray="Categoria"
@@ -137,16 +139,15 @@
           </div>
           <transition>
             <div class="row">
-              <div class="col-md-1"></div>
-              <div class="col-md-10">
-                <div v-if="cardView" class="results-container">
-                  <service-card v-for="service in services" :key="service._id" :service="service" />
-                </div>
-                <div v-else class="results-container">
+              <div v-if="cardView" class="results-container ml-5">
+                <service-card v-for="service in services" :key="service._id" :service="service" />
+              </div>
+              <div v-else class="results-container">
+                <div class="col-md-10 offset-md-1">
                   <service-list v-for="service in services" :key="service._id" :service="service" />
                 </div>
+                <div class="col-md-1"></div>
               </div>
-              <div class="col-md-1"></div>
             </div>
           </transition>
           <hr />
@@ -387,7 +388,7 @@ export default {
   beforeMount() {
     this.setServices();
     this.generalGet("categories", this.categories3);
-    this.getCategories();
+    /* this.getCategories(); */
     this.getFavourites();
   },
 
@@ -405,12 +406,7 @@ $("#explorerCarousel").on("slide.bs.carousel", function(e) {
   var idx = $e.index();
   var itemsPerSlide = 3;
   var totalItems = $("#explorerCarousel > .carousel-item").length;
-  var x = 1;
 
-  if (x == 1) {
-    console.log(idx, totalItems, itemsPerSlide);
-    x++;
-  }
   if (idx >= totalItems - (itemsPerSlide - 1)) {
     var it = itemsPerSlide - (totalItems - idx);
     for (var i = 0; i < it; i++) {
@@ -418,11 +414,11 @@ $("#explorerCarousel").on("slide.bs.carousel", function(e) {
       if (e.direction == "left") {
         $("#explorerCarousel > .carousel-item")
           .eq(i)
-          .appendTo("#category-carousel");
+          .appendTo(" #explorerCarousel > .carousel-inner");
       } else {
-        /* $("#explorerCarousel > .carousel-item")
+        $("#explorerCarousel > .carousel-item")
           .eq(0)
-          .appendTo($(this).find("#category-carousel")); */
+          .appendTo($(this).find("#explorerCarousel > .carousel-inner"));
       }
     }
   }
@@ -484,11 +480,11 @@ $("#explorerCarousel").on("slide.bs.carousel", function(e) {
 .categories-row {
 }
 
-.category-box {
+/* .category-box {
   &:first-child {
     margin-left: 15%;
   }
-}
+} */
 
 .explorer-logo {
   margin-bottom: 2%;

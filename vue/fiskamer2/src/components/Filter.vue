@@ -1,7 +1,8 @@
 <template>
   <div v-if="filterArray">
     <b-form-group>
-      <b-form-input v-model="search" :placeholder="kindOfArray" :id="kindOfArray" type="text"></b-form-input>
+      <mdb-input v-model="search" :label="kindOfArray" :id="kindOfArray" type="text" />
+
       <b-list-group class>
         <b-list-group-item
           href="#"
@@ -15,7 +16,11 @@
 </template>
 
 <script>
+import { mdbInput } from "mdbvue";
 export default {
+  components: {
+    mdbInput
+  },
   props: {
     filterArray: Array,
     kindOfArray: String

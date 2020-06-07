@@ -1,5 +1,6 @@
 <template>
   <div class="category-box carousel-item col-md-4">
+    <!--  -->
     <b-card
       overlay
       :title="category.name"

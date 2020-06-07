@@ -86,12 +86,13 @@
                   </span>
                 </a>
               </div>
-              <router-link
-                v-else
-                :to="{name:'serviceProfile',params:{id:service._id}}"
-                class="list-button btn btn-raised btn-warning px-5 mt-"
-                @click.native="setService"
-              >Ver</router-link>
+              <div class="float-right" v-else>
+                <router-link
+                  :to="{name:'serviceProfile',params:{id:service._id}}"
+                  class="list-button btn btn-raised btn-warning px-5 mt-"
+                  @click.native="setService"
+                >Ver</router-link>
+              </div>
             </b-col>
           </b-row>
         </div>
