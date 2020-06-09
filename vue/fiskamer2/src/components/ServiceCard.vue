@@ -47,16 +47,15 @@
         :to="{name:'serviceProfile',params:{id:service._id}}"
       >Ver</router-link>-->
 
-      <small class="text-center mr-2">
+      <span class="text-center text-muted mr-2">
         5
         <i class="fas fa-eye"></i>
-      </small>
+      </span>
 
-      <small class="text-center text-success"></small>
-      <small class="text-center text-danger">
+      <span class="text-center text-muted">
         {{ service.like}}
         <i class="fa fa-heart" aria-hidden="true"></i>
-      </small>
+      </span>
     </div>
   </div>
 </template>

@@ -152,11 +152,11 @@
           </transition>
           <hr />
           <mdb-pagination color="dark" circle>
-            <mdb-page-nav prev>Anterior</mdb-page-nav>
+            <mdb-page-nav prev></mdb-page-nav>
             <mdb-page-item v-for="i in pages" :key="i" :class="{'active': i === 1}">
               <span class="page-link" @click="paginate(i,services2)">{{ i }}</span>
             </mdb-page-item>
-            <mdb-page-nav next>Próxima</mdb-page-nav>
+            <mdb-page-nav next></mdb-page-nav>
           </mdb-pagination>
           <!-- <nav aria-label="page-nav">
             <ul class="pagination justify-content-center">
@@ -505,6 +505,6 @@ $("#explorerCarousel").on("slide.bs.carousel", function(e) {
 
 #explorer-carousel > .view img {
   object-fit: cover !important;
-  filter: blur(1px) brightness(70%);
+  filter: blur(1px) brightness(80%);
 }
 </style>

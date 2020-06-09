@@ -1,12 +1,57 @@
 <template>
-  <div>
+  <div class>
     <div class="row">
-      <div class="col-md-8">
-        <mdb-card class="mt-2 purple-gradient text-center text-white font-weight-bold px-4">
+      <div class="col-md-11">
+        <div class="text-center my-2">
+          <h3 class="text-muted font-weight-bold">Visão Geral</h3>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-1"></div>
+          <div class="col-md-3 border profile-container rounded p-4 ml-0 my-4">
+            <!-- <div
+              class="card-icons float-left text-center text-white p-2 border mb-5 position-absolute profile-container blue-gradient"
+            >
+              <i class="fas fa-file fa-2x"></i>
+            </div>-->
+            <div class="text-center">
+              <h1 class="font-weight-bold mt-3">{{plan2.length}}</h1>
+              <p class="text-muted">Serviços</p>
+            </div>
+          </div>
+          <div class="col-md-3 border profile-container rounded p-4 mx-5 my-4">
+            <!--  <div
+              class="card-icons float-left text-center text-white p-2 border mb-5 position-absolute profile-container blue-gradient"
+            >
+              <i class="fas fa-file fa-2x"></i>
+            </div>-->
+            <div class="text-center">
+              <h1 class="font-weight-bold mt-3">{{columnTotal2}}</h1>
+              <p class="text-muted">Preço Total</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 border profile-container rounded p-4 my-4">
+            <!-- <div
+              class="card-icons float-left text-center text-white p-2 border mb-5 position-absolute profile-container blue-gradient"
+            >
+              <i class="fas fa-file fa-2x"></i>
+            </div>-->
+            <div class="text-center">
+              <h1 class="font-weight-bold mt-3">5</h1>
+              <p class="text-muted">Solicitações</p>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7">
+        <!-- <mdb-card class="mt-2 purple-gradient text-center text-white font-weight-bold px-4">
           <mdb-card-body>
-            <h4>Wishlist</h4>
+            <h4> Wishlist</h4>
           </mdb-card-body>
-        </mdb-card>
+        </mdb-card>-->
         <!--mdb-tbl>
           <mdb-tbl-head>
             <tr>
@@ -52,8 +97,13 @@
           :items="plan2"
           foot-clone
           no-footer-sorting
-          class="profile-container scrollbar-primary"
+          class="profile-container scrollbar-primary p-1"
           sticky-header
+          primary-key="service"
+          :tbody-transition-props="transProps"
+          outlined
+          head-variant="light"
+          id="plan-table"
         >
           <template v-slot:cell(features)="row">
             <b-form-checkbox
@@ -88,7 +138,7 @@
             <span></span>
           </template>
           <template v-slot:foot(total)>
-            <h4 class="font-weight-bold">{{columnTotal2}}</h4>
+            <h4 class="font-weight-bold">{{columnTotal2}}, 00 AOA</h4>
           </template>
           <template v-slot:foot(acções)>
             <span></span>
@@ -97,58 +147,15 @@
           <h1>Total:</h1>
         </b-table>
       </div>
-      <div class="col-md-3">
-        <div class="text-center mt-5">
-          <h3 class="text-muted font-weight-bold">Visão Geral</h3>
-        </div>
-        <div class="row">
-          <div class="col-md-5 border profile-container rounded p-4 m-2">
-            <!-- <div
-              class="card-icons float-left text-center text-white p-2 border mb-5 position-absolute profile-container blue-gradient"
-            >
-              <i class="fas fa-file fa-2x"></i>
-            </div>-->
-            <div class="text-center">
-              <h1 class="font-weight-bold mt-3">{{plan2.length}}</h1>
-              <p class="text-muted">Serviços</p>
-            </div>
-          </div>
-          <div class="col-md-5 border profile-container rounded p-4 m-2">
-            <!--  <div
-              class="card-icons float-left text-center text-white p-2 border mb-5 position-absolute profile-container blue-gradient"
-            >
-              <i class="fas fa-file fa-2x"></i>
-            </div>-->
-            <div class="text-center">
-              <h1 class="font-weight-bold mt-3">{{columnTotal2}}</h1>
-              <p class="text-muted">Preço Total</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-5 border profile-container rounded p-4 m-2">
-            <!-- <div
-              class="card-icons float-left text-center text-white p-2 border mb-5 position-absolute profile-container blue-gradient"
-            >
-              <i class="fas fa-file fa-2x"></i>
-            </div>-->
-            <div class="text-center">
-              <h1 class="font-weight-bold mt-3">5</h1>
-              <p class="text-muted">Solicitações</p>
-            </div>
-          </div>
-          <div class="col-md-5 border profile-container rounded p-4 m-2">
-            <!--  <div
-              class="card-icons float-left text-center text-white p-2 border mb-5 position-absolute profile-container blue-gradient"
-            >
-              <i class="fas fa-file fa-2x"></i>
-            </div>-->
-            <div class="text-center">
-              <h1 class="font-weight-bold mt-3">5</h1>
-              <p class="text-muted">Solicitações</p>
-            </div>
-          </div>
-        </div>
+      <div class="col-md-4">
+        <mdb-container class="profile-container">
+          <mdb-line-chart
+            :data="lineChartData"
+            :options="lineChartOptions"
+            :width="450"
+            :height="350"
+          ></mdb-line-chart>
+        </mdb-container>
       </div>
     </div>
   </div>
@@ -164,7 +171,9 @@ import {
   mdbCardBody,
   mdbTbl,
   mdbTblHead,
-  mdbTblBody
+  mdbTblBody,
+  mdbLineChart,
+  mdbContainer
 } from "mdbvue";
 
 export default {
@@ -175,10 +184,16 @@ export default {
     mdbCardBody,
     mdbTbl,
     mdbTblHead,
-    mdbTblBody
+    mdbTblBody,
+    mdbLineChart,
+    mdbContainer
   },
   data() {
     return {
+      stickyHeader: true,
+      transProps: {
+        name: "flip-list"
+      },
       maxH: "55vh",
       columnTotal: 0,
       plan: {},
@@ -220,6 +235,55 @@ export default {
           } */
         ],
         rows: []
+      },
+      lineChartData: {
+        labels: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July"
+        ],
+        datasets: [
+          {
+            label: "My First dataset",
+            backgroundColor: "rgba(255, 99, 132, 0.1)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 0.7,
+            data: [65, 59, 80, 81, 56, 55, 40]
+          },
+          {
+            label: "My Second dataset",
+            backgroundColor: "rgba(151,187,205,0.2)",
+            borderColor: "rgba(151,187,205,1)",
+            borderWidth: 0.8,
+            data: [28, 48, 40, 19, 86, 27, 90]
+          }
+        ]
+      },
+      lineChartOptions: {
+        responsive: false,
+        maintainAspectRatio: false,
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                display: true,
+                color: "rgba(0, 0, 0, 0.1)"
+              }
+            }
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                display: true,
+                color: "rgba(0, 0, 0, 0.1)"
+              }
+            }
+          ]
+        }
       }
     };
   },
@@ -293,14 +357,15 @@ export default {
 
 .profile-container {
   box-shadow: 1px 1px 8px #343a4033;
+  background-color: white;
 }
 
 .table-responsive {
-  max-height: 60vh;
+  max-height: 65vh;
 }
 
 .scrollbar-primary::-webkit-scrollbar {
-  width: 12px;
+  width: 0.5%;
   background-color: #f5f5f5;
 }
 
@@ -314,5 +379,9 @@ export default {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: #f5f5f5;
   border-radius: 10px;
+}
+
+table#plan-table .flip-list-move {
+  transition: transform 1s;
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <div class="div-main">
+  <div class="div-main grey lighten-4">
     <b-row>
       <!--b-col md="2"></b-col-->
-      <b-col md="12" class="m-5">
-        <h1 class="text-center">Planejamento de Eventos</h1>
-        <hr />
+      <b-col md="12" class="mx-4 my-5">
+        <!--  <h1 class="text-center">Planejamento de Eventos</h1>
+        <hr />-->
         <!--  <div>
           <router-link to="/main/plan/suggestions">Sugestões</router-link>
           <router-link to="/main/plan/my">O meu planejamento</router-link>

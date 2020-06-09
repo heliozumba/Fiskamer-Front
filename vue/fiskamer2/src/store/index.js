@@ -10,7 +10,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: {},
-    service: {}
+    service: {},
+    cart: []
   },
   plugins: [createdPersistedState()],
   getters: {},
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     setService(state, payload) {
       state.service = payload;
+    },
+    addCart(state, payload) {
+      state.cart.push(payload);
     }
   },
   actions: {
@@ -29,6 +33,9 @@ export default new Vuex.Store({
 
     setService(context, payload) {
       context.commit("setService", payload);
+    },
+    addCart(context, payload) {
+      context.commit("addCart", payload);
     }
   }
 });

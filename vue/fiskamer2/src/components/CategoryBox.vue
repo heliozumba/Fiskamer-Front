@@ -28,7 +28,7 @@ export default {
 }
 
 .card-title {
-  margin-top: 20%;
+  margin-top: 25%;
 }
 img {
   filter: brightness(60%);
